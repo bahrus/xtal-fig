@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <template  shadowroot="open">
+            <div id=diamond>
+                <div id=inner>
+                    I am here
+                </div>
+            </div>
+            <style>
+            #diamond {
+              width: 0;
+              height: 0;
+              border: 50px solid transparent;
+              border-bottom-color: red;
+              position: relative;
+              top: -50px;
+            }
+            #diamond:after {
+              content: '';
+              position: absolute;
+              left: -50px;
+              top: 50px;
+              width: 0;
+              height: 0;
+              border: 50px solid transparent;
+              border-top-color: red;
+            }
+            #inner{
+                position:absolute;
+                left: -25px;
+                top:25px;
+                min-height:50px;
+                width:50px;
+                z-index: 1;
+                
+            }
+            </style>
+        </template>
+    </div>
+
+</body>
+</html>
