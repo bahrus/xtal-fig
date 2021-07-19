@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <xtal-fig-diamond>
+        I am here
+    </xtal-fig-diamond>
+    <script type=importmap>{
+        "imports": {
+            "xtal-element/": "../node_modules/xtal-element/",
+            "carbon-copy/": "../node_modules/carbon-copy/",
+            "trans-render/": "../node_modules/trans-render/",
+            "templ-arts/": "../node_modules/templ-arts/"
+        }
+    }</script>
+    <script type=module>
+        import '../xtal-fig-diamond.js';
+    </script>
+</body>
+</html>

@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node node_modules/xtal-test/serve.js"
   },
+  "dependencies": {
+    "carbon-copy": "0.1.78"
+  },
   "devDependencies": {
     "xtal-test": "0.0.51"
   },
