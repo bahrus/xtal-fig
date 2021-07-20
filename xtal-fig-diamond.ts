@@ -25,6 +25,7 @@ const mainTemplate = html`
     --after-border-top-width:50px;
     --after-border-top-style:solid;
     --after-border-top-color:red;
+    --inner-left: -25px;
 }
 </style>
 <style>
