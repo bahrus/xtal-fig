@@ -10,6 +10,7 @@ const mainTemplate = html `
 :host{
     --default-border-color:red;
     --default-neg-width:-50px;
+    --default-neg-half-width:calc(--default-neg-width / 2);
     --default-pos-width:50px;
     --default-border-style:solid;
     --border-width:var(--default-pos-width);
