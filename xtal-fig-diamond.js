@@ -28,7 +28,7 @@ const mainTemplate = html `
     --after-border-top-width:var(--default-pos-width);
     --after-border-top-style:var(--default-border-style);
     --after-border-top-color:var(--default-border-color);
-    --inner-left: -25px;
+    --inner-left: var(--default-neg-half-width);
     --inner-min-height:var(--default-pos-width);
 }
 </style>
