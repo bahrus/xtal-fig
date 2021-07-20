@@ -5,8 +5,8 @@ const mainTemplate = html `
     :host{
         --inner-left-offset:24px;
         --inner-top-offset:24px;
+        --diamond-background: lightblue;
     }
-    
 </style>
 <style>
 :host{
@@ -15,8 +15,7 @@ const mainTemplate = html `
 #diamond {
     width: 100%; 
     height: 100%; 
-    background: lightblue;
-    /* margin: 3px 0 0 30px; */
+    background: var(--diamond-background);
     /* Rotate */
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
