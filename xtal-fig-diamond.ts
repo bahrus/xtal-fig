@@ -10,7 +10,8 @@ const mainTemplate = html`
 </div>
 <style>
 :host{
-    --default-background-color:red;
+    display:block;
+    --default-background-color:#dddddd;
     --default-border-color:transparent;
     --default-neg-width:-50px;
     --default-neg-half-width:calc(var(--default-neg-width) / 2);

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <template shadowroot=open>
+            <svg xmlns="https://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 64 64">
+                <polygon fill="#F3BC23" stroke="#F3BC23" stroke-width="1" points="30,4,4,60,60,60"/>
+                <text x="32" y="50" text-anchor="middle" fill="white" font-size="30">
+                    <foreignObject x="20" y="20" width="160" height="160"><slot></slot></foreignObject>
+                </text>
+              </svg>
+        </template>
+        hello
+    </div>
+</body>
+</html>
