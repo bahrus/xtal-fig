@@ -10,21 +10,24 @@ const mainTemplate = html`
 </div>
 <style>
 :host{
-    --border-width:50px;
+    --default-border-color:red;
+    --default-neg-width:-50px;
+    --default-pos-width:50px;
+    --border-width:var(--default-pos-width);
     --border-color:transparent;
     --border-style:solid;
     --border-bottom-width: 50px;
-    --border-bottom-color: red;
+    --border-bottom-color: var(--default-border-color);
     --border-bottom-style: solid;
-    --top:-50px;
-    --after-left:-50px;
+    --top:var(--default-neg-width);
+    --after-left:var(--default-neg-width);
     --after-top:50px;
     --after-border-width:50px;
     --after-border-style:solid;
     --after-border-color:transparent;
     --after-border-top-width:50px;
     --after-border-top-style:solid;
-    --after-border-top-color:red;
+    --after-border-top-color:var(--default-border-color);
     --inner-left: -25px;
 }
 </style>
