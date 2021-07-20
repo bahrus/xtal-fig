@@ -3,8 +3,8 @@ import { html } from 'xtal-element/lib/html.js';
 const mainTemplate = html `
 <style>
     :host{
-        --inner-left-offset:30px;
-        --inner-top-offset:30px;
+        --inner-left-offset:24px;
+        --inner-top-offset:24px;
     }
     
 </style>
@@ -16,7 +16,7 @@ const mainTemplate = html `
     width: 100%; 
     height: 100%; 
     background: lightblue;
-    margin: 3px 0 0 30px;
+    /* margin: 3px 0 0 30px; */
     /* Rotate */
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
