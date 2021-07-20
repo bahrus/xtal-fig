@@ -9,22 +9,27 @@ const mainTemplate = html `
 <style>
 :host{
     --border-width:50px;
+    --border-color:transparent;
     --border-bottom-width: 50px;
+    --border-bottom-color: red;
+    --border-bottom-style: solid;
     --top:-50px;
     --after-left:-50px;
     --after-top:50px;
     --after-border-width:50px;
     --after-border-top-width:50px;
 }
+</style>
+<style>
 #diamond {
     width: 0;
     height: 0;
     border-style:solid;
-    border-color:transparent;
+    border-color:var(--border-color);
     border-width:var(--border-width);
     border-bottom-width: var(--border-bottom-width);
-    border-bottom-style: solid;
-    border-bottom-color: red;
+    border-bottom-style: var(--border-bottom-style);
+    border-bottom-color: var(--border-bottom-color);
     position: relative;
     top: var(--top);
 }
