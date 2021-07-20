@@ -1,8 +1,12 @@
 import { define } from 'carbon-copy/c-c.js';
 import { html } from 'xtal-element/lib/html.js';
 const mainTemplate = html `
-<div id=parallelogram part=parallelogram>
-    <slot></slot>
+<div id=parallelogram part=outer>
+
+    
+    <div part=inner>
+        <slot></slot>
+    </div>
 </div>
 <style>
 :host{
