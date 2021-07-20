@@ -1,6 +1,6 @@
 import { define } from 'carbon-copy/c-c.js';
 import { html } from 'xtal-element/lib/html.js';
-const mainTemlate = html `
+const mainTemplate = html `
 <div id=diamond>
     <div id=inner>
         <slot></slot>
@@ -8,28 +8,41 @@ const mainTemlate = html `
 </div>
 <style>
 :host{
-    --h-dimension:50px;
-    --v-dimension:50px;
+    --border-width:50px;
+    --border-bottom-width: 50px;
+    --top:-50px;
+    --after-left:-50px;
+    --after-top:50px;
+    --after-border-width:50px;
+    --after-border-top-width:50px;
 }
 #diamond {
-
     width: 0;
     height: 0;
-    border: 50px solid transparent;
+    border-style:solid;
+    border-color:transparent;
+    border-width:var(--border-width);
+    border-bottom-width: var(--border-bottom-width);
+    border-bottom-style: solid;
     border-bottom-color: red;
     position: relative;
-    top: -50px;
+    top: var(--top);
 }
 #diamond:after {
     content: '';
     position: absolute;
-    left: -50px;
-    top: 50px;
+    left: var(--after-left);
+    top: var(--after-top);
     width: 0;
     height: 0;
-    border: 50px solid transparent;
+    border-width: var(--after-border-width);
+    border-style:solid;
+    border-color:transparent;
+    border-top-width: var(--after-border-width);
+    border-top-style: solid;
     border-top-color: red;
 }
+
 #inner{
     position:absolute;
     left: -25px;
@@ -37,8 +50,7 @@ const mainTemlate = html `
     min-height:50px;
     width:50px;
     z-index: 1;
-    
 }
 </style>
 `;
-define('xtal-fig-diamond', mainTemlate, {});
+define('xtal-fig-diamond', mainTemplate, {});
