@@ -12,6 +12,7 @@ const mainTemplate = html`
 :host{
     --border-width:50px;
     --border-color:transparent;
+    --border-style:solid;
     --border-bottom-width: 50px;
     --border-bottom-color: red;
     --border-bottom-style: solid;
@@ -19,14 +20,18 @@ const mainTemplate = html`
     --after-left:-50px;
     --after-top:50px;
     --after-border-width:50px;
+    --after-border-style:solid;
+    --after-border-color:transparent;
     --after-border-top-width:50px;
+    --after-border-top-style:solid;
+    --after-border-top-color:red;
 }
 </style>
 <style>
 #diamond {
     width: 0;
     height: 0;
-    border-style:solid;
+    border-style:var(--border-style);
     border-color:var(--border-color);
     border-width:var(--border-width);
     border-bottom-width: var(--border-bottom-width);
@@ -43,11 +48,11 @@ const mainTemplate = html`
     width: 0;
     height: 0;
     border-width: var(--after-border-width);
-    border-style:solid;
-    border-color:transparent;
+    border-style:var(--after-border-style);
+    border-color:var(--after-border-color);
     border-top-width: var(--after-border-width);
-    border-top-style: solid;
-    border-top-color: red;
+    border-top-style: var(--after-border-top-style);
+    border-top-color: var(--after-border-top-color);
 }
 
 #inner{
