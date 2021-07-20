@@ -11,9 +11,10 @@ const mainTemplate = html `
     --default-border-color:red;
     --default-neg-width:-50px;
     --default-pos-width:50px;
+    --default-border-style:solid;
     --border-width:var(--default-pos-width);
     --border-color:transparent;
-    --border-style:solid;
+    --border-style:var(--default-border-style);
     --border-bottom-width: var(--default-pos-width);
     --border-bottom-color: var(--default-border-color);
     --border-bottom-style: solid;
@@ -21,12 +22,13 @@ const mainTemplate = html `
     --after-left:var(--default-neg-width);
     --after-top:var(--default-pos-width);
     --after-border-width:var(--default-pos-width);
-    --after-border-style:solid;
+    --after-border-style:var(--default-border-style);
     --after-border-color:transparent;
     --after-border-top-width:var(--default-pos-width);
-    --after-border-top-style:solid;
+    --after-border-top-style:var(--default-border-style);
     --after-border-top-color:var(--default-border-color);
     --inner-left: -25px;
+    --inner-min-height:var(--default-pos-width);
 }
 </style>
 <style>
@@ -61,7 +63,7 @@ const mainTemplate = html `
     position:absolute;
     left: -25px;
     top:25px;
-    min-height:50px;
+    min-height:var(--inner-min-height);
     width:50px;
     z-index: 1;
 }
