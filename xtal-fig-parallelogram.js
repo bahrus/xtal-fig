@@ -1,8 +1,6 @@
-import {define} from 'carbon-copy/c-c.js';
-import {CCProps} from 'carbon-copy/types.d.js';
-import {html} from 'xtal-element/lib/html.js';
-
-const mainTemplate = html`
+import { define } from 'carbon-copy/c-c.js';
+import { html } from 'xtal-element/lib/html.js';
+const mainTemplate = html `
 <div id=parallelogram part=parallelogram>
     <slot></slot>
 </div>
@@ -26,4 +24,4 @@ const mainTemplate = html`
  * @element xtal-fig-parallelogram
  * @tag xtal-fig-parallelogram
  */
-define('xtal-fig-parallelogram', mainTemplate, {} as CCProps);
+define('xtal-fig-parallelogram', mainTemplate, {});

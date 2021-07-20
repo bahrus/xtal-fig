@@ -45,4 +45,8 @@ const mainTemplate = html `
 
 
 `;
+/**
+ * @element xtal-fig-diamond
+ * @tag xtal-fig-diamond
+ */
 define('xtal-fig-diamond', mainTemplate, {});
