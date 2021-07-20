@@ -10,8 +10,9 @@ const mainTemplate = html `
 :host{
     --default-border-color:red;
     --default-neg-width:-50px;
-    --default-neg-half-width:calc(--default-neg-width / 2);
+    --default-neg-half-width:calc(var(--default-neg-width) / 2);
     --default-pos-width:50px;
+    --default-pos-half-width:calc(var(--default-pos-width) / 2);
     --default-border-style:solid;
     --border-width:var(--default-pos-width);
     --border-color:transparent;
@@ -30,6 +31,7 @@ const mainTemplate = html `
     --after-border-top-color:var(--default-border-color);
     --inner-left: var(--default-neg-half-width);
     --inner-min-height:var(--default-pos-width);
+    --inner-top: var(--default-pos-half-width);
 }
 </style>
 <style>
@@ -62,8 +64,8 @@ const mainTemplate = html `
 
 #inner{
     position:absolute;
-    left: -25px;
-    top:25px;
+    left: var(--inner-left);
+    top:var(--inner-top);
     min-height:var(--inner-min-height);
     width:50px;
     z-index: 1;
