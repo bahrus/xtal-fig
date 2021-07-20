@@ -32,6 +32,7 @@ const mainTemplate = html `
     --inner-left: var(--default-neg-half-width);
     --inner-min-height:var(--default-pos-width);
     --inner-top: var(--default-pos-half-width);
+    --inner-width: var(--default-pos-width);
 }
 </style>
 <style>
@@ -67,7 +68,7 @@ const mainTemplate = html `
     left: var(--inner-left);
     top:var(--inner-top);
     min-height:var(--inner-min-height);
-    width:50px;
+    width:var(--inner-width);
     z-index: 1;
 }
 </style>
