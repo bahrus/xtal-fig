@@ -1,28 +1,49 @@
 {
   "name": "xtal-fig",
   "version": "0.0.0",
-  "description": "",
+  "description": "Turn css for basic shapes into semantic html",
   "main": "xtal-fig-diamond.js",
   "module": "xtal-fig-diamond.js",
-
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "flowcharts",
+    "shapes"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node node_modules/xtal-test/serve.js"
+    "package-check": "package-check",
+    "serve": "node node_modules/xtal-test/serve.js",
+    "doc": "custom-elements-manifest analyze"
   },
+  "exports": {
+    ".": "./index.js",
+    "./xtal-fig-parallelogram.js": "./xtal-fig-parallelogram.js",
+    "./xtal-fig-diamond.js": "./xtal-fig-diamond.js"
+  },
+  "files": [
+    "xtal-*.*",
+    "types.d.ts",
+    "custom-elements.json"
+  ],
+  "types": "types.d.ts",
   "dependencies": {
     "carbon-copy": "0.1.79"
   },
   "devDependencies": {
-    "xtal-test": "0.0.51"
+    "@skypack/package-check": "0.2.2",
+    "xtal-test": "0.0.51",
+    "@custom-elements-manifest/analyzer": "0.4.12"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bahrus/xtal-fig.git"
   },
-  "author": "",
+  "author": "anderson.bruce.b@gmail.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bahrus/xtal-fig/issues"
   },
-  "homepage": "https://github.com/bahrus/xtal-fig#readme"
+  "homepage": "https://github.com/bahrus/xtal-fig#readme",
+  "customElements": "custom-elements.json"
 }
