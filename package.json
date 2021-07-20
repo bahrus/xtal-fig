@@ -8,7 +8,7 @@
     "serve": "node node_modules/xtal-test/serve.js"
   },
   "dependencies": {
-    "carbon-copy": "0.1.78"
+    "carbon-copy": "0.1.79"
   },
   "devDependencies": {
     "xtal-test": "0.0.51"

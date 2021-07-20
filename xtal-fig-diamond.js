@@ -39,5 +39,5 @@ const mainTemplate = html `
 
 `;
 define('xtal-fig-diamond', mainTemplate, {
-    stringProps: ['leftOffset', 'topOffset']
+    stringProps: ['leftOffset=30px', 'topOffset=30px']
 });
