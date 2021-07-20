@@ -1,6 +1,7 @@
 import { define } from 'carbon-copy/c-c.js';
 import { html } from 'xtal-element/lib/html.js';
 const mainTemplate = html `
+
 <style>
 :host{
     display:block;
@@ -29,8 +30,8 @@ const mainTemplate = html `
     position: absolute;
 }
 </style>
-<div id=diamond>
-    <div id=inner style="left:{{leftOffset}};top:{{topOffset}};">
+<div id=diamond part=outer>
+    <div id=inner style="left:{{leftOffset}};top:{{topOffset}};" part=inner>
         <slot></slot>
     </div>
 </div>

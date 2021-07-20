@@ -7,9 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <xtal-fig-diamond left-offset=20px top-offset=20px style="margin:50px;">
+    <xtal-fig-diamond left-offset=30px top-offset=30px style="margin:50px;">
         I am here
     </xtal-fig-diamond>
+    <style>
+        xtal-fig-diamond::part(outer){
+            background-color: pink;
+        }
+    </style>
     <script type=importmap>{
         "imports": {
             "xtal-element/": "../node_modules/xtal-element/",
