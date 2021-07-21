@@ -9,6 +9,8 @@ const mainTemplate = html `
 <style>
 :host{
     --outer-background-color: lightblue;
+    --outer-skew:skew(20deg);
+    --inner-unskew:skew(-20deg);
 }
 </style>
 <style>
@@ -20,17 +22,17 @@ const mainTemplate = html `
    height: 100%;
    background-color: var(--outer-background-color);
    /* Skew */
-   -webkit-transform: skew(20deg); 
-   -moz-transform: skew(20deg); 
-   -o-transform: skew(20deg);
-   transform: skew(20deg);
+   -webkit-transform: var(--outer-skew);
+   -moz-transform: var(--outer-skew); 
+   -o-transform: var(--outer-skew);
+   transform: var(--outer-skew);
 }
 #inner {
-/* Skew */
--webkit-transform: skew(-20deg); 
-   -moz-transform: skew(-20deg); 
-   -o-transform: skew(-20deg);
-   transform: skew(-20deg);
+    /* Skew */
+    -webkit-transform: var(--inner-unskew); 
+   -moz-transform: var(--inner-unskew); 
+   -o-transform: var(--inner-unskew);
+   transform: var(--inner-unskew);
 }
 </style>
 `;
