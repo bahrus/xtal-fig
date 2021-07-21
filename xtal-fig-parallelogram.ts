@@ -30,7 +30,7 @@ const mainTemplate = html`
    transform: var(--outer-skew);
 }
 #inner {
-    /* Skew */
+    /* Unskew */
     -webkit-transform: var(--inner-unskew); 
    -moz-transform: var(--inner-unskew); 
    -o-transform: var(--inner-unskew);
