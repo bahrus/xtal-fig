@@ -29,8 +29,8 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "carbon-copy": "0.1.80",
-    "xtal-element": "0.0.417"
+    "carbon-copy": "0.1.81",
+    "xtal-element": "0.0.418"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
