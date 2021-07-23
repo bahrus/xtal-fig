@@ -10,7 +10,7 @@ const mainTemplate = html`
         <foreignobject x=100 width=100 height=500 requiredExtensions="http://www.w3.org/1999/xhtml">
                 <!-- XHTML content goes here -->
             <body xmlns="http://www.w3.org/1999/xhtml">
-                <p>Here is a paragraph that requires word wrap</p>
+                <p><slot></slot></p>
             </body>
         </foreignobject>
     </g>
