@@ -6,6 +6,10 @@ export interface XtalFigParallelogramProps extends HTMLElement{
     strokeWidth:number, 
     height:number, 
     slant:number,
-    heightMinusStroke:number
+    heightMinusStroke:number,
+    innerX:number,
+    innerY:number,
+    innerWidth:number,
+    innerHeight:number,
     self: XtalFigParallelogramProps,
 }
