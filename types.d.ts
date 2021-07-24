@@ -11,5 +11,7 @@ export interface XtalFigParallelogramProps extends HTMLElement{
     innerY:number,
     innerWidth:number,
     innerHeight:number,
+    fillPath:string,
+    borderPath:string,
     self: XtalFigParallelogramProps,
 }
