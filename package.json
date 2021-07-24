@@ -29,7 +29,7 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "carbon-copy": "0.1.87",
+    "carbon-copy": "0.1.88",
     "xtal-element": "0.0.418"
   },
   "devDependencies": {

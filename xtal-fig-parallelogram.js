@@ -32,7 +32,8 @@ const mainTemplate = html `
  */
 define('xtal-fig-parallelogram', mainTemplate, {
     numProps: ['topLeft', 'topRight', 'bottomRight', 'width=800', 'strokeWidth=5', 'height=300', 'slant=30',
-        'innerWidth=200', 'innerHeight=100', 'innerX=300', 'innerY=100', 'fillPath'],
+        'innerWidth=200', 'innerHeight=100', 'innerX=300', 'innerY=100',],
+    stringProps: ['fillPath', 'borderPath'],
     propActionsProp: [
         ({ width, strokeWidth, self }) => {
             self.topRight = width - strokeWidth;

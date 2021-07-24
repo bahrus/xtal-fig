@@ -1,54 +1,50 @@
 import {define} from 'carbon-copy/c-c.js';
 import {CCProps} from 'carbon-copy/types.d.js';
 import {html} from 'xtal-element/lib/html.js';
-
+import {XtalFigDiamondProps} from './types.d.js';
 const mainTemplate = html`
 <style>
-    :host{
-        --inner-left-offset:24px;
-        --inner-top-offset:24px;
-        --diamond-background: lightblue;
+    :host[hidden]{
+        display:none;
     }
+    :host{
+        display:block;
+    } 
+
 </style>
-<style>
-:host{
-    display:block;
-}
-#diamond {
-    width: 100%; 
-    height: 100%; 
-    background: var(--diamond-background);
-    /* Rotate */
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    /* Rotate Origin */
-    -webkit-transform-origin: 0 100%;
-    -moz-transform-origin: 0 100%;
-    -ms-transform-origin: 0 100%;
-    -o-transform-origin: 0 100%;
-    transform-origin: 0 100%;
-}
+<svg xmlns="http://www.w3.org/2000/svg" width={{width}} height={{height}}>
+    <path part=para-fill 
+        d={{path}} 
+        style="fill:#ccff00;stroke:none" />
+    <path part=para-border 
+        d={{path}} 
+        style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;" />
+    <g>
+        <foreignObject part=inner width="{{innerWidth}}" height="{{innerHeight}}" x="{{innerX}}" y="{{innerY}}">
+            <slot></slot>
+        </foreignObject>
+    </g>
+    
 
-#inner{
-    transform: rotate(45deg);
-    position: absolute;
-    left:var(--inner-left-offset);
-    top:var(--inner-top-offset);
-}
-</style>
-<div id=diamond part=outer>
-    <div id=inner part=inner>
-        <slot></slot>
-    </div>
-</div>
-
-
+</svg>
 `;
+type X = XtalFigDiamondProps;
 /**
  * @element xtal-fig-diamond
  * @tag xtal-fig-diamond
  */
-define('xtal-fig-diamond', mainTemplate, {} as CCProps);
+define('xtal-fig-diamond', mainTemplate, {
+    numProps: ['width=800', 'height=300', 'innerWidth=200', 'strokeWidth=5', 'innerHeight=100', 'innerX=300', 'innerY=100'],
+    stringProps:['path'],
+    propActionsProp: [
+        ({height, self}: X) => {
+            self.style.height = height + 'px';
+        },
+        ({width, self}: X) => {
+            self.style.width = width + 'px';
+        },
+        ({height, width, strokeWidth, self}: X) => {
+            self.path = `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`;
+        },
+    ],
+} as CCProps);
