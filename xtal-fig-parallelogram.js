@@ -31,28 +31,22 @@ const mainTemplate = html `
  * @tag xtal-fig-parallelogram
  */
 define('xtal-fig-parallelogram', mainTemplate, {
-    numProps: ['topLeft', 'topRight', 'bottomRight', 'width=800', 'strokeWidth=5', 'height=300', 'slant=30',
+    numProps: ['width=800', 'strokeWidth=5', 'height=300', 'slant=30',
         'innerWidth=200', 'innerHeight=100', 'innerX=300', 'innerY=100',],
     stringProps: ['path'],
     propActionsProp: [
-        ({ width, strokeWidth, self }) => {
-            self.topRight = width - strokeWidth;
+        ({ width, self }) => {
             self.style.width = width + 'px';
         },
         ({ height, self }) => {
             self.style.height = height + 'px';
         },
-        ({ height, strokeWidth, self }) => {
-            self.heightMinusStroke = height - strokeWidth;
-        },
-        // ({slant, width, strokeWidth, self}: X) => {
-        //     const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
-        //     self.topLeft = hOffset;
-        //     self.bottomRight = width - hOffset;
+        // ({height, strokeWidth, self}: X) => {
+        //     self.heightMinusStroke = height - strokeWidth;
         // },
-        ({ slant, strokeWidth, width, topRight, heightMinusStroke, self }) => {
+        ({ slant, strokeWidth, width, height, self }) => {
             const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
-            self.path = `M ${hOffset},${strokeWidth} L ${topRight},${strokeWidth} L ${width - hOffset},${heightMinusStroke} L ${strokeWidth},${heightMinusStroke} L ${hOffset},${strokeWidth} z`;
+            self.path = `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`;
         },
     ]
 });
