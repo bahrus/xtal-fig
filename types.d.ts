@@ -1,12 +1,8 @@
-export interface XtalFigParallelogramProps extends HTMLElement{
-    // topLeft: number, 
-    // topRight: number, 
-    // bottomRight: number, 
+export interface XtalFigParallelogramProps extends HTMLElement{ 
     width: number, 
     strokeWidth:number, 
     height:number, 
     slant:number,
-    // heightMinusStroke:number,
     innerX:number,
     innerY:number,
     innerWidth:number,

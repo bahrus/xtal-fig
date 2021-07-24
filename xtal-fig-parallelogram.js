@@ -41,9 +41,6 @@ define('xtal-fig-parallelogram', mainTemplate, {
         ({ height, self }) => {
             self.style.height = height + 'px';
         },
-        // ({height, strokeWidth, self}: X) => {
-        //     self.heightMinusStroke = height - strokeWidth;
-        // },
         ({ slant, strokeWidth, width, height, self }) => {
             const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
             self.path = `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`;
