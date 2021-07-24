@@ -10,8 +10,8 @@ const mainTemplate = html `
     } 
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" width={{width}} height={{height}}">
-    <path d="M {{topLeft}},{{strokeWidth}} L {{topRight}},{{strokeWidth}} L {{bottomRight}},{{heightMinusStroke}} L {{strokeWidth}},{{heightMinusStroke}} L {{topLeft}},{{strokeWidth}} z" id="path59" style="fill:#ccff00;stroke:none" />
-    <path d="M {{topLeft}},{{strokeWidth}} L {{topRight}},{{strokeWidth}} L {{bottomRight}},{{heightMinusStroke}} L {{strokeWidth}},{{heightMinusStroke}} L {{topLeft}},{{strokeWidth}} z" id="path61" style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;" />
+    <path part=para-fill d="M {{topLeft}},{{strokeWidth}} L {{topRight}},{{strokeWidth}} L {{bottomRight}},{{heightMinusStroke}} L {{strokeWidth}},{{heightMinusStroke}} L {{topLeft}},{{strokeWidth}} z" id="path59" style="fill:#ccff00;stroke:none" />
+    <path part=para-border d="M {{topLeft}},{{strokeWidth}} L {{topRight}},{{strokeWidth}} L {{bottomRight}},{{heightMinusStroke}} L {{strokeWidth}},{{heightMinusStroke}} L {{topLeft}},{{strokeWidth}} z" id="path61" style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;" />
     <g>
         <foreignobject x=100 width=100 height=500 requiredExtensions="http://www.w3.org/1999/xhtml">
                 <!-- XHTML content goes here -->
