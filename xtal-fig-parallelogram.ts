@@ -12,8 +12,8 @@ const mainTemplate = html`
     } 
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" width={{width}} height={{height}}">
-    <path d="M {{topLeft ?? 205}},5 L {{topRight}},5 L {{bottomRight ?? 595}},295 L 5,295 L {{topLeft ?? 205}},5 z" id="path59" style="fill:#ccff00;stroke:none" />
-    <path d="M {{topLeft ?? 205}},5 L {{topRight}},5 L {{bottomRight ?? 595}},295 L 5,295 L {{topLeft ?? 205}},5 z" id="path61" style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round" />
+    <path d="M {{topLeft}},{{strokeWidth}} L {{topRight}},{{strokeWidth}} L {{bottomRight}},295 L {{strokeWidth}},295 L {{topLeft}},{{strokeWidth}} z" id="path59" style="fill:#ccff00;stroke:none" />
+    <path d="M {{topLeft}},{{strokeWidth}} L {{topRight}},{{strokeWidth}} L {{bottomRight}},295 L {{strokeWidth}},295 L {{topLeft}},{{strokeWidth}} z" id="path61" style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round" />
     <g>
         <foreignobject x=100 width=100 height=500 requiredExtensions="http://www.w3.org/1999/xhtml">
                 <!-- XHTML content goes here -->
@@ -31,7 +31,7 @@ const mainTemplate = html`
  * @tag xtal-fig-parallelogram
  */
 define('xtal-fig-parallelogram', mainTemplate, {
-    numProps:['topLeft=205', 'topRight', 'bottomRight=595', 'width=800', 'strokeWidth=5', 'height=300'],
+    numProps:['topLeft', 'topRight', 'bottomRight', 'width=800', 'strokeWidth=5', 'height=300', 'slant=30'],
     propActionsProp:[
         ({width, strokeWidth, self}: any) => {
             self.topRight = width - strokeWidth;
@@ -39,6 +39,11 @@ define('xtal-fig-parallelogram', mainTemplate, {
         },
         ({height, self}: any) => {
             self.style.height = height + 'px';
+        },
+        ({slant, width, strokeWidth, self}: any) => {
+            const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
+            self.topLeft = hOffset;
+            self.bottomRight = width - hOffset;
         }
     ]
 } as CCProps);
