@@ -12,10 +12,10 @@ const mainTemplate = html `
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" width={{width}} height={{height}}>
     <path part=para-fill 
-        d={{fillPath}} 
+        d={{path}} 
         style="fill:#ccff00;stroke:none" />
     <path part=para-border 
-        d={{borderPath}} 
+        d={{path}} 
         style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;" />
     <g>
         <foreignObject part=inner width="{{innerWidth}}" height="{{innerHeight}}" x="{{innerX}}" y="{{innerY}}">
@@ -33,7 +33,7 @@ const mainTemplate = html `
 define('xtal-fig-parallelogram', mainTemplate, {
     numProps: ['topLeft', 'topRight', 'bottomRight', 'width=800', 'strokeWidth=5', 'height=300', 'slant=30',
         'innerWidth=200', 'innerHeight=100', 'innerX=300', 'innerY=100',],
-    stringProps: ['fillPath', 'borderPath'],
+    stringProps: ['path'],
     propActionsProp: [
         ({ width, strokeWidth, self }) => {
             self.topRight = width - strokeWidth;
@@ -51,10 +51,7 @@ define('xtal-fig-parallelogram', mainTemplate, {
             self.bottomRight = width - hOffset;
         },
         ({ topLeft, strokeWidth, topRight, bottomRight, heightMinusStroke, self }) => {
-            self.fillPath = `M ${topLeft},${strokeWidth} L ${topRight},${strokeWidth} L ${bottomRight},${heightMinusStroke} L ${strokeWidth},${heightMinusStroke} L ${topLeft},${strokeWidth} z`;
-        },
-        ({ topLeft, strokeWidth, topRight, bottomRight, heightMinusStroke, self }) => {
-            self.borderPath = `M ${topLeft},${strokeWidth} L ${topRight},${strokeWidth} L ${bottomRight},${heightMinusStroke} L ${strokeWidth},${heightMinusStroke} L ${topLeft},${strokeWidth} z`;
+            self.path = `M ${topLeft},${strokeWidth} L ${topRight},${strokeWidth} L ${bottomRight},${heightMinusStroke} L ${strokeWidth},${heightMinusStroke} L ${topLeft},${strokeWidth} z`;
         },
     ]
 });

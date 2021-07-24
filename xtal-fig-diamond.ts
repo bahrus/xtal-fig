@@ -13,10 +13,10 @@ const mainTemplate = html`
 
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" width={{width}} height={{height}}>
-    <path part=para-fill 
+    <path part=diamond-fill 
         d={{path}} 
         style="fill:#ccff00;stroke:none" />
-    <path part=para-border 
+    <path part=diamond-border 
         d={{path}} 
         style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;" />
     <g>
