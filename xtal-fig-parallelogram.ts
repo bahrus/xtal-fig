@@ -49,13 +49,14 @@ define('xtal-fig-parallelogram', mainTemplate, {
         ({height, strokeWidth, self}: X) => {
             self.heightMinusStroke = height - strokeWidth;
         },
-        ({slant, width, strokeWidth, self}: X) => {
+        // ({slant, width, strokeWidth, self}: X) => {
+        //     const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
+        //     self.topLeft = hOffset;
+        //     self.bottomRight = width - hOffset;
+        // },
+        ({slant, strokeWidth, width, topRight, heightMinusStroke,self}: X) => {
             const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
-            self.topLeft = hOffset;
-            self.bottomRight = width - hOffset;
-        },
-        ({topLeft, strokeWidth, topRight, bottomRight, heightMinusStroke,self}: X) => {
-            self.path = `M ${topLeft},${strokeWidth} L ${topRight},${strokeWidth} L ${bottomRight},${heightMinusStroke} L ${strokeWidth},${heightMinusStroke} L ${topLeft},${strokeWidth} z`;
+            self.path = `M ${hOffset},${strokeWidth} L ${topRight},${strokeWidth} L ${width - hOffset},${heightMinusStroke} L ${strokeWidth},${heightMinusStroke} L ${hOffset},${strokeWidth} z`;
         },
 
     ]
