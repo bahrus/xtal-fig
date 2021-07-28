@@ -27,6 +27,24 @@ const refs = { svgElement: '', pathElements: '', innerPart: '', diamondBorderPar
 /**
  * @element xtal-fig-diamond
  * @tag xtal-fig-diamond
+ * @csspart diamond-fill - path element that fills in the diamond
+ * @csspart diamond-border - path element that adds a border to the diamond
+ * @csspart inner = foreignObject element inside of which slot goes
+ * @prop {number} [width=800] - Number of pixels wide the figure should be.
+ * @attr {number} [width=800] - Number of pixels wide the figure should be.
+ * @prop {number} [height=300] - Number of pixels high the figure should be.
+ * @attr {number} [heigh=300] - Number of pixels high the figure should be.
+ * @prop {number} [strokeWidth=5] - Width of border of figure.
+ * @attr {number} [stroke-width=5] - Width of border of figure.
+ * @prop {number} [innerX=300] - Number of pixels left edge of inner content should be set to.
+ * @attr {number} [inner-x=300] - Number of pixels left edge of inner content should be set to.
+ * @prop {number} [innerY=100] - Number of pixels top edge of inner content should be set to.
+ * @attr {number} [inner-y=300] - Number of pixels top edge of inner content should be set to.
+ * @prop {number} [innerWidth=200] - Number of pixels wide the inner content should be provided.
+ * @attr {number} [inner-width=200] - Number of pixels wide the inner content should be provided.
+ * @prop {number} [innerHeight=100] - Number of pixels high the inner content should be provided.
+ * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
+ *
  */
 export class XtalFigDiamond extends HTMLElement {
     static is = 'xtal-fig-diamond';
@@ -49,7 +67,7 @@ export class XtalFigDiamond extends HTMLElement {
 }
 const propActions = [
     xp.manageMainTemplate,
-    ({ width, height }) => [{
+    ({ domCache, width, height }) => [{
             [refs.svgElement]: [, , { width: width, height: height }]
         }],
     ({ domCache, width, strokeWidth, height }) => [{

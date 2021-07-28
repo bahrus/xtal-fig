@@ -32,6 +32,25 @@ const refs = { svgElement: '', pathElements: '', innerPart: '', paraBorderPart: 
 /**
  * @element xtal-fig-parallelogram
  * @tag xtal-fig-parallelogram
+ * @csspart para-fill - path element that fills in the parallelogram
+ * @csspart para-border - path element that provides border for parallelogram
+ * @csspart inner - foreignObject that hosts the inner slot content
+ * @prop {number} [width=800] - Number of pixels wide the figure should be.
+ * @attr {number} [width=800] - Number of pixels wide the figure should be.
+ * @prop {number} [height=300] - Number of pixels high the figure should be.
+ * @attr {number} [heigh=300] - Number of pixels high the figure should be.
+ * @prop {number} [strokeWidth=5] - Width of border of figure.
+ * @attr {number} [stroke-width=5] - Width of border of figure.
+ * @prop {number} [slant=30] - Number of degrees parallelogram should slant.
+ * @attr {number} [slant=30] - Number of degrees parallelogram should slant.
+ * @prop {number} [innerX=300] - Number of pixels left edge of inner content should be set to.
+ * @attr {number} [inner-x=300] - Number of pixels left edge of inner content should be set to.
+ * @prop {number} [innerY=100] - Number of pixels top edge of inner content should be set to.
+ * @attr {number} [inner-y=300] - Number of pixels top edge of inner content should be set to.
+ * @prop {number} [innerWidth=200] - Number of pixels wide the inner content should be provided.
+ * @attr {number} [inner-width=200] - Number of pixels wide the inner content should be provided.
+ * @prop {number} [innerHeight=100] - Number of pixels high the inner content should be provided.
+ * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
  */
 export class XtalFigParallelogram extends HTMLElement {
     static is = 'xtal-fig-parallelogram';
@@ -55,7 +74,7 @@ export class XtalFigParallelogram extends HTMLElement {
 }
 const propActions = [
     xp.manageMainTemplate,
-    ({ width, height }) => [{
+    ({ domCache, width, height }) => [{
             [refs.svgElement]: [, , { width: width, height: height }]
         }],
     ({ slant, strokeWidth, width, height, self }) => {

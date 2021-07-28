@@ -28,6 +28,20 @@
           "kind": "class",
           "description": "",
           "name": "XtalFigDiamond",
+          "cssParts": [
+            {
+              "description": "path element that fills in the diamond",
+              "name": "diamond-fill"
+            },
+            {
+              "description": "path element that adds a border to the diamond",
+              "name": "diamond-border"
+            },
+            {
+              "description": "= foreignObject element inside of which slot goes",
+              "name": "inner"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -46,7 +60,7 @@
             {
               "kind": "field",
               "name": "propActions",
-              "default": "[\n    xp.manageMainTemplate,\n    ({ width, height }) => [{\n            [refs.svgElement]: [, , { width: width, height: height }]\n        }],\n    ({ domCache, width, strokeWidth, height }) => [{\n            [refs.pathElements]: [, , { d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`, }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.diamondBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
+              "default": "[\n    xp.manageMainTemplate,\n    ({ domCache, width, height }) => [{\n            [refs.svgElement]: [, , { width: width, height: height }]\n        }],\n    ({ domCache, width, strokeWidth, height }) => [{\n            [refs.pathElements]: [, , { d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`, }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.diamondBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
               "type": {
                 "text": "array"
               }
@@ -83,6 +97,127 @@
                   "name": "nv"
                 }
               ]
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "height",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Width of border of figure.",
+              "name": "strokeWidth",
+              "default": "5",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "innerX",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "innerY",
+              "default": "100",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the inner content should be provided.",
+              "name": "innerWidth",
+              "default": "200",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the inner content should be provided.",
+              "name": "innerHeight",
+              "default": "100",
+              "kind": "field"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "heigh",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Width of border of figure.",
+              "name": "stroke-width",
+              "default": "5"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "inner-x",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "inner-y",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the inner content should be provided.",
+              "name": "inner-width",
+              "default": "200"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the inner content should be provided.",
+              "name": "inner-height",
+              "default": "100"
             }
           ],
           "superclass": {
@@ -111,6 +246,20 @@
           "kind": "class",
           "description": "",
           "name": "XtalFigDiamond",
+          "cssParts": [
+            {
+              "description": "path element that fills in the diamond",
+              "name": "diamond-fill"
+            },
+            {
+              "description": "path element that adds a border to the diamond",
+              "name": "diamond-border"
+            },
+            {
+              "description": "= foreignObject element inside of which slot goes",
+              "name": "inner"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -129,7 +278,7 @@
             {
               "kind": "field",
               "name": "propActions",
-              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({width, height}: X) => [{\r\n        [refs.svgElement]: [,,{width:width, height: height}]\r\n    }],\r\n    ({domCache, width, strokeWidth, height}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.diamondBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({domCache, width, height}: X) => [{\r\n        [refs.svgElement]: [,,{width:width, height: height}]\r\n    }],\r\n    ({domCache, width, strokeWidth, height}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.diamondBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
             },
             {
               "kind": "field",
@@ -175,6 +324,127 @@
                   }
                 }
               ]
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "height",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Width of border of figure.",
+              "name": "strokeWidth",
+              "default": "5",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "innerX",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "innerY",
+              "default": "100",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the inner content should be provided.",
+              "name": "innerWidth",
+              "default": "200",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the inner content should be provided.",
+              "name": "innerHeight",
+              "default": "100",
+              "kind": "field"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "heigh",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Width of border of figure.",
+              "name": "stroke-width",
+              "default": "5"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "inner-x",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "inner-y",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the inner content should be provided.",
+              "name": "inner-width",
+              "default": "200"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the inner content should be provided.",
+              "name": "inner-height",
+              "default": "100"
             }
           ],
           "superclass": {
@@ -203,6 +473,20 @@
           "kind": "class",
           "description": "",
           "name": "XtalFigParallelogram",
+          "cssParts": [
+            {
+              "description": "path element that fills in the parallelogram",
+              "name": "para-fill"
+            },
+            {
+              "description": "path element that provides border for parallelogram",
+              "name": "para-border"
+            },
+            {
+              "description": "foreignObject that hosts the inner slot content",
+              "name": "inner"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -221,7 +505,7 @@
             {
               "kind": "field",
               "name": "propActions",
-              "default": "[\n    xp.manageMainTemplate,\n    ({ width, height }) => [{\n            [refs.svgElement]: [, , { width: width, height: height }]\n        }],\n    ({ slant, strokeWidth, width, height, self }) => {\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\n    },\n    ({ domCache, width, strokeWidth, height, slant, hOffset }) => [{\n            [refs.pathElements]: [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.paraBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
+              "default": "[\n    xp.manageMainTemplate,\n    ({ domCache, width, height }) => [{\n            [refs.svgElement]: [, , { width: width, height: height }]\n        }],\n    ({ slant, strokeWidth, width, height, self }) => {\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\n    },\n    ({ domCache, width, strokeWidth, height, slant, hOffset }) => [{\n            [refs.pathElements]: [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.paraBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
               "type": {
                 "text": "array"
               }
@@ -258,6 +542,144 @@
                   "name": "nv"
                 }
               ]
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "height",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Width of border of figure.",
+              "name": "strokeWidth",
+              "default": "5",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of degrees parallelogram should slant.",
+              "name": "slant",
+              "default": "30",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "innerX",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "innerY",
+              "default": "100",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the inner content should be provided.",
+              "name": "innerWidth",
+              "default": "200",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the inner content should be provided.",
+              "name": "innerHeight",
+              "default": "100",
+              "kind": "field"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "heigh",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Width of border of figure.",
+              "name": "stroke-width",
+              "default": "5"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of degrees parallelogram should slant.",
+              "name": "slant",
+              "default": "30"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "inner-x",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "inner-y",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the inner content should be provided.",
+              "name": "inner-width",
+              "default": "200"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the inner content should be provided.",
+              "name": "inner-height",
+              "default": "100"
             }
           ],
           "superclass": {
@@ -286,6 +708,20 @@
           "kind": "class",
           "description": "",
           "name": "XtalFigParallelogram",
+          "cssParts": [
+            {
+              "description": "path element that fills in the parallelogram",
+              "name": "para-fill"
+            },
+            {
+              "description": "path element that provides border for parallelogram",
+              "name": "para-border"
+            },
+            {
+              "description": "foreignObject that hosts the inner slot content",
+              "name": "inner"
+            }
+          ],
           "members": [
             {
               "kind": "field",
@@ -304,7 +740,7 @@
             {
               "kind": "field",
               "name": "propActions",
-              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({width, height}: X) => [{\r\n        [refs.svgElement]: [,,{width:width, height: height}]\r\n    }],\r\n    ({slant, strokeWidth, width, height, self}: X) => {\r\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\r\n    },\r\n    ({domCache, width, strokeWidth, height, slant, hOffset}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.paraBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({domCache, width, height}: X) => [{\r\n        [refs.svgElement]: [,,{width:width, height: height}]\r\n    }],\r\n    ({slant, strokeWidth, width, height, self}: X) => {\r\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\r\n    },\r\n    ({domCache, width, strokeWidth, height, slant, hOffset}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.paraBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
             },
             {
               "kind": "field",
@@ -350,6 +786,144 @@
                   }
                 }
               ]
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "height",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Width of border of figure.",
+              "name": "strokeWidth",
+              "default": "5",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of degrees parallelogram should slant.",
+              "name": "slant",
+              "default": "30",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "innerX",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "innerY",
+              "default": "100",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the inner content should be provided.",
+              "name": "innerWidth",
+              "default": "200",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the inner content should be provided.",
+              "name": "innerHeight",
+              "default": "100",
+              "kind": "field"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "heigh",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Width of border of figure.",
+              "name": "stroke-width",
+              "default": "5"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of degrees parallelogram should slant.",
+              "name": "slant",
+              "default": "30"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "inner-x",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "inner-y",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the inner content should be provided.",
+              "name": "inner-width",
+              "default": "200"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the inner content should be provided.",
+              "name": "inner-height",
+              "default": "100"
             }
           ],
           "superclass": {
