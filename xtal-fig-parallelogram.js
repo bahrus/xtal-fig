@@ -74,9 +74,10 @@ export class XtalFigParallelogram extends HTMLElement {
 }
 const propActions = [
     xp.manageMainTemplate,
-    ({ domCache, width, height }) => [{
-            [refs.svgElement]: [, , { width: width, height: height }]
-        }],
+    ({ domCache, width, height }) => [
+        { [refs.svgElement]: [, , { width, height }] },
+        [{ style: { width: `${width}px`, height: `${height}px` } }]
+    ],
     ({ slant, strokeWidth, width, height, self }) => {
         self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
     },

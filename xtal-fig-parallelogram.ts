@@ -80,9 +80,10 @@ export interface XtalFigParallelogram extends XtalFigParallelogramProps{}
 type X = XtalFigParallelogram;
 const propActions = [
     xp.manageMainTemplate,
-    ({domCache, width, height}: X) => [{
-        [refs.svgElement]: [,,{width:width, height: height}]
-    }],
+    ({domCache, width, height}: X) => [
+        {[refs.svgElement]: [,,{width, height}]},
+        [{style:{width:`${width}px`, height:`${height}px`}}]
+    ],
     ({slant, strokeWidth, width, height, self}: X) => {
         self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
     },
