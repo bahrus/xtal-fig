@@ -67,9 +67,10 @@ export class XtalFigDiamond extends HTMLElement {
 }
 const propActions = [
     xp.manageMainTemplate,
-    ({ domCache, width, height }) => [{
-            [refs.svgElement]: [, , { width: width, height: height }]
-        }],
+    ({ domCache, width, height }) => [
+        { [refs.svgElement]: [, , { width, height }] },
+        [{ style: { width: `${width}px`, height: `${height}px` } }]
+    ],
     ({ domCache, width, strokeWidth, height }) => [{
             [refs.pathElements]: [, , { d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`, }],
         }],
