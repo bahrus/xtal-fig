@@ -1,3 +1,4 @@
+import {XtalPattern} from 'xtal-element/types.d.js';
 export interface XtalFigParallelogramProps extends HTMLElement{ 
     width: number, 
     strokeWidth:number, 
@@ -11,7 +12,7 @@ export interface XtalFigParallelogramProps extends HTMLElement{
     self: XtalFigParallelogramProps,
 }
 
-export interface XtalFigDiamondProps extends HTMLElement{
+export interface XtalFigDiamondProps extends XtalPattern{
     width: number,
     height: number,
     path:string,
@@ -20,5 +21,5 @@ export interface XtalFigDiamondProps extends HTMLElement{
     innerHeight:number,
     innerX: number,
     innerY: number,
-    self: XtalFigDiamondProps,
+    //self: XtalFigDiamondProps,
 }
