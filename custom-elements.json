@@ -4,6 +4,12 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "index.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
       "path": "index.ts",
       "declarations": [],
       "exports": []
@@ -17,26 +23,352 @@
     {
       "kind": "javascript-module",
       "path": "xtal-fig-diamond.js",
-      "declarations": [],
-      "exports": []
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "XtalFigDiamond",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-fig-diamond'"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this"
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\n    xp.manageMainTemplate,\n    ({ width, height }) => [{\n            [refs.svgElement]: [, , { width: width, height: height }]\n        }],\n    ({ domCache, width, strokeWidth, height }) => [{\n            [refs.pathElements]: [, , { d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`, }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.diamondBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
+              "type": {
+                "text": "array"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{ svgElement: '', pathElements: '', innerPart: '', diamondBorderPart: '' }",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html `\r\n<style>\r\n    :host[hidden]{\r\n        display:none;\r\n    }\r\n    :host{\r\n        display:block;\r\n    } \r\n</style>\r\n<svg xmlns=\"http://www.w3.org/2000/svg\" width={{width}} height={{height}}>\r\n    <path part=diamond-fill \r\n        style=\"fill:#ccff00;stroke:none\" />\r\n    <path part=diamond-border \r\n        style=\"fill:none;stroke:#000000;stroke-linejoin:round;\" />\r\n    <g>\r\n        <foreignObject part=inner>\r\n            <slot></slot>\r\n        </foreignObject>\r\n    </g>\r\n</svg>\r\n`"
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "default": "new xp.RxSuppl(this, [{\n            rhsType: Array,\n            ctor: DOMKeyPEA,\n        }])"
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n"
+                },
+                {
+                  "name": "prop"
+                },
+                {
+                  "name": "nv"
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "xtal-fig-diamond",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "XtalFigDiamond",
+          "declaration": {
+            "name": "XtalFigDiamond",
+            "module": "xtal-fig-diamond.js"
+          }
+        }
+      ]
     },
     {
       "kind": "javascript-module",
       "path": "xtal-fig-diamond.ts",
-      "declarations": [],
-      "exports": []
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "XtalFigDiamond",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-fig-diamond'"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this"
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({width, height}: X) => [{\r\n        [refs.svgElement]: [,,{width:width, height: height}]\r\n    }],\r\n    ({domCache, width, strokeWidth, height}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.diamondBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{svgElement: '', pathElements: '', innerPart: '', diamondBorderPart: ''}",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html`\r\n<style>\r\n    :host[hidden]{\r\n        display:none;\r\n    }\r\n    :host{\r\n        display:block;\r\n    } \r\n</style>\r\n<svg xmlns=\"http://www.w3.org/2000/svg\" width={{width}} height={{height}}>\r\n    <path part=diamond-fill \r\n        style=\"fill:#ccff00;stroke:none\" />\r\n    <path part=diamond-border \r\n        style=\"fill:none;stroke:#000000;stroke-linejoin:round;\" />\r\n    <g>\r\n        <foreignObject part=inner>\r\n            <slot></slot>\r\n        </foreignObject>\r\n    </g>\r\n</svg>\r\n`"
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "type": {
+                "text": "IReactor"
+              },
+              "default": "new xp.RxSuppl(this, [{\r\n        rhsType: Array,\r\n        ctor: DOMKeyPEA,\r\n    }])"
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "prop",
+                  "type": {
+                    "text": "PropDef"
+                  }
+                },
+                {
+                  "name": "nv",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "xtal-fig-diamond",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "XtalFigDiamond",
+          "declaration": {
+            "name": "XtalFigDiamond",
+            "module": "xtal-fig-diamond.ts"
+          }
+        }
+      ]
     },
     {
       "kind": "javascript-module",
       "path": "xtal-fig-parallelogram.js",
-      "declarations": [],
-      "exports": []
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "XtalFigParallelogram",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-fig-parallelogram'"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this"
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\n    xp.manageMainTemplate,\n    ({ width, height }) => [{\n            [refs.svgElement]: [, , { width: width, height: height }]\n        }],\n    ({ slant, strokeWidth, width, height, self }) => {\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\n    },\n    ({ domCache, width, strokeWidth, height, slant, hOffset }) => [{\n            [refs.pathElements]: [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.paraBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
+              "type": {
+                "text": "array"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{ svgElement: '', pathElements: '', innerPart: '', paraBorderPart: '' }",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html `\r\n<style>\r\n    :host[hidden]{\r\n        display:none;\r\n    }\r\n    :host{\r\n        display:block;\r\n    } \r\n\r\n</style>\r\n<svg xmlns=\"http://www.w3.org/2000/svg\" width={{width}} height={{height}}>\r\n    <path part=para-fill \r\n        d={{path}} \r\n        style=\"fill:#ccff00;stroke:none\" />\r\n    <path part=para-border \r\n        d={{path}} \r\n        style=\"fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;\" />\r\n    <g>\r\n        <foreignObject part=inner width=\"{{innerWidth}}\" height=\"{{innerHeight}}\" x=\"{{innerX}}\" y=\"{{innerY}}\">\r\n            <slot></slot>\r\n        </foreignObject>\r\n    </g>\r\n    \r\n\r\n</svg>\r\n`"
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "default": "new xp.RxSuppl(this, [{\n            rhsType: Array,\n            ctor: DOMKeyPEA,\n        }])"
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n"
+                },
+                {
+                  "name": "prop"
+                },
+                {
+                  "name": "nv"
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "xtal-fig-parallelogram",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "XtalFigParallelogram",
+          "declaration": {
+            "name": "XtalFigParallelogram",
+            "module": "xtal-fig-parallelogram.js"
+          }
+        }
+      ]
     },
     {
       "kind": "javascript-module",
       "path": "xtal-fig-parallelogram.ts",
-      "declarations": [],
-      "exports": []
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "XtalFigParallelogram",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-fig-parallelogram'"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this"
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({width, height}: X) => [{\r\n        [refs.svgElement]: [,,{width:width, height: height}]\r\n    }],\r\n    ({slant, strokeWidth, width, height, self}: X) => {\r\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\r\n    },\r\n    ({domCache, width, strokeWidth, height, slant, hOffset}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.paraBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{svgElement: '', pathElements: '', innerPart: '', paraBorderPart: ''}",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html`\r\n<style>\r\n    :host[hidden]{\r\n        display:none;\r\n    }\r\n    :host{\r\n        display:block;\r\n    } \r\n\r\n</style>\r\n<svg xmlns=\"http://www.w3.org/2000/svg\" width={{width}} height={{height}}>\r\n    <path part=para-fill \r\n        d={{path}} \r\n        style=\"fill:#ccff00;stroke:none\" />\r\n    <path part=para-border \r\n        d={{path}} \r\n        style=\"fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;\" />\r\n    <g>\r\n        <foreignObject part=inner width=\"{{innerWidth}}\" height=\"{{innerHeight}}\" x=\"{{innerX}}\" y=\"{{innerY}}\">\r\n            <slot></slot>\r\n        </foreignObject>\r\n    </g>\r\n    \r\n\r\n</svg>\r\n`"
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "type": {
+                "text": "IReactor"
+              },
+              "default": "new xp.RxSuppl(this, [{\r\n        rhsType: Array,\r\n        ctor: DOMKeyPEA,\r\n    }])"
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "prop",
+                  "type": {
+                    "text": "PropDef"
+                  }
+                },
+                {
+                  "name": "nv",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ]
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "xtal-fig-parallelogram",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "XtalFigParallelogram",
+          "declaration": {
+            "name": "XtalFigParallelogram",
+            "module": "xtal-fig-parallelogram.ts"
+          }
+        }
+      ]
     }
   ]
 }

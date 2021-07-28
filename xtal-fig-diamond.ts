@@ -26,6 +26,10 @@ const mainTemplate = html`
 </svg>
 `;
 const refs = {svgElement: '', pathElements: '', innerPart: '', diamondBorderPart: ''};
+/**
+ * @element xtal-fig-diamond
+ * @tag xtal-fig-diamond
+ */
 export class XtalFigDiamond extends HTMLElement implements ReactiveSurface, XtalPattern{
     static is = 'xtal-fig-diamond';
     self = this;
@@ -84,7 +88,7 @@ const propDefMap: PropDefMap<X> = {
     innerHeight: numProp, 
     innerX: numProp, 
     innerY: numProp,
-    path: strProp,
+    //path: strProp,
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigDiamond, slicedPropDefs, 'onPropChange');
