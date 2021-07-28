@@ -25,7 +25,7 @@ const mainTemplate = html`
     </g>
 </svg>
 `;
-const refs = {pathElements: '', innerPart: '', diamondBorderPart: ''};
+const refs = {svgElement: '', pathElements: '', innerPart: '', diamondBorderPart: ''};
 export class XtalFigDiamond extends HTMLElement implements ReactiveSurface, XtalPattern{
     static is = 'xtal-fig-diamond';
     self = this;
@@ -49,6 +49,9 @@ export interface XtalFigDiamond extends XtalFigDiamondProps{}
 type X = XtalFigDiamond;
 const propActions = [
     xp.manageMainTemplate,
+    ({width, height}: X) => [{
+        [refs.svgElement]: [,,{width:width, height: height}]
+    }],
     ({domCache, width, strokeWidth, height}: X) => [{
         [refs.pathElements]:  [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}],
     }],
