@@ -14,7 +14,6 @@
 	],
     "files": [
         "xtal-fig-diamond.ts",
-		"xtal-fig-diamond2.ts",
 		"xtal-fig-parallelogram.ts",
 		"index.ts"
     ]
