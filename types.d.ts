@@ -84,7 +84,7 @@ export interface XtalFigDiamondProps extends XtalPattern{
     innerY: number,
 }
 
-export interface XtalFigDocumentProps extends XtalPattern {
+export interface XtalFigBaseVBoxProps extends HTMLElement, XtalPattern {
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
