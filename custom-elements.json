@@ -60,7 +60,7 @@
             {
               "kind": "field",
               "name": "propActions",
-              "default": "[\n    xp.manageMainTemplate,\n    ({ domCache, width, height }) => [{\n            [refs.svgElement]: [, , { width: width, height: height }]\n        }],\n    ({ domCache, width, strokeWidth, height }) => [{\n            [refs.pathElements]: [, , { d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`, }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.diamondBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
+              "default": "[\n    xp.manageMainTemplate,\n    ({ domCache, width, height }) => [\n        { [refs.svgElement]: [, , { width, height }] },\n        [{ style: { width: `${width}px`, height: `${height}px` } }]\n    ],\n    ({ domCache, width, strokeWidth, height }) => [{\n            [refs.pathElements]: [, , { d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`, }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.diamondBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
               "type": {
                 "text": "array"
               }
@@ -278,7 +278,7 @@
             {
               "kind": "field",
               "name": "propActions",
-              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({domCache, width, height}: X) => [{\r\n        [refs.svgElement]: [,,{width:width, height: height}]\r\n    }],\r\n    ({domCache, width, strokeWidth, height}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.diamondBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({domCache, width, height}: X) => [\r\n        {[refs.svgElement]: [,,{width, height}]},\r\n        [{style:{width:`${width}px`, height:`${height}px`}}]\r\n    ],\r\n    ({domCache, width, strokeWidth, height}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.diamondBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
             },
             {
               "kind": "field",
@@ -467,6 +467,351 @@
     },
     {
       "kind": "javascript-module",
+      "path": "xtal-fig-document.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "XtalFigDocument",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-fig-document'"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this"
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\n    xp.manageMainTemplate,\n    ({ domCache, width, height }) => [\n        { [refs.svgElement]: [, , { width, height }] },\n        [{ style: { width: `${width}px`, height: `${height}px` } }]\n    ],\n    // ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\n    //     [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\n    // }],\n    ({ domCache, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { x: innerX, y: innerY }],\n        }],\n    ({ domCache, autoZoomSlot, width, height }) => [\n        { [refs.slotElement]: [{ style: { zoom: 62 / height } }] }\n    ],\n    xp.createShadow,\n]",
+              "type": {
+                "text": "array"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{ svgElement: '', innerPart: '', slotElement: '' }",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html `\r\n<svg width=\"102px\"\r\n    height=\"62px\"  viewBox=\"-0.5 -0.5 102 62\">\r\n    <!-- <defs /> -->\r\n    <g>\r\n        <path\r\n            d=\"M 96 1 C 98.76 1 101 3.24 101 6 L 101 53.5 Q 76 40 51 53.5 Q 26 67 1 53.5 L 1 8.5 L 1 6 C 1 3.24 3.24 1 6 1 Z\"\r\n            fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"2\" stroke-miterlimit=\"10\" pointer-events=\"none\" />\r\n    </g>\r\n    <g>\r\n        <!-- <foreignObject part=inner width=\"{{innerWidth}}\" height=\"{{innerHeight}}\" x=\"{{innerX}}\" y=\"{{innerY}}\">\r\n            <slot></slot>\r\n        </foreignObject> -->\r\n        <foreignObject part=inner width=\"100%\" height=\"100%\">\r\n            <slot></slot>\r\n        </foreignObject>\r\n    </g>\r\n</svg>\r\n`"
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "default": "new xp.RxSuppl(this, [{\n            rhsType: Array,\n            ctor: DOMKeyPEA,\n        }])"
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n"
+                },
+                {
+                  "name": "prop"
+                },
+                {
+                  "name": "nv"
+                }
+              ]
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "height",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "innerX",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "innerY",
+              "default": "100",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Counter balance the zoom effect of resizing the component for the inner content.",
+              "name": "autoZoomSlot",
+              "kind": "field"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "heigh",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "inner-x",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "inner-y",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Counter balance the zoom effect of resizing the component for the inner content.",
+              "name": "auto-zoom-slot"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "xtal-fig-document",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "XtalFigDocument",
+          "declaration": {
+            "name": "XtalFigDocument",
+            "module": "xtal-fig-document.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "xtal-fig-document.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "XtalFigDocument",
+          "members": [
+            {
+              "kind": "field",
+              "name": "is",
+              "type": {
+                "text": "string"
+              },
+              "static": true,
+              "default": "'xtal-fig-document'"
+            },
+            {
+              "kind": "field",
+              "name": "self",
+              "default": "this"
+            },
+            {
+              "kind": "field",
+              "name": "propActions",
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({domCache, width, height}: X) => [\r\n        {[refs.svgElement]: [,,{width, height}]},\r\n        [{style:{width:`${width}px`, height:`${height}px`}}]\r\n    ],\r\n    // ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n    //     [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    // }],\r\n    ({domCache, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{x: innerX, y: innerY}],\r\n    }],\r\n    ({domCache, autoZoomSlot, width, height}: X) => [\r\n        {[refs.slotElement]: [{style: {zoom: 62 / height}}]}\r\n    ],\r\n    xp.createShadow,\r\n]"
+            },
+            {
+              "kind": "field",
+              "name": "refs",
+              "default": "{svgElement: '', innerPart: '', slotElement: ''}",
+              "type": {
+                "text": "object"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "mainTemplate",
+              "default": "html`\r\n<svg width=\"102px\"\r\n    height=\"62px\"  viewBox=\"-0.5 -0.5 102 62\">\r\n    <!-- <defs /> -->\r\n    <g>\r\n        <path\r\n            d=\"M 96 1 C 98.76 1 101 3.24 101 6 L 101 53.5 Q 76 40 51 53.5 Q 26 67 1 53.5 L 1 8.5 L 1 6 C 1 3.24 3.24 1 6 1 Z\"\r\n            fill=\"#ffffff\" stroke=\"#000000\" stroke-width=\"2\" stroke-miterlimit=\"10\" pointer-events=\"none\" />\r\n    </g>\r\n    <g>\r\n        <!-- <foreignObject part=inner width=\"{{innerWidth}}\" height=\"{{innerHeight}}\" x=\"{{innerX}}\" y=\"{{innerY}}\">\r\n            <slot></slot>\r\n        </foreignObject> -->\r\n        <foreignObject part=inner width=\"100%\" height=\"100%\">\r\n            <slot></slot>\r\n        </foreignObject>\r\n    </g>\r\n</svg>\r\n`"
+            },
+            {
+              "kind": "field",
+              "name": "reactor",
+              "type": {
+                "text": "IReactor"
+              },
+              "default": "new xp.RxSuppl(this, [{\r\n        rhsType: Array,\r\n        ctor: DOMKeyPEA,\r\n    }])"
+            },
+            {
+              "kind": "method",
+              "name": "onPropChange",
+              "parameters": [
+                {
+                  "name": "n",
+                  "type": {
+                    "text": "string"
+                  }
+                },
+                {
+                  "name": "prop",
+                  "type": {
+                    "text": "PropDef"
+                  }
+                },
+                {
+                  "name": "nv",
+                  "type": {
+                    "text": "any"
+                  }
+                }
+              ]
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "height",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "innerX",
+              "default": "300",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "innerY",
+              "default": "100",
+              "kind": "field"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Counter balance the zoom effect of resizing the component for the inner content.",
+              "name": "autoZoomSlot",
+              "kind": "field"
+            }
+          ],
+          "attributes": [
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels wide the figure should be.",
+              "name": "width",
+              "default": "800"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels high the figure should be.",
+              "name": "heigh",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels left edge of inner content should be set to.",
+              "name": "inner-x",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "number"
+              },
+              "description": "Number of pixels top edge of inner content should be set to.",
+              "name": "inner-y",
+              "default": "300"
+            },
+            {
+              "type": {
+                "text": "boolean"
+              },
+              "description": "Counter balance the zoom effect of resizing the component for the inner content.",
+              "name": "auto-zoom-slot"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "xtal-fig-document",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "XtalFigDocument",
+          "declaration": {
+            "name": "XtalFigDocument",
+            "module": "xtal-fig-document.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "xtal-fig-parallelogram.js",
       "declarations": [
         {
@@ -505,7 +850,7 @@
             {
               "kind": "field",
               "name": "propActions",
-              "default": "[\n    xp.manageMainTemplate,\n    ({ domCache, width, height }) => [{\n            [refs.svgElement]: [, , { width: width, height: height }]\n        }],\n    ({ slant, strokeWidth, width, height, self }) => {\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\n    },\n    ({ domCache, width, strokeWidth, height, slant, hOffset }) => [{\n            [refs.pathElements]: [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.paraBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
+              "default": "[\n    xp.manageMainTemplate,\n    ({ domCache, width, height }) => [\n        { [refs.svgElement]: [, , { width, height }] },\n        [{ style: { width: `${width}px`, height: `${height}px` } }]\n    ],\n    ({ slant, strokeWidth, width, height, self }) => {\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\n    },\n    ({ domCache, width, strokeWidth, height, slant, hOffset }) => [{\n            [refs.pathElements]: [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }],\n        }],\n    ({ domCache, strokeWidth }) => [{\n            [refs.paraBorderPart]: [{ style: { strokeWidth: strokeWidth } }],\n        }],\n    ({ domCache, innerHeight, innerWidth, innerX, innerY }) => [{\n            [refs.innerPart]: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],\n        }],\n    xp.createShadow,\n]",
               "type": {
                 "text": "array"
               }
@@ -740,7 +1085,7 @@
             {
               "kind": "field",
               "name": "propActions",
-              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({domCache, width, height}: X) => [{\r\n        [refs.svgElement]: [,,{width:width, height: height}]\r\n    }],\r\n    ({slant, strokeWidth, width, height, self}: X) => {\r\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\r\n    },\r\n    ({domCache, width, strokeWidth, height, slant, hOffset}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.paraBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
+              "default": "[\r\n    xp.manageMainTemplate,\r\n    ({domCache, width, height}: X) => [\r\n        {[refs.svgElement]: [,,{width, height}]},\r\n        [{style:{width:`${width}px`, height:`${height}px`}}]\r\n    ],\r\n    ({slant, strokeWidth, width, height, self}: X) => {\r\n        self.hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;\r\n    },\r\n    ({domCache, width, strokeWidth, height, slant, hOffset}: X) => [{\r\n        [refs.pathElements]:  [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}],\r\n    }],\r\n    ({domCache, strokeWidth}: X) => [{\r\n        [refs.paraBorderPart]: [{style:{strokeWidth:strokeWidth}}],\r\n    }],\r\n    ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{\r\n        [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],\r\n    }],\r\n    xp.createShadow,\r\n]"
             },
             {
               "kind": "field",

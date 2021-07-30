@@ -29,6 +29,16 @@ const refs = {svgElement: '', innerPart: '', slotElement: ''};
 /**
  * @element xtal-fig-document
  * @tag xtal-fig-document
+ * @prop {number} [width=800] - Number of pixels wide the figure should be.
+ * @attr {number} [width=800] - Number of pixels wide the figure should be.
+ * @prop {number} [height=300] - Number of pixels high the figure should be.
+ * @attr {number} [heigh=300] - Number of pixels high the figure should be.
+ * @prop {number} [innerX=300] - Number of pixels left edge of inner content should be set to.
+ * @attr {number} [inner-x=300] - Number of pixels left edge of inner content should be set to.
+ * @prop {number} [innerY=100] - Number of pixels top edge of inner content should be set to.
+ * @attr {number} [inner-y=300] - Number of pixels top edge of inner content should be set to.
+ * @prop {boolean} [autoZoomSlot] - Counter balance the zoom effect of resizing the component for the inner content.
+ * @attr {boolean} [auto-zoom-slot] - Counter balance the zoom effect of resizing the component for the inner content.
  */
 export class XtalFigDocument extends HTMLElement implements ReactiveSurface, XtalPattern{
     static is = 'xtal-fig-document';

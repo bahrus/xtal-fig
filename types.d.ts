@@ -105,10 +105,10 @@ export interface XtalFigDocumentProps extends XtalPattern {
     //  * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
     //  */
     // innerHeight:number,
-    // /**
-    //  * @prop {number} [innerX=300] - Number of pixels left edge of inner content should be set to.
-    //  * @attr {number} [inner-x=300] - Number of pixels left edge of inner content should be set to.
-    //  */
+    /**
+     * @prop {number} [innerX=300] - Number of pixels left edge of inner content should be set to.
+     * @attr {number} [inner-x=300] - Number of pixels left edge of inner content should be set to.
+     */
     innerX: number,
     /**
      * @prop {number} [innerY=100] - Number of pixels top edge of inner content should be set to.
@@ -116,5 +116,9 @@ export interface XtalFigDocumentProps extends XtalPattern {
      */
     innerY: number,
 
+    /**
+     * @prop {boolean} [autoZoomSlot] - Counter balance the zoom effect of resizing the component for the inner content.
+     * @attr {boolean} [auto-zoom-slot] - Counter balance the zoom effect of resizing the component for the inner content.
+     */
     autoZoomSlot: boolean | undefined;
 }
