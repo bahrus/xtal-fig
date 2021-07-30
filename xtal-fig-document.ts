@@ -5,6 +5,14 @@ import {XtalFigDocumentProps} from './types.js';
 import {DOMKeyPEA} from 'xtal-element/lib/DOMKeyPEA.js';
 
 const mainTemplate = html`
+<style>
+    :host[hidden]{
+        display:none;
+    }
+    :host{
+        display:block;
+    } 
+</style>
 <svg width="102px"
     height="62px"  viewBox="-0.5 -0.5 102 62">
     <!-- <defs /> -->
@@ -14,12 +22,9 @@ const mainTemplate = html`
             fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" />
     </g>
     <g>
-        <!-- <foreignObject part=inner width="{{innerWidth}}" height="{{innerHeight}}" x="{{innerX}}" y="{{innerY}}">
-            <slot></slot>
-        </foreignObject> -->
-        <foreignObject part=inner width="100%" height="100%">
-            <slot></slot>
-        </foreignObject>
+    <foreignObject part=inner width="100%" height="100%">
+        <slot></slot>
+    </foreignObject>
     </g>
 </svg>
 `;
