@@ -53,7 +53,7 @@ export class XtalFigDocument extends HTMLElement {
         }]);
     connectedCallback() {
         xc.mergeProps(this, slicedPropDefs, {
-            width: 800, height: 300,
+            width: 800, height: 500,
             innerX: 20, innerY: 20,
         });
     }

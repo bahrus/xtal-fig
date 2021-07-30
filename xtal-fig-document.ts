@@ -57,7 +57,7 @@ export class XtalFigDocument extends HTMLElement implements ReactiveSurface, Xta
     }]);
     connectedCallback(){
         xc.mergeProps<Partial<XtalFigDocumentProps>>(this, slicedPropDefs, {
-            width: 800, height: 300, 
+            width: 800, height: 500, 
             innerX: 20, innerY: 20,
         });
     }
