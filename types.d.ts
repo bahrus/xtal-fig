@@ -83,3 +83,36 @@ export interface XtalFigDiamondProps extends XtalPattern{
      */
     innerY: number,
 }
+
+export interface XtalFigDocumentProps extends XtalPattern {
+    /**
+     * @prop {number} [width=800] - Number of pixels wide the figure should be.
+     * @attr {number} [width=800] - Number of pixels wide the figure should be.
+     */
+    width: number,
+    /**
+     * @prop {number} [height=300] - Number of pixels high the figure should be.
+     * @attr {number} [heigh=300] - Number of pixels high the figure should be.
+     */
+    height: number,
+    /**
+     * @prop {number} [innerWidth=200] - Number of pixels wide the inner content should be provided.
+     * @attr {number} [inner-width=200] - Number of pixels wide the inner content should be provided.
+     */
+    innerWidth:number,
+    /**
+     * @prop {number} [innerHeight=100] - Number of pixels high the inner content should be provided.
+     * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
+     */
+    innerHeight:number,
+    /**
+     * @prop {number} [innerX=300] - Number of pixels left edge of inner content should be set to.
+     * @attr {number} [inner-x=300] - Number of pixels left edge of inner content should be set to.
+     */
+    innerX: number,
+    /**
+     * @prop {number} [innerY=100] - Number of pixels top edge of inner content should be set to.
+     * @attr {number} [inner-y=300] - Number of pixels top edge of inner content should be set to.
+     */
+    innerY: number,
+}
