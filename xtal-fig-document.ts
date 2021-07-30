@@ -39,7 +39,7 @@ export class XtalFigDocument extends HTMLElement implements ReactiveSurface, Xta
     connectedCallback(){
         xc.mergeProps<Partial<XtalFigDocumentProps>>(this, slicedPropDefs, {
             width: 800, height: 300, 
-            innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
+            innerX: 20, innerY: 20,
         });
     }
     onPropChange(n: string, prop: PropDef, nv: any){
@@ -57,6 +57,9 @@ const propActions = [
     // ({domCache, innerHeight, innerWidth, innerX, innerY}: X) => [{
     //     [refs.innerPart]: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],
     // }],
+    ({domCache, innerX, innerY}: X) => [{
+        [refs.innerPart]: [,,{x: innerX, y: innerY}],
+    }],
     xp.createShadow,
 ] as PropAction[];
 
@@ -74,8 +77,8 @@ const propDefMap: PropDefMap<X> = {
     ...xp.props,
     width: numProp,
     height: numProp,
-    innerHeight: numProp,
-    innerWidth: numProp,
+    //innerHeight: numProp,
+    //innerWidth: numProp,
     innerX: numProp,
     innerY: numProp
 };
