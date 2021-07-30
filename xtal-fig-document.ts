@@ -30,7 +30,8 @@ export class XtalFigDocument extends HTMLElement implements ReactiveSurface, Xta
     }]);
     connectedCallback(){
         xc.mergeProps<Partial<XtalFigDocumentProps>>(this, slicedPropDefs, {
-
+            width: 800, height: 300, 
+            innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
         });
     }
     onPropChange(n: string, prop: PropDef, nv: any){
@@ -60,6 +61,12 @@ const numProp: PropDef = {
 
 const propDefMap: PropDefMap<X> = {
     ...xp.props,
+    width: numProp,
+    height: numProp,
+    innerHeight: numProp,
+    innerWidth: numProp,
+    innerX: numProp,
+    innerY: numProp
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigDocument, slicedPropDefs, 'onPropChange');

@@ -25,7 +25,10 @@ export class XtalFigDocument extends HTMLElement {
             ctor: DOMKeyPEA,
         }]);
     connectedCallback() {
-        xc.mergeProps(this, slicedPropDefs, {});
+        xc.mergeProps(this, slicedPropDefs, {
+            width: 800, height: 300,
+            innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
+        });
     }
     onPropChange(n, prop, nv) {
         this.reactor.addToQueue(prop, nv);
@@ -49,6 +52,12 @@ const numProp = {
 };
 const propDefMap = {
     ...xp.props,
+    width: numProp,
+    height: numProp,
+    innerHeight: numProp,
+    innerWidth: numProp,
+    innerX: numProp,
+    innerY: numProp
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigDocument, slicedPropDefs, 'onPropChange');
