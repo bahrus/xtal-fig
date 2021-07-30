@@ -115,4 +115,6 @@ export interface XtalFigDocumentProps extends XtalPattern {
      * @attr {number} [inner-y=300] - Number of pixels top edge of inner content should be set to.
      */
     innerY: number,
+
+    autoZoomSlot: boolean | undefined;
 }

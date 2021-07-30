@@ -21,7 +21,7 @@ const mainTemplate = html `
     </g>
 </svg>
 `;
-const refs = { svgElement: '', innerPart: '' };
+const refs = { svgElement: '', innerPart: '', slotElement: '' };
 export class XtalFigDocument extends HTMLElement {
     static is = 'xtal-fig-document';
     self = this;
@@ -54,6 +54,9 @@ const propActions = [
     ({ domCache, innerX, innerY }) => [{
             [refs.innerPart]: [, , { x: innerX, y: innerY }],
         }],
+    ({ domCache, autoZoomSlot, width, height }) => [
+        { [refs.slotElement]: [{ style: { zoom: 62 / height } }] }
+    ],
     xp.createShadow,
 ];
 const baseProp = {
@@ -64,6 +67,14 @@ const numProp = {
     ...baseProp,
     type: Number,
 };
+const boolProp0 = {
+    ...baseProp,
+    type: Boolean,
+};
+const boolProp1 = {
+    ...boolProp0,
+    stopReactionsIfFalsy: true,
+};
 const propDefMap = {
     ...xp.props,
     width: numProp,
@@ -71,7 +82,8 @@ const propDefMap = {
     //innerHeight: numProp,
     //innerWidth: numProp,
     innerX: numProp,
-    innerY: numProp
+    innerY: numProp,
+    autoZoomSlot: boolProp1,
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigDocument, slicedPropDefs, 'onPropChange');
