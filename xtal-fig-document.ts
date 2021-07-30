@@ -26,6 +26,10 @@ const mainTemplate = html`
 
 const refs = {svgElement: '', innerPart: '', slotElement: ''};
 
+/**
+ * @element xtal-fig-document
+ * @tag xtal-fig-document
+ */
 export class XtalFigDocument extends HTMLElement implements ReactiveSurface, XtalPattern{
     static is = 'xtal-fig-document';
     self = this;
@@ -98,4 +102,10 @@ const propDefMap: PropDefMap<X> = {
 };
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigDocument, slicedPropDefs, 'onPropChange');
-xc.define(XtalFigDocument)
+xc.define(XtalFigDocument);
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "xtal-fig-document": XtalFigDocument,
+    }
+}

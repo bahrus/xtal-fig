@@ -22,6 +22,10 @@ const mainTemplate = html `
 </svg>
 `;
 const refs = { svgElement: '', innerPart: '', slotElement: '' };
+/**
+ * @element xtal-fig-document
+ * @tag xtal-fig-document
+ */
 export class XtalFigDocument extends HTMLElement {
     static is = 'xtal-fig-document';
     self = this;
