@@ -25,12 +25,7 @@ export class XtalFigBaseVBox extends HTMLElement implements ReactiveSurface, Xta
         rhsType: Array,
         ctor: DOMKeyPEA,
     }]);
-    connectedCallback(){
-        xc.mergeProps<Partial<XtalFigBaseVBoxProps>>(this, slicedPropDefs, {
-            width: 800, height: 500, 
-            innerX: 20, innerY: 20,
-        });
-    }
+
     onPropChange(n: string, prop: PropDef, nv: any){
         this.reactor.addToQueue(prop, nv);
     }
@@ -67,6 +62,6 @@ const propDefMap: PropDefMap<X> = {
     innerY: numProp,
     autoZoomSlot: boolProp1,
 };
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+export const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigBaseVBox, slicedPropDefs, 'onPropChange');
 

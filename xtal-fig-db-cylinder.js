@@ -1,5 +1,5 @@
 import { xc } from 'xtal-element/lib/XtalCore.js';
-import { XtalFigBaseVBox } from './xtal-fig-base-vbox-svg.js';
+import { XtalFigBaseVBox, slicedPropDefs } from './xtal-fig-base-vbox-svg.js';
 import { html } from 'xtal-element/lib/html.js';
 import { xp } from 'xtal-element/lib/XtalPattern.js';
 const mainTemplate = html `
@@ -71,6 +71,12 @@ export class XtalFigDBCylinder extends XtalFigBaseVBox {
     refs = refs;
     propActions = propActions;
     mainTemplate = mainTemplate;
+    connectedCallback() {
+        xc.mergeProps(this, slicedPropDefs, {
+            width: 800, height: 500,
+            innerX: 20, innerY: 20,
+        });
+    }
 }
 const propActions = [
     xp.manageMainTemplate,
@@ -82,7 +88,7 @@ const propActions = [
             [refs.innerPart]: [, , { x: innerX + 42, y: innerY + 42 }],
         }],
     ({ domCache, autoZoomSlot, width, height }) => [
-        { [refs.slotElement]: [{ style: { zoom: 62 / height } }] }
+        { [refs.slotElement]: [{ style: { zoom: 102 / height } }] }
     ],
     xp.createShadow,
 ];

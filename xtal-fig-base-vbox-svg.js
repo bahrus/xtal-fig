@@ -21,12 +21,6 @@ export class XtalFigBaseVBox extends HTMLElement {
             rhsType: Array,
             ctor: DOMKeyPEA,
         }]);
-    connectedCallback() {
-        xc.mergeProps(this, slicedPropDefs, {
-            width: 800, height: 500,
-            innerX: 20, innerY: 20,
-        });
-    }
     onPropChange(n, prop, nv) {
         this.reactor.addToQueue(prop, nv);
     }
@@ -55,5 +49,5 @@ const propDefMap = {
     innerY: numProp,
     autoZoomSlot: boolProp1,
 };
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+export const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigBaseVBox, slicedPropDefs, 'onPropChange');
