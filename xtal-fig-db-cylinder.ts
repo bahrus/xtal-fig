@@ -78,7 +78,7 @@ export class XtalFigDBCylinder extends XtalFigBaseVBox{
     connectedCallback(){
         xc.mergeProps<Partial<XtalFigBaseVBoxProps>>(this, slicedPropDefs, {
             width: 800, height: 500, 
-            innerX: 20, innerY: 20,
+            innerX: 20, innerY: 60,
         });
     }
 }
