@@ -1,6 +1,7 @@
 import { xc } from 'xtal-element/lib/XtalCore.js';
 import { XtalFigBaseVBox } from './xtal-fig-base-vbox-svg.js';
 import { html } from 'xtal-element/lib/html.js';
+import { xp } from 'xtal-element/lib/XtalPattern.js';
 const mainTemplate = html `
 <style>
     :host[hidden]{
@@ -28,6 +29,22 @@ const mainTemplate = html `
 const refs = { svgElement: '', innerPart: '', slotElement: '' };
 export class XtalFigDocument extends XtalFigBaseVBox {
     static is = 'xtal-fig-document';
+    refs = refs;
+    propActions = propActions;
     mainTemplate = mainTemplate;
 }
+const propActions = [
+    xp.manageMainTemplate,
+    ({ domCache, width, height }) => [
+        { [refs.svgElement]: [, , { width, height }] },
+        [{ style: { width: `${width}px`, height: `${height}px` } }]
+    ],
+    ({ domCache, innerX, innerY }) => [{
+            [refs.innerPart]: [, , { x: innerX, y: innerY }],
+        }],
+    ({ domCache, autoZoomSlot, width, height }) => [
+        { [refs.slotElement]: [{ style: { zoom: 62 / height } }] }
+    ],
+    xp.createShadow,
+];
 xc.define(XtalFigDocument);

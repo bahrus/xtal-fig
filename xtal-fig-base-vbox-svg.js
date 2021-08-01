@@ -1,7 +1,6 @@
 import { xc } from 'xtal-element/lib/XtalCore.js';
 import { xp } from 'xtal-element/lib/XtalPattern.js';
 import { DOMKeyPEA } from 'xtal-element/lib/DOMKeyPEA.js';
-const refs = { svgElement: '', innerPart: '', slotElement: '' };
 /**
  * @element xtal-fig-document
  * @tag xtal-fig-document
@@ -18,8 +17,6 @@ const refs = { svgElement: '', innerPart: '', slotElement: '' };
  */
 export class XtalFigBaseVBox extends HTMLElement {
     self = this;
-    propActions = propActions;
-    refs = refs;
     reactor = new xp.RxSuppl(this, [{
             rhsType: Array,
             ctor: DOMKeyPEA,
@@ -34,20 +31,6 @@ export class XtalFigBaseVBox extends HTMLElement {
         this.reactor.addToQueue(prop, nv);
     }
 }
-const propActions = [
-    xp.manageMainTemplate,
-    ({ domCache, width, height }) => [
-        { [refs.svgElement]: [, , { width, height }] },
-        [{ style: { width: `${width}px`, height: `${height}px` } }]
-    ],
-    ({ domCache, innerX, innerY }) => [{
-            [refs.innerPart]: [, , { x: innerX, y: innerY }],
-        }],
-    ({ domCache, autoZoomSlot, width, height }) => [
-        { [refs.slotElement]: [{ style: { zoom: 62 / height } }] }
-    ],
-    xp.createShadow,
-];
 const baseProp = {
     dry: true,
     async: true,

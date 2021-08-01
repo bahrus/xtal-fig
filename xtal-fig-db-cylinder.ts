@@ -1,6 +1,7 @@
 import {xc, IReactor, PropAction, PropDef, PropDefMap, ReactiveSurface} from 'xtal-element/lib/XtalCore.js';
 import {XtalFigBaseVBox} from './xtal-fig-base-vbox-svg.js';
 import {html} from 'xtal-element/lib/html.js';
+import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
 
 const mainTemplate = html`
 <style>
@@ -66,12 +67,32 @@ const mainTemplate = html`
 
 `;
 
+const refs = {svgElement: '', innerPart: '', slotElement: ''};
 
 export class XtalFigDBCylinder extends XtalFigBaseVBox{
     static is = 'xtal-fig-db-cylinder';
+    refs = refs;
+    propActions = propActions;
     mainTemplate = mainTemplate;
-
+    
 }
+
+type X = XtalFigDBCylinder;
+
+const propActions = [
+    xp.manageMainTemplate,
+    ({domCache, width, height}: X) => [
+        {[refs.svgElement]: [,,{width, height}]},
+        [{style:{width:`${width}px`, height:`${height}px`}}]
+    ],
+    ({domCache, innerX, innerY}: X) => [{
+        [refs.innerPart]: [,,{x: innerX + 42, y: innerY + 42}],
+    }],
+    ({domCache, autoZoomSlot, width, height}: X) => [
+        {[refs.slotElement]: [{style: {zoom: 62 / height}}]}
+    ],
+    xp.createShadow,
+] as PropAction[];
 
 xc.define(XtalFigDBCylinder);
 

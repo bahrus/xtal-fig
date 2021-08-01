@@ -4,7 +4,6 @@ import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
 import {XtalFigBaseVBoxProps} from './types.js';
 import {DOMKeyPEA} from 'xtal-element/lib/DOMKeyPEA.js';
 
-const refs = {svgElement: '', innerPart: '', slotElement: ''};
 
 /**
  * @element xtal-fig-document
@@ -22,8 +21,6 @@ const refs = {svgElement: '', innerPart: '', slotElement: ''};
  */
 export class XtalFigBaseVBox extends HTMLElement implements ReactiveSurface, XtalPattern{
     self = this;
-    propActions = propActions;
-    refs = refs;
     reactor: IReactor = new xp.RxSuppl(this, [{
         rhsType: Array,
         ctor: DOMKeyPEA,
@@ -40,20 +37,7 @@ export class XtalFigBaseVBox extends HTMLElement implements ReactiveSurface, Xta
 }
 export interface XtalFigBaseVBox extends XtalFigBaseVBoxProps{}
 type X = XtalFigBaseVBox;
-const propActions = [
-    xp.manageMainTemplate,
-    ({domCache, width, height}: X) => [
-        {[refs.svgElement]: [,,{width, height}]},
-        [{style:{width:`${width}px`, height:`${height}px`}}]
-    ],
-    ({domCache, innerX, innerY}: X) => [{
-        [refs.innerPart]: [,,{x: innerX, y: innerY}],
-    }],
-    ({domCache, autoZoomSlot, width, height}: X) => [
-        {[refs.slotElement]: [{style: {zoom: 62 / height}}]}
-    ],
-    xp.createShadow,
-] as PropAction[];
+
 
 const baseProp: PropDef = {
     dry: true,
