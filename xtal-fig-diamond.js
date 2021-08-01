@@ -24,6 +24,32 @@ const mainTemplate = html `
 </svg>
 `;
 const refs = { svgElement: '', pathElements: '', innerPart: '', diamondBorderPart: '' };
+//#region props
+const baseProp = {
+    dry: true,
+    async: true,
+};
+const numProp = {
+    ...baseProp,
+    type: Number,
+};
+const strProp = {
+    ...baseProp,
+    type: String,
+};
+const propDefMap = {
+    ...xp.props,
+    width: numProp,
+    height: numProp,
+    innerWidth: numProp,
+    strokeWidth: numProp,
+    innerHeight: numProp,
+    innerX: numProp,
+    innerY: numProp,
+    //path: strProp,
+};
+const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+//#endregion
 /**
  * @element xtal-fig-diamond
  * @tag xtal-fig-diamond
@@ -48,6 +74,10 @@ const refs = { svgElement: '', pathElements: '', innerPart: '', diamondBorderPar
  */
 export class XtalFigDiamond extends HTMLElement {
     static is = 'xtal-fig-diamond';
+    static observedAttributes = [...slicedPropDefs.boolNames, ...slicedPropDefs.strNames, ...slicedPropDefs.numNames];
+    attributeChangedCallback(n, ov, nv) {
+        xc.passAttrToProp(this, slicedPropDefs, n, ov, nv);
+    }
     self = this;
     propActions = propActions;
     refs = refs;
@@ -82,29 +112,5 @@ const propActions = [
         }],
     xp.createShadow,
 ];
-const baseProp = {
-    dry: true,
-    async: true,
-};
-const numProp = {
-    ...baseProp,
-    type: Number,
-};
-const strProp = {
-    ...baseProp,
-    type: String,
-};
-const propDefMap = {
-    ...xp.props,
-    width: numProp,
-    height: numProp,
-    innerWidth: numProp,
-    strokeWidth: numProp,
-    innerHeight: numProp,
-    innerX: numProp,
-    innerY: numProp,
-    //path: strProp,
-};
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigDiamond, slicedPropDefs, 'onPropChange');
 xc.define(XtalFigDiamond);

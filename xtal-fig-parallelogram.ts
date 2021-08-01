@@ -33,6 +33,33 @@ const mainTemplate = html`
 
 const refs = {svgElement: '', pathElements: '', innerPart: '', paraBorderPart: ''};
 
+//#region 
+const baseProp: PropDef = {
+    dry: true,
+    async: true
+};
+const numProp: PropDef = {
+    ...baseProp,
+    type: Number,
+};
+const propDefMap: PropDefMap<X> = {
+    ...xp.props,
+    width: numProp,
+    height: numProp,
+    innerWidth: numProp,
+    strokeWidth: numProp,
+    innerHeight: numProp,
+    innerX: numProp,
+    innerY: numProp,
+    slant: numProp,
+    hOffset: {
+        ...numProp,
+        stopReactionsIfFalsy: true,
+    }
+};
+const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+//#endregion
+
 /**
  * @element xtal-fig-parallelogram
  * @tag xtal-fig-parallelogram
@@ -58,6 +85,10 @@ const refs = {svgElement: '', pathElements: '', innerPart: '', paraBorderPart: '
  */
 export class XtalFigParallelogram extends HTMLElement implements ReactiveSurface, XtalPattern{
     static is = 'xtal-fig-parallelogram';
+    static observedAttributes = [...slicedPropDefs.boolNames, ...slicedPropDefs.strNames, ...slicedPropDefs.numNames];
+    attributeChangedCallback(n: string, ov: string, nv: string){
+        xc.passAttrToProp(this, slicedPropDefs, n, ov, nv);
+    }
     self = this;
     propActions = propActions;
     refs = refs;
@@ -102,30 +133,7 @@ const propActions = [
 
 
 
-const baseProp: PropDef = {
-    dry: true,
-    async: true
-};
-const numProp: PropDef = {
-    ...baseProp,
-    type: Number,
-};
-const propDefMap: PropDefMap<X> = {
-    ...xp.props,
-    width: numProp,
-    height: numProp,
-    innerWidth: numProp,
-    strokeWidth: numProp,
-    innerHeight: numProp,
-    innerX: numProp,
-    innerY: numProp,
-    slant: numProp,
-    hOffset: {
-        ...numProp,
-        stopReactionsIfFalsy: true,
-    }
-};
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+
 xc.letThereBeProps(XtalFigParallelogram, slicedPropDefs, 'onPropChange');
 xc.define(XtalFigParallelogram);
 

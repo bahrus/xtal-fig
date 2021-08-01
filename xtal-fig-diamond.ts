@@ -26,6 +26,33 @@ const mainTemplate = html`
 </svg>
 `;
 const refs = {svgElement: '', pathElements: '', innerPart: '', diamondBorderPart: ''};
+
+//#region props
+const baseProp: PropDef = {
+    dry: true,
+    async: true,
+};
+const numProp: PropDef = {
+    ...baseProp,
+    type: Number,
+}
+const strProp: PropDef = {
+    ...baseProp,
+    type: String,
+}
+const propDefMap: PropDefMap<X> = {
+    ...xp.props,
+    width: numProp,
+    height: numProp, 
+    innerWidth: numProp, 
+    strokeWidth: numProp, 
+    innerHeight: numProp, 
+    innerX: numProp, 
+    innerY: numProp,
+    //path: strProp,
+};
+const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+//#endregion
 /**
  * @element xtal-fig-diamond
  * @tag xtal-fig-diamond
@@ -50,6 +77,10 @@ const refs = {svgElement: '', pathElements: '', innerPart: '', diamondBorderPart
  */
 export class XtalFigDiamond extends HTMLElement implements ReactiveSurface, XtalPattern{
     static is = 'xtal-fig-diamond';
+    static observedAttributes = [...slicedPropDefs.boolNames, ...slicedPropDefs.strNames, ...slicedPropDefs.numNames];
+    attributeChangedCallback(n: string, ov: string, nv: string){
+        xc.passAttrToProp(this, slicedPropDefs, n, ov, nv);
+    }
     self = this;
     propActions = propActions;
     refs = refs;
@@ -86,29 +117,6 @@ const propActions = [
     }],
     xp.createShadow,
 ] as PropAction[];
-const baseProp: PropDef = {
-    dry: true,
-    async: true,
-};
-const numProp: PropDef = {
-    ...baseProp,
-    type: Number,
-}
-const strProp: PropDef = {
-    ...baseProp,
-    type: String,
-}
-const propDefMap: PropDefMap<X> = {
-    ...xp.props,
-    width: numProp,
-    height: numProp, 
-    innerWidth: numProp, 
-    strokeWidth: numProp, 
-    innerHeight: numProp, 
-    innerX: numProp, 
-    innerY: numProp,
-    //path: strProp,
-};
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+
 xc.letThereBeProps(XtalFigDiamond, slicedPropDefs, 'onPropChange');
 xc.define(XtalFigDiamond);

@@ -29,6 +29,32 @@ const mainTemplate = html `
 </svg>
 `;
 const refs = { svgElement: '', pathElements: '', innerPart: '', paraBorderPart: '' };
+//#region 
+const baseProp = {
+    dry: true,
+    async: true
+};
+const numProp = {
+    ...baseProp,
+    type: Number,
+};
+const propDefMap = {
+    ...xp.props,
+    width: numProp,
+    height: numProp,
+    innerWidth: numProp,
+    strokeWidth: numProp,
+    innerHeight: numProp,
+    innerX: numProp,
+    innerY: numProp,
+    slant: numProp,
+    hOffset: {
+        ...numProp,
+        stopReactionsIfFalsy: true,
+    }
+};
+const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+//#endregion
 /**
  * @element xtal-fig-parallelogram
  * @tag xtal-fig-parallelogram
@@ -54,6 +80,10 @@ const refs = { svgElement: '', pathElements: '', innerPart: '', paraBorderPart: 
  */
 export class XtalFigParallelogram extends HTMLElement {
     static is = 'xtal-fig-parallelogram';
+    static observedAttributes = [...slicedPropDefs.boolNames, ...slicedPropDefs.strNames, ...slicedPropDefs.numNames];
+    attributeChangedCallback(n, ov, nv) {
+        xc.passAttrToProp(this, slicedPropDefs, n, ov, nv);
+    }
     self = this;
     propActions = propActions;
     refs = refs;
@@ -92,29 +122,5 @@ const propActions = [
         }],
     xp.createShadow,
 ];
-const baseProp = {
-    dry: true,
-    async: true
-};
-const numProp = {
-    ...baseProp,
-    type: Number,
-};
-const propDefMap = {
-    ...xp.props,
-    width: numProp,
-    height: numProp,
-    innerWidth: numProp,
-    strokeWidth: numProp,
-    innerHeight: numProp,
-    innerX: numProp,
-    innerY: numProp,
-    slant: numProp,
-    hOffset: {
-        ...numProp,
-        stopReactionsIfFalsy: true,
-    }
-};
-const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(XtalFigParallelogram, slicedPropDefs, 'onPropChange');
 xc.define(XtalFigParallelogram);
