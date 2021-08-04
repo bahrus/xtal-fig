@@ -1,6 +1,6 @@
 {
   "name": "xtal-fig",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Turn css for basic shapes into semantic html",
   "main": "xtal-fig-diamond.js",
   "module": "xtal-fig-diamond.js",
