@@ -61,9 +61,16 @@ const mainTemplate = html `
 </svg>
 <slot style="display:none"></slot>
 <slot-bot></slot-bot>
-<div style="position:relative;top:40px"></div>
+<div part=inner class=inner ></div>
+<style>
+    .inner{
+        position:relative;
+        top:-50%;
+        left:25%
+    }
+</style>
 `;
-const refs = { svgElement: '', slotElement: '' };
+const refs = { svgElement: '', slotElement: '', innerPart: '' };
 export class XtalFigDBCylinder extends XtalFigBaseVBox {
     static is = 'xtal-fig-db-cylinder';
     refs = refs;
@@ -71,7 +78,7 @@ export class XtalFigDBCylinder extends XtalFigBaseVBox {
     mainTemplate = mainTemplate;
     connectedCallback() {
         xc.mergeProps(this, slicedPropDefs, {
-            width: 800, height: 500,
+            width: 250, height: 500,
             innerX: 20, innerY: 60,
         });
     }
