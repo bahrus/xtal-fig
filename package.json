@@ -32,12 +32,13 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "xtal-element": "0.0.419"
+    "xtal-element": "0.0.419",
+    "slot-bot": "0.0.11"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
     "xtal-test": "0.0.51",
-    "@custom-elements-manifest/analyzer": "0.4.16"
+    "@custom-elements-manifest/analyzer": "0.4.17"
   },
   "repository": {
     "type": "git",

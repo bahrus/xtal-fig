@@ -3,6 +3,7 @@ import {XtalFigBaseVBox, slicedPropDefs} from './xtal-fig-base-vbox-svg.js';
 import {html} from 'xtal-element/lib/html.js';
 import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
 import {XtalFigBaseVBoxProps} from './types.d.js';
+import 'slot-bot/slot-bot.js';
 
 const mainTemplate = html`
 <style>
@@ -59,16 +60,13 @@ const mainTemplate = html`
                 stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
         </g>
     </g>
-    <g>
-    <foreignObject part=inner width="100%" height="100%">
-        <slot></slot>
-    </foreignObject>
-    </g>
 </svg>
-
+<slot style="display:none"></slot>
+<slot-bot></slot-bot>
+<div style="position:relative;top:40px"></div>
 `;
 
-const refs = {svgElement: '', innerPart: '', slotElement: ''};
+const refs = {svgElement: '', slotElement: ''};
 
 export class XtalFigDBCylinder extends XtalFigBaseVBox{
     static is = 'xtal-fig-db-cylinder';
@@ -91,11 +89,8 @@ const propActions = [
         {[refs.svgElement]: [,,{width, height}]},
         [{style:{width:`${width}px`, height:`${height}px`}}]
     ],
-    ({domCache, innerX, innerY}: X) => [{
-        [refs.innerPart]: [,,{x: innerX + 42, y: innerY + 42}],
-    }],
     ({domCache, autoZoomSlot, width, height}: X) => [
-        {[refs.slotElement]: [{style: {zoom: 102 / height}}]}
+        //{[refs.slotElement]: [{style: {zoom: 102 / height}}]}
     ],
     xp.createShadow,
 ] as PropAction[];
