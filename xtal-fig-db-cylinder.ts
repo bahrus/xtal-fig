@@ -1,9 +1,38 @@
 import {xc, IReactor, PropAction, PropDef, PropDefMap, ReactiveSurface} from 'xtal-element/lib/XtalCore.js';
-import {XtalFigBaseVBox, slicedPropDefs} from './xtal-fig-base-vbox-svg.js';
 import {html} from 'xtal-element/lib/html.js';
 import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
-import {XtalFigBaseVBoxProps} from './types.d.js';
+import {DOMKeyPEA} from 'xtal-element/lib/DOMKeyPEA.js';
+import {XtalFigDBCylinderProps} from './types.d.js';
 import 'slot-bot/slot-bot.js';
+
+//#region 
+const baseProp: PropDef = {
+    dry: true,
+    async: true,
+};
+
+const numProp: PropDef = {
+    ...baseProp,
+    type: Number,
+};
+
+const boolProp0: PropDef = {
+    ...baseProp,
+    type: Boolean,
+};
+
+const boolProp1: PropDef = {
+    ...boolProp0,
+    stopReactionsIfFalsy: true,
+}
+
+const propDefMap: PropDefMap<X> = {
+    ...xp.props,
+    width: numProp,
+    height: numProp,
+};
+export const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+//#endregion
 
 const mainTemplate = html`
 <style>
@@ -75,18 +104,41 @@ const mainTemplate = html`
 
 const refs = {svgElement: '', slotElement: '', innerPart: ''};
 
-export class XtalFigDBCylinder extends XtalFigBaseVBox{
+/**
+ * @element xtal-fig-db-cylinder
+ * @tag xtal-fig-document
+ * @prop {number} [width=800] - Number of pixels wide the figure should be.
+ * @attr {number} [width=800] - Number of pixels wide the figure should be.
+ * @prop {number} [height=300] - Number of pixels high the figure should be.
+ * @attr {number} [height=300] - Number of pixels high the figure should be.
+ */
+export class XtalFigDBCylinder extends HTMLElement implements ReactiveSurface, XtalPattern{
     static is = 'xtal-fig-db-cylinder';
+    static observedAttributes = [...slicedPropDefs.boolNames, ...slicedPropDefs.strNames, ...slicedPropDefs.numNames];
     refs = refs;
     propActions = propActions;
+    
+    attributeChangedCallback(n: string, ov: string, nv: string){
+        xc.passAttrToProp(this, slicedPropDefs, n, ov, nv);
+    }
+    self = this;
+    reactor: IReactor = new xp.RxSuppl(this, [{
+        rhsType: Array,
+        ctor: DOMKeyPEA,
+    }]);
+
+    onPropChange(n: string, prop: PropDef, nv: any){
+        this.reactor.addToQueue(prop, nv);
+    }
     mainTemplate = mainTemplate;
     connectedCallback(){
-        xc.mergeProps<Partial<XtalFigBaseVBoxProps>>(this, slicedPropDefs, {
+        xc.mergeProps<Partial<XtalFigDBCylinder>>(this, slicedPropDefs, {
             width: 250, height: 500, 
-            innerX: 20, innerY: 60,
         });
     }
 }
+
+export interface XtalFigDBCylinder extends XtalFigDBCylinderProps{}
 
 type X = XtalFigDBCylinder;
 
@@ -96,11 +148,10 @@ const propActions = [
         {[refs.svgElement]: [,,{width, height}]},
         [{style:{width:`${width}px`, height:`${height}px`}}]
     ],
-    ({domCache, autoZoomSlot, width, height}: X) => [
-        //{[refs.slotElement]: [{style: {zoom: 102 / height}}]}
-    ],
     xp.createShadow,
 ] as PropAction[];
+
+xc.letThereBeProps(XtalFigDBCylinder, slicedPropDefs, 'onPropChange');
 
 xc.define(XtalFigDBCylinder);
 
