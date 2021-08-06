@@ -24,6 +24,13 @@ const mainTemplate = html `
 <slot style="display:none"></slot>
 <slot-bot></slot-bot>
 <div part=inner class=inner ></div>
+<style>
+    .inner{
+        position:relative;
+        top:-50%;
+        left:25%
+    }
+</style>
 `;
 const refs = { svgElement: '', innerPart: '', slotElement: '' };
 //#region 
