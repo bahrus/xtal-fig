@@ -5,34 +5,7 @@ import {DOMKeyPEA} from 'xtal-element/lib/DOMKeyPEA.js';
 import {XtalFigDBCylinderProps} from './types.d.js';
 import 'slot-bot/slot-bot.js';
 
-//#region 
-const baseProp: PropDef = {
-    dry: true,
-    async: true,
-};
 
-const numProp: PropDef = {
-    ...baseProp,
-    type: Number,
-};
-
-const boolProp0: PropDef = {
-    ...baseProp,
-    type: Boolean,
-};
-
-const boolProp1: PropDef = {
-    ...boolProp0,
-    stopReactionsIfFalsy: true,
-}
-
-const propDefMap: PropDefMap<X> = {
-    ...xp.props,
-    width: numProp,
-    height: numProp,
-};
-export const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
-//#endregion
 
 const mainTemplate = html`
 <style>
@@ -104,13 +77,42 @@ const mainTemplate = html`
 
 const refs = {svgElement: '', slotElement: '', innerPart: ''};
 
+//#region 
+const baseProp: PropDef = {
+    dry: true,
+    async: true,
+};
+
+const numProp: PropDef = {
+    ...baseProp,
+    type: Number,
+};
+
+const boolProp0: PropDef = {
+    ...baseProp,
+    type: Boolean,
+};
+
+const boolProp1: PropDef = {
+    ...boolProp0,
+    stopReactionsIfFalsy: true,
+}
+
+const propDefMap: PropDefMap<X> = {
+    ...xp.props,
+    width: numProp,
+    height: numProp,
+};
+export const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
+//#endregion
+
 /**
  * @element xtal-fig-db-cylinder
- * @tag xtal-fig-document
- * @prop {number} [width=800] - Number of pixels wide the figure should be.
- * @attr {number} [width=800] - Number of pixels wide the figure should be.
- * @prop {number} [height=300] - Number of pixels high the figure should be.
- * @attr {number} [height=300] - Number of pixels high the figure should be.
+ * @tag xtal-fig-db-cylinder
+ * @prop {number} [width=250] - Number of pixels wide the figure should be.
+ * @attr {number} [width=250] - Number of pixels wide the figure should be.
+ * @prop {number} [height=500] - Number of pixels high the figure should be.
+ * @attr {number} [height=500] - Number of pixels high the figure should be.
  */
 export class XtalFigDBCylinder extends HTMLElement implements ReactiveSurface, XtalPattern{
     static is = 'xtal-fig-db-cylinder';

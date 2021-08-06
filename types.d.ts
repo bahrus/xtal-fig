@@ -136,3 +136,17 @@ export interface XtalFigDBCylinderProps  extends HTMLElement, XtalPattern {
     height: number,
 
 }
+
+export interface XtalFigDocumentProps  extends HTMLElement, XtalPattern {
+    /**
+     * @prop {number} [width=800] - Number of pixels wide the figure should be.
+     * @attr {number} [width=800] - Number of pixels wide the figure should be.
+     */
+    width: number,
+    /**
+     * @prop {number} [height=300] - Number of pixels high the figure should be.
+     * @attr {number} [heigh=300] - Number of pixels high the figure should be.
+     */
+    height: number,
+
+}
