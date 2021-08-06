@@ -1,5 +1,4 @@
 import {xc, IReactor, PropAction, PropDef, PropDefMap, ReactiveSurface} from 'xtal-element/lib/XtalCore.js';
-//import {XtalFigBaseVBox, slicedPropDefs} from './xtal-fig-base-vbox-svg.js';
 import {html} from 'xtal-element/lib/html.js';
 import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
 import {DOMKeyPEA} from 'xtal-element/lib/DOMKeyPEA.js';

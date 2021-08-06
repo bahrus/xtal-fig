@@ -20,7 +20,6 @@
     ".": "./index.js",
     "./xtal-fig-parallelogram.js": "./xtal-fig-parallelogram.js",
     "./xtal-fig-diamond.js": "./xtal-fig-diamond.js",
-    "./xtal-fig-base-vbox-svg.js": "./xtal-fig-base-vbox-svg.js",
     "./xtal-fig-document.js": "./xtal-fig-document.js",
     "./xtal-fig-db-cylinder.js": "./xtal-fig-db-cylinder.js"
   },
