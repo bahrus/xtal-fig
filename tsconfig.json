@@ -14,7 +14,7 @@
 	],
     "files": [
         "xtal-fig-diamond.ts",
-		"xtal-fig-parallelogram.ts",
+		"xtal-fig-parallelogram2.ts",
 		"xtal-fig-document.ts",
 		"xtal-fig-db-cylinder.ts",
 		"index.ts"

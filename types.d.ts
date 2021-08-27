@@ -1,5 +1,5 @@
 import {XtalPattern} from 'xtal-element/types.d.js';
-export interface XtalFigParallelogramProps extends XtalPattern{
+export interface XtalFigParallelogramProps{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
@@ -44,6 +44,11 @@ export interface XtalFigParallelogramProps extends XtalPattern{
      * @private
      */
     hOffset:number,
+}
+
+export interface XtalFigParallelogramActions{
+    setHOffset: (self: this) => {hOffset: number};
+    setStyle(self: this): {style: Partial<CSSStyleDeclaration>}
 }
 
 export interface XtalFigDiamondProps extends XtalPattern{
