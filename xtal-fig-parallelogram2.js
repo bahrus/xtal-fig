@@ -1,9 +1,6 @@
-import {XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtBase, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
-import {INotifyMixin, INotifyPropInfo, NotifyMixin} from 'trans-render/lib/mixins/notify.js',
-import {XtalFigParallelogramProps, XtalFigParallelogramActions} from './types.js';
-import { XtalFigParallelogram } from './xtal-fig-parallelogram.js';
-
+import { XE } from 'xtal-element/src/XE.js';
+import { tm } from 'trans-render/lib/TemplMgmtWithPEST.js';
+import { NotifyMixin } from 'trans-render/lib/mixins/notify.js';
 const mainTemplate = tm.html `
 <style>
     :host[hidden]{
@@ -30,7 +27,6 @@ const mainTemplate = tm.html `
 
 </svg>
 `;
-
 /**
  * @element xtal-fig-parallelogram
  * @tag xtal-fig-parallelogram
@@ -54,58 +50,54 @@ const mainTemplate = tm.html `
  * @prop {number} [innerHeight=100] - Number of pixels high the inner content should be provided.
  * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
  */
-export class XtalFigParallelogramCore extends HTMLElement implements XtalFigParallelogramActions{
+export class XtalFigParallelogramCore extends HTMLElement {
     // setHOffset(self: this){
     //     const {width, slant, strokeWidth} = self;
     //     return {
     //         hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth,
     //     }
     // }
-    setHOffset = ({width, slant, strokeWidth}: this) => ({
+    setHOffset = ({ width, slant, strokeWidth }) => ({
         hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
     });
-    setStyle = ({width, height}: this) => ({
+    setStyle = ({ width, height }) => ({
         style: {
             width: `${width}px`,
             height: `${height}px`
         }
     });
-    setPaths = ({width, strokeWidth, height, slant, hOffset}: this) => [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}],
-    
-    
+    setPaths = ({ width, strokeWidth, height, slant, hOffset }) => [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }];
 }
-export interface XtalFigParallelogramCore extends XtalFigParallelogramProps{}
-
-const xe = new XE<XtalFigParallelogramProps & TemplMgmtBase, XtalFigParallelogramActions & TemplMgmtBase & INotifyMixin>({
-    config:{
+const xe = new XE({
+    config: {
         tagName: 'xtal-fig-parallelogram',
-        propDefaults:{
-            initTransform:{}, width: 800, strokeWidth:5, height:300, slant:30, 
-            innerWidth:200, innerHeight:100, innerX:300, innerY:100,
+        propDefaults: {
+            initTransform: {}, width: 800, strokeWidth: 5, height: 300, slant: 30,
+            innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
         },
-        propInfo:{
+        propInfo: {
             pathElements: {
                 parse: false,
                 isRef: true,
             }
         },
-        actions:{
+        actions: {
             ...tm.doInitTransform,
-            setHOffset:{
+            setHOffset: {
                 actIfKeyIn: ['width', 'slant', 'strokeWidth']
             },
-            setStyle:{
+            setStyle: {
                 actIfKeyIn: ['width', 'height']
             },
-            setPaths:{
+            setPaths: {
                 actIfKeyIn: ['width', 'height', 'strokeWidth', 'slant', 'hOffset'],
                 target: 'pathElements'
             }
         }
     },
-    complexPropDefaults:{
+    complexPropDefaults: {
         mainTemplate: mainTemplate,
     },
     superclass: XtalFigParallelogramCore,
-    mixins:[NotifyMixin, tm.TemplMgmtMixin]
+    mixins: [NotifyMixin, tm.TemplMgmtMixin]
 });
