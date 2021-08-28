@@ -11,13 +11,11 @@ const mainTemplate = tm.html `
     } 
 
 </style>
-<svg xmlns="http://www.w3.org/2000/svg" width={{width}} height={{height}}>
+<svg xmlns="http://www.w3.org/2000/svg">
     <path part=para-fill 
-        d={{path}} 
         style="fill:#ccff00;stroke:none" />
     <path part=para-border 
-        d={{path}} 
-        style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;" />
+        style="fill:none;stroke:#000000;stroke-linejoin:round;" />
     <g>
         <foreignObject part=inner width="{{innerWidth}}" height="{{innerHeight}}" x="{{innerX}}" y="{{innerY}}">
             <slot></slot>
@@ -51,12 +49,10 @@ const mainTemplate = tm.html `
  * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
  */
 export class XtalFigParallelogramCore extends HTMLElement {
-    // setHOffset(self: this){
-    //     const {width, slant, strokeWidth} = self;
-    //     return {
-    //         hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth,
-    //     }
-    // }
+    setOwnDimensions = ({ width, height }) => ({
+        style: { width: `${width}px`, height: `${height}px` }
+    });
+    setSVGDimensions = ({ width, height }) => [, , { width, height }];
     setHOffset = ({ width, slant, strokeWidth }) => ({
         hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
     });
@@ -67,7 +63,15 @@ export class XtalFigParallelogramCore extends HTMLElement {
         }
     });
     setPaths = ({ width, strokeWidth, height, slant, hOffset }) => [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }];
+    setBorder = ({ strokeWidth }) => ({
+        style: { strokeWidth: strokeWidth.toString() }
+    });
+    setInnerDimensions = ({ innerHeight, innerWidth, innerX, innerY }) => [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }];
 }
+const elementRef = {
+    parse: false,
+    isRef: true,
+};
 const xe = new XE({
     config: {
         tagName: 'xtal-fig-parallelogram',
@@ -76,22 +80,35 @@ const xe = new XE({
             innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
         },
         propInfo: {
-            pathElements: {
-                parse: false,
-                isRef: true,
-            }
+            pathElements: elementRef,
+            paraBorderParts: elementRef,
+            svgElements: elementRef,
         },
         actions: {
             ...tm.doInitTransform,
+            setOwnDimensions: {
+                actIfKeyIn: ['width', 'height'],
+            },
+            setSVGDimensions: {
+                actIfKeyIn: ['width', 'height'],
+            },
             setHOffset: {
-                actIfKeyIn: ['width', 'slant', 'strokeWidth']
+                actIfKeyIn: ['width', 'slant', 'strokeWidth'],
             },
             setStyle: {
-                actIfKeyIn: ['width', 'height']
+                actIfKeyIn: ['width', 'height'],
             },
             setPaths: {
                 actIfKeyIn: ['width', 'height', 'strokeWidth', 'slant', 'hOffset'],
                 target: 'pathElements'
+            },
+            setBorder: {
+                actIfKeyIn: ['strokeWidth'],
+                target: 'paraBorderParts',
+            },
+            setInnerDimensions: {
+                actIfKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                target: 'innerParts'
             }
         }
     },

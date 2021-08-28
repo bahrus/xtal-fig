@@ -46,13 +46,23 @@ export interface XtalFigParallelogramProps{
      */
     hOffset:number,
 
-    pathElements: NodeListOf<SVGPathElement> | undefined;
+    pathElements: NodeListOf<SVGPathElement>;
+
+    paraBorderParts: NodeListOf<SVGPathElement>;
+
+    svgElements: NodeListOf<SVGElement>;
+
+    innerParts: NodeListOf<SVGForeignObjectElement>;
 }
 
 export interface XtalFigParallelogramActions{
+    setOwnDimensions: (self: this) => {style: Partial<CSSStyleDeclaration>};
+    setSVGDimensions: (self: this) => any;
     setHOffset: (self: this) => {hOffset: number};
     setStyle: (self: this) => {style: Partial<CSSStyleDeclaration>};
+    setBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
     setPaths: (self: this) => any;
+    setInnerDimensions: (self: this) => any;
 }
 
 export interface XtalFigDiamondProps extends XtalPattern{

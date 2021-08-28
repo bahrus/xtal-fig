@@ -3,6 +3,7 @@ import {TemplMgmtBase, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
 import {INotifyMixin, INotifyPropInfo, NotifyMixin} from 'trans-render/lib/mixins/notify.js',
 import {XtalFigParallelogramProps, XtalFigParallelogramActions} from './types.js';
 import { XtalFigParallelogram } from './xtal-fig-parallelogram.js';
+import { PropInfo } from '../trans-render/lib/types.js';
 
 const mainTemplate = tm.html `
 <style>
@@ -14,13 +15,11 @@ const mainTemplate = tm.html `
     } 
 
 </style>
-<svg xmlns="http://www.w3.org/2000/svg" width={{width}} height={{height}}>
+<svg xmlns="http://www.w3.org/2000/svg">
     <path part=para-fill 
-        d={{path}} 
         style="fill:#ccff00;stroke:none" />
     <path part=para-border 
-        d={{path}} 
-        style="fill:none;stroke:#000000;stroke-width:{{strokeWidth}};stroke-linejoin:round;" />
+        style="fill:none;stroke:#000000;stroke-linejoin:round;" />
     <g>
         <foreignObject part=inner width="{{innerWidth}}" height="{{innerHeight}}" x="{{innerX}}" y="{{innerY}}">
             <slot></slot>
@@ -55,12 +54,10 @@ const mainTemplate = tm.html `
  * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
  */
 export class XtalFigParallelogramCore extends HTMLElement implements XtalFigParallelogramActions{
-    // setHOffset(self: this){
-    //     const {width, slant, strokeWidth} = self;
-    //     return {
-    //         hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth,
-    //     }
-    // }
+    setOwnDimensions = ({width, height}: this) => ({
+        style: {width:`${width}px`, height:`${height}px`}
+    });
+    setSVGDimensions = ({width, height}: this) => [,,{width, height}];
     setHOffset = ({width, slant, strokeWidth}: this) => ({
         hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
     });
@@ -71,11 +68,17 @@ export class XtalFigParallelogramCore extends HTMLElement implements XtalFigPara
         }
     });
     setPaths = ({width, strokeWidth, height, slant, hOffset}: this) => [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}],
-    
+    setBorder = ({strokeWidth}: this) => ({
+        style:{strokeWidth: strokeWidth.toString()}
+    });
+    setInnerDimensions = ({innerHeight, innerWidth, innerX, innerY}: this) => [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}]
     
 }
 export interface XtalFigParallelogramCore extends XtalFigParallelogramProps{}
-
+const elementRef: PropInfo = {
+    parse: false, 
+    isRef: true,
+};
 const xe = new XE<XtalFigParallelogramProps & TemplMgmtBase, XtalFigParallelogramActions & TemplMgmtBase & INotifyMixin>({
     config:{
         tagName: 'xtal-fig-parallelogram',
@@ -84,22 +87,35 @@ const xe = new XE<XtalFigParallelogramProps & TemplMgmtBase, XtalFigParallelogra
             innerWidth:200, innerHeight:100, innerX:300, innerY:100,
         },
         propInfo:{
-            pathElements: {
-                parse: false,
-                isRef: true,
-            }
+            pathElements: elementRef,
+            paraBorderParts: elementRef,
+            svgElements: elementRef,
         },
         actions:{
             ...tm.doInitTransform,
+            setOwnDimensions:{
+                actIfKeyIn: ['width', 'height'],
+            },
+            setSVGDimensions:{
+                actIfKeyIn: ['width', 'height'],
+            },
             setHOffset:{
-                actIfKeyIn: ['width', 'slant', 'strokeWidth']
+                actIfKeyIn: ['width', 'slant', 'strokeWidth'],
             },
             setStyle:{
-                actIfKeyIn: ['width', 'height']
+                actIfKeyIn: ['width', 'height'],
             },
             setPaths:{
                 actIfKeyIn: ['width', 'height', 'strokeWidth', 'slant', 'hOffset'],
                 target: 'pathElements'
+            },
+            setBorder:{
+                actIfKeyIn: ['strokeWidth'],
+                target: 'paraBorderParts',
+            },
+            setInnerDimensions:{
+                actIfKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                target: 'innerParts'
             }
         }
     },
