@@ -86,6 +86,10 @@ const xe = new XE({
             setDiamondBorder: {
                 actIfKeyIn: ['strokeWidth'],
                 target: 'diamondBorderParts'
+            },
+            setInnerDimensions: {
+                actIfKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                target: 'innerParts'
             }
         }
     },
