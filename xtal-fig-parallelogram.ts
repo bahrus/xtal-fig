@@ -1,6 +1,6 @@
 import {XE} from 'xtal-element/src/XE.js';
 import {TemplMgmtProps, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
-import {INotifyMixin, INotifyPropInfo, NotifyMixin} from 'trans-render/lib/mixins/notify.js';
+import {INotifyMixin} from 'trans-render/lib/mixins/notify.js';
 import {XtalFigParallelogramProps, XtalFigParallelogramActions} from './types.js';
 import { PropInfo } from '../trans-render/lib/types.js';
 
@@ -116,5 +116,5 @@ const xe = new XE<XtalFigParallelogramProps & TemplMgmtProps, XtalFigParallelogr
         mainTemplate,
     },
     superclass: XtalFigParallelogramCore,
-    mixins:[NotifyMixin, tm.TemplMgmtMixin]
+    mixins:[tm.TemplMgmtMixin]
 });

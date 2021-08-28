@@ -1,6 +1,5 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/TemplMgmtWithPEST.js';
-import { NotifyMixin } from 'trans-render/lib/mixins/notify.js';
 const mainTemplate = tm.html `
 <style>
     :host[hidden]{
@@ -109,5 +108,5 @@ const xe = new XE({
         mainTemplate,
     },
     superclass: XtalFigParallelogramCore,
-    mixins: [NotifyMixin, tm.TemplMgmtMixin]
+    mixins: [tm.TemplMgmtMixin]
 });
