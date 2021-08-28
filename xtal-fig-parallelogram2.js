@@ -17,7 +17,7 @@ const mainTemplate = tm.html `
     <path part=para-border 
         style="fill:none;stroke:#000000;stroke-linejoin:round;" />
     <g>
-        <foreignObject part=inner width="{{innerWidth}}" height="{{innerHeight}}" x="{{innerX}}" y="{{innerY}}">
+        <foreignObject part=inner>
             <slot></slot>
         </foreignObject>
     </g>
@@ -56,12 +56,6 @@ export class XtalFigParallelogramCore extends HTMLElement {
     setHOffset = ({ width, slant, strokeWidth }) => ({
         hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
     });
-    setStyle = ({ width, height }) => ({
-        style: {
-            width: `${width}px`,
-            height: `${height}px`
-        }
-    });
     setPaths = ({ width, strokeWidth, height, slant, hOffset }) => [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }];
     setBorder = ({ strokeWidth }) => ({
         style: { strokeWidth: strokeWidth.toString() }
@@ -83,6 +77,7 @@ const xe = new XE({
             pathElements: elementRef,
             paraBorderParts: elementRef,
             svgElements: elementRef,
+            innerParts: elementRef,
         },
         actions: {
             ...tm.doInitTransform,
@@ -95,9 +90,6 @@ const xe = new XE({
             },
             setHOffset: {
                 actIfKeyIn: ['width', 'slant', 'strokeWidth'],
-            },
-            setStyle: {
-                actIfKeyIn: ['width', 'height'],
             },
             setPaths: {
                 actIfKeyIn: ['width', 'height', 'strokeWidth', 'slant', 'hOffset'],

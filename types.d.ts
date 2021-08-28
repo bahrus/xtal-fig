@@ -59,7 +59,6 @@ export interface XtalFigParallelogramActions{
     setOwnDimensions: (self: this) => {style: Partial<CSSStyleDeclaration>};
     setSVGDimensions: (self: this) => any;
     setHOffset: (self: this) => {hOffset: number};
-    setStyle: (self: this) => {style: Partial<CSSStyleDeclaration>};
     setBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
     setPaths: (self: this) => any;
     setInnerDimensions: (self: this) => any;
