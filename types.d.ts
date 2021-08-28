@@ -54,9 +54,12 @@ export interface XtalFigParallelogramProps{
     innerParts: NodeListOf<SVGForeignObjectElement>;
 }
 
-export interface XtalFigParallelogramActions{
+export interface XtalFigCommonActions{
     setOwnDimensions: (self: this) => {style: Partial<CSSStyleDeclaration>};
     setSVGDimensions: (self: this) => any;
+}
+
+export interface XtalFigParallelogramActions extends XtalFigCommonActions{
     setHOffset: (self: this) => {hOffset: number};
     setBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
     setPaths: (self: this) => any;
@@ -106,15 +109,14 @@ export interface XtalFigDiamondProps{
     innerParts: NodeListOf<SVGForeignObjectElement>;
 }
 
-export interface XtalFigDiamondActions{
-    setOwnDimensions: (self: this) => {style: Partial<CSSStyleDeclaration>};
-    setSVGDimensions: (self: this) => any;
+export interface XtalFigDiamondActions extends XtalFigCommonActions{
     setPaths: (self: this) => any;
     setDiamondBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
     setInnerDimensions: (self: this) => any;
 }
 
-export interface XtalFigBaseVBoxProps extends HTMLElement{
+
+export interface XtalFigDBCylinderProps{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
@@ -125,45 +127,12 @@ export interface XtalFigBaseVBoxProps extends HTMLElement{
      * @attr {number} [heigh=300] - Number of pixels high the figure should be.
      */
     height: number,
-    /**
-     * @prop {number} [innerWidth=200] - Number of pixels wide the inner content should be provided.
-     * @attr {number} [inner-width=200] - Number of pixels wide the inner content should be provided.
-     */
-    // innerWidth:number,
-    // /**
-    //  * @prop {number} [innerHeight=100] - Number of pixels high the inner content should be provided.
-    //  * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
-    //  */
-    // innerHeight:number,
-    /**
-     * @prop {number} [innerX=300] - Number of pixels left edge of inner content should be set to.
-     * @attr {number} [inner-x=300] - Number of pixels left edge of inner content should be set to.
-     */
-    innerX: number,
-    /**
-     * @prop {number} [innerY=100] - Number of pixels top edge of inner content should be set to.
-     * @attr {number} [inner-y=300] - Number of pixels top edge of inner content should be set to.
-     */
-    innerY: number,
 
-    /**
-     * @prop {boolean} [autoZoomSlot] - Counter balance the zoom effect of resizing the component for the inner content.
-     * @attr {boolean} [auto-zoom-slot] - Counter balance the zoom effect of resizing the component for the inner content.
-     */
-    autoZoomSlot: boolean | undefined;
+    svgElements: NodeListOf<SVGElement>;
+
 }
 
-export interface XtalFigDBCylinderProps  extends HTMLElement{
-    /**
-     * @prop {number} [width=800] - Number of pixels wide the figure should be.
-     * @attr {number} [width=800] - Number of pixels wide the figure should be.
-     */
-    width: number,
-    /**
-     * @prop {number} [height=300] - Number of pixels high the figure should be.
-     * @attr {number} [heigh=300] - Number of pixels high the figure should be.
-     */
-    height: number,
+export interface XtalFigDBCylinderActions extends XtalFigCommonActions{
 
 }
 

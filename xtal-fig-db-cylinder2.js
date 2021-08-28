@@ -1,11 +1,7 @@
-import {xc, IReactor, PropAction, PropDef, PropDefMap, ReactiveSurface} from 'xtal-element/lib/XtalCore.js';
-import {html} from 'xtal-element/lib/html.js';
-import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
-import {DOMKeyPEA} from 'xtal-element/lib/DOMKeyPEA.js';
-import {XtalFigDBCylinderProps} from './types.d.js';
+import { XE } from 'xtal-element/src/XE.js';
+import { tm } from 'trans-render/lib/TemplMgmtWithPEST.js';
 import 'slot-bot/slot-bot.js';
-
-const mainTemplate = html`
+const mainTemplate = tm.html `
 <style>
     :host[hidden]{
         display:none;
@@ -72,38 +68,6 @@ const mainTemplate = html`
     }
 </style>
 `;
-
-const refs = {svgElement: '', slotElement: '', innerPart: ''};
-
-//#region 
-const baseProp: PropDef = {
-    dry: true,
-    async: true,
-};
-
-const numProp: PropDef = {
-    ...baseProp,
-    type: Number,
-};
-
-const boolProp0: PropDef = {
-    ...baseProp,
-    type: Boolean,
-};
-
-const boolProp1: PropDef = {
-    ...boolProp0,
-    stopReactionsIfFalsy: true,
-}
-
-const propDefMap: PropDefMap<X> = {
-    ...xp.props,
-    width: numProp,
-    height: numProp,
-};
-export const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
-//#endregion
-
 /**
  * @element xtal-fig-db-cylinder
  * @tag xtal-fig-db-cylinder
@@ -112,51 +76,39 @@ export const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
  * @prop {number} [height=500] - Number of pixels high the figure should be.
  * @attr {number} [height=500] - Number of pixels high the figure should be.
  */
-export class XtalFigDBCylinder extends HTMLElement implements ReactiveSurface, XtalPattern{
-    static is = 'xtal-fig-db-cylinder';
-    static observedAttributes = [...slicedPropDefs.boolNames, ...slicedPropDefs.strNames, ...slicedPropDefs.numNames];
-    refs = refs;
-    propActions = propActions;
-    
-    attributeChangedCallback(n: string, ov: string, nv: string){
-        xc.passAttrToProp(this, slicedPropDefs, n, ov, nv);
-    }
-    self = this;
-    reactor: IReactor = new xp.RxSuppl(this, [{
-        rhsType: Array,
-        ctor: DOMKeyPEA,
-    }]);
-
-    onPropChange(n: string, prop: PropDef, nv: any){
-        this.reactor.addToQueue(prop, nv);
-    }
-    mainTemplate = mainTemplate;
-    connectedCallback(){
-        xc.mergeProps<Partial<XtalFigDBCylinder>>(this, slicedPropDefs, {
-            width: 250, height: 500, 
-        });
-    }
+export class XtalFigDBCylinderCore extends HTMLElement {
+    setOwnDimensions = ({ width, height }) => ({
+        style: { width: `${width}px`, height: `${height}px` }
+    });
+    setSVGDimensions = ({ width, height }) => [, , { width, height }];
 }
-
-export interface XtalFigDBCylinder extends XtalFigDBCylinderProps{}
-
-type X = XtalFigDBCylinder;
-
-const propActions = [
-    xp.manageMainTemplate,
-    ({domCache, width, height}: X) => [
-        {[refs.svgElement]: [,,{width, height}]},
-        [{style:{width:`${width}px`, height:`${height}px`}}]
-    ],
-    xp.createShadow,
-] as PropAction[];
-
-xc.letThereBeProps(XtalFigDBCylinder, slicedPropDefs, 'onPropChange');
-
-xc.define(XtalFigDBCylinder);
-
-declare global {
-    interface HTMLElementTagNameMap {
-        "xtal-fig-db-cylinder": XtalFigDBCylinder,
-    }
-}
+const isRef = {
+    parse: false,
+    isRef: true,
+};
+const xe = new XE({
+    config: {
+        tagName: 'xtal-fig-db-cylinder',
+        propDefaults: {
+            width: 250, height: 500,
+        },
+        propInfo: {
+            svgElements: isRef,
+        },
+        actions: {
+            ...tm.doInitTransform,
+            setOwnDimensions: {
+                actIfKeyIn: ['width', 'height'],
+            },
+            setSVGDimensions: {
+                actIfKeyIn: ['width', 'height'],
+                target: 'svgElements'
+            },
+        }
+    },
+    complexPropDefaults: {
+        mainTemplate,
+    },
+    superclass: XtalFigDBCylinderCore,
+    mixins: [tm.TemplMgmtMixin]
+});
