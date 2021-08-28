@@ -1,6 +1,6 @@
 import {XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtBase, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
-import {INotifyMixin, INotifyPropInfo, NotifyMixin} from 'trans-render/lib/mixins/notify.js',
+import {TemplMgmtProps, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
+import {INotifyMixin, INotifyPropInfo, NotifyMixin} from 'trans-render/lib/mixins/notify.js';
 import {XtalFigParallelogramProps, XtalFigParallelogramActions} from './types.js';
 import { XtalFigParallelogram } from './xtal-fig-parallelogram.js';
 import { PropInfo } from '../trans-render/lib/types.js';
@@ -61,7 +61,8 @@ export class XtalFigParallelogramCore extends HTMLElement implements XtalFigPara
     setHOffset = ({width, slant, strokeWidth}: this) => ({
         hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
     });
-    setPaths = ({width, strokeWidth, height, slant, hOffset}: this) => [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}],
+    setPaths = ({width, strokeWidth, height, slant, hOffset}: this) => 
+        [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}];
     setBorder = ({strokeWidth}: this) => ({
         style:{strokeWidth: strokeWidth.toString()}
     });
@@ -73,11 +74,11 @@ const elementRef: PropInfo = {
     parse: false, 
     isRef: true,
 };
-const xe = new XE<XtalFigParallelogramProps & TemplMgmtBase, XtalFigParallelogramActions & TemplMgmtBase & INotifyMixin>({
+const xe = new XE<XtalFigParallelogramProps & TemplMgmtProps, XtalFigParallelogramActions  & INotifyMixin>({
     config:{
         tagName: 'xtal-fig-parallelogram',
         propDefaults:{
-            initTransform:{}, width: 800, strokeWidth:5, height:300, slant:30, 
+            width: 800, strokeWidth:5, height:300, slant:30, 
             innerWidth:200, innerHeight:100, innerX:300, innerY:100,
         },
         propInfo:{

@@ -70,7 +70,7 @@ const xe = new XE({
     config: {
         tagName: 'xtal-fig-parallelogram',
         propDefaults: {
-            initTransform: {}, width: 800, strokeWidth: 5, height: 300, slant: 30,
+            width: 800, strokeWidth: 5, height: 300, slant: 30,
             innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
         },
         propInfo: {
