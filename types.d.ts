@@ -1,5 +1,4 @@
-import {XtalPattern} from 'xtal-element/types.d.js';
-import { PEAUnionSettings } from '../trans-render/lib/types';
+import { PEAUnionSettings } from 'trans-render/lib/types';
 export interface XtalFigParallelogramProps{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
@@ -64,7 +63,7 @@ export interface XtalFigParallelogramActions{
     setInnerDimensions: (self: this) => any;
 }
 
-export interface XtalFigDiamondProps extends XtalPattern{
+export interface XtalFigDiamondProps{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
@@ -100,9 +99,22 @@ export interface XtalFigDiamondProps extends XtalPattern{
      * @attr {number} [inner-y=300] - Number of pixels top edge of inner content should be set to.
      */
     innerY: number,
+
+    svgElements: NodeListOf<SVGElement>;
+    pathElements: NodeListOf<SVGElement>;
+    diamondBorderParts: NodeListOf<SVGElement>;
+    innerParts: NodeListOf<SVGForeignObjectElement>;
 }
 
-export interface XtalFigBaseVBoxProps extends HTMLElement, XtalPattern {
+export interface XtalFigDiamondActions{
+    setOwnDimensions: (self: this) => {style: Partial<CSSStyleDeclaration>};
+    setSVGDimensions: (self: this) => any;
+    setPaths: (self: this) => any;
+    setDiamondBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
+    setInnerDimensions: (self: this) => any;
+}
+
+export interface XtalFigBaseVBoxProps extends HTMLElement{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
@@ -141,7 +153,7 @@ export interface XtalFigBaseVBoxProps extends HTMLElement, XtalPattern {
     autoZoomSlot: boolean | undefined;
 }
 
-export interface XtalFigDBCylinderProps  extends HTMLElement, XtalPattern {
+export interface XtalFigDBCylinderProps  extends HTMLElement{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
@@ -155,7 +167,7 @@ export interface XtalFigDBCylinderProps  extends HTMLElement, XtalPattern {
 
 }
 
-export interface XtalFigDocumentProps  extends HTMLElement, XtalPattern {
+export interface XtalFigDocumentProps  extends HTMLElement{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.

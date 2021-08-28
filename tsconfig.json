@@ -13,10 +13,8 @@
 		"node_modules"
 	],
     "files": [
-        "xtal-fig-diamond.ts",
-		"xtal-fig-parallelogram2.ts",
-		"xtal-fig-document.ts",
-		"xtal-fig-db-cylinder.ts",
-		"index.ts"
+		"xtal-fig-diamond2.ts",
+		"xtal-fig-parallelogram.ts",
+
     ]
 }
