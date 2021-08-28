@@ -91,6 +91,7 @@ const xe = new XE({
             },
             setSVGDimensions: {
                 actIfKeyIn: ['width', 'height'],
+                target: 'svgElements'
             },
             setHOffset: {
                 actIfKeyIn: ['width', 'slant', 'strokeWidth'],

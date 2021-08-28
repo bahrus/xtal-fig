@@ -98,6 +98,7 @@ const xe = new XE<XtalFigParallelogramProps & TemplMgmtBase, XtalFigParallelogra
             },
             setSVGDimensions:{
                 actIfKeyIn: ['width', 'height'],
+                target: 'svgElements'
             },
             setHOffset:{
                 actIfKeyIn: ['width', 'slant', 'strokeWidth'],
