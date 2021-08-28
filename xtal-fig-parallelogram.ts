@@ -118,3 +118,9 @@ const xe = new XE<XtalFigParallelogramProps & TemplMgmtProps, XtalFigParallelogr
     superclass: XtalFigParallelogramCore,
     mixins:[tm.TemplMgmtMixin]
 });
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "xtal-fig-parallelogram": XtalFigParallelogramCore,
+    }
+}

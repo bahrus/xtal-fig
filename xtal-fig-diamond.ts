@@ -109,3 +109,9 @@ const xe = new XE<
     superclass: XtalFigDiamondCore,
     mixins: [tm.TemplMgmtMixin]
 });
+
+declare global {
+    interface HTMLElementTagNameMap {
+        "xtal-fig-diamond": XtalFigDiamondCore,
+    }
+}
