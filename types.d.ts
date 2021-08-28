@@ -132,9 +132,7 @@ export interface XtalFigDBCylinderProps{
 
 }
 
-export interface XtalFigDBCylinderActions extends XtalFigCommonActions{
-
-}
+export interface XtalFigDBCylinderActions extends XtalFigCommonActions{}
 
 export interface XtalFigDocumentProps  extends HTMLElement{
     /**
@@ -148,4 +146,7 @@ export interface XtalFigDocumentProps  extends HTMLElement{
      */
     height: number,
 
+    svgElements: NodeListOf<SVGElement>;
 }
+
+export interface XtalFigDocumentActions extends XtalFigCommonActions{}
