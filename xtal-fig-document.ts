@@ -1,10 +1,10 @@
-import {xc, IReactor, PropAction, PropDef, PropDefMap, ReactiveSurface} from 'xtal-element/lib/XtalCore.js';
-import {html} from 'xtal-element/lib/html.js';
-import {xp, XtalPattern} from 'xtal-element/lib/XtalPattern.js';
-import {DOMKeyPEA} from 'xtal-element/lib/DOMKeyPEA.js';
-import {XtalFigDocumentProps} from './types.d.js';
+import {XE} from 'xtal-element/src/XE.js';
+import {TemplMgmtProps, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
+import {INotifyMixin} from 'trans-render/lib/mixins/notify.js';
+import {XtalFigDocumentProps, XtalFigDocumentActions} from './types.js';
+import { PropInfo } from '../trans-render/lib/types.js';
 
-const mainTemplate = html`
+const mainTemplate = tm.html`
 <style>
     :host[hidden]{
         display:none;
@@ -34,90 +34,50 @@ const mainTemplate = html`
 </style>
 `;
 
-const refs = {svgElement: '', innerPart: '', slotElement: ''};
-
-//#region 
-const baseProp: PropDef = {
-    dry: true,
-    async: true,
-};
-
-const numProp: PropDef = {
-    ...baseProp,
-    type: Number,
-};
-
-const boolProp0: PropDef = {
-    ...baseProp,
-    type: Boolean,
-};
-
-const boolProp1: PropDef = {
-    ...boolProp0,
-    stopReactionsIfFalsy: true,
+export class XtalFigDocumentCore extends HTMLElement implements XtalFigDocumentActions{
+    setOwnDimensions = ({width, height}: this) => ({
+        style: {width:`${width}px`, height:`${height}px`}
+    });
+    setSVGDimensions = ({width, height}: this) => [,,{width, height}];
 }
 
-const propDefMap: PropDefMap<X> = {
-    ...xp.props,
-    width: numProp,
-    height: numProp,
+export interface XtalFigDocumentCore extends XtalFigDocumentProps{}
+
+const isRef: PropInfo = {
+    parse: false, 
+    isRef: true,
 };
-export const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
-//#endregion
 
-/**
- * @element xtal-fig-document
- * @tag xtal-fig-document
- * @prop {number} [width=800] - Number of pixels wide the figure should be.
- * @attr {number} [width=800] - Number of pixels wide the figure should be.
- * @prop {number} [height=300] - Number of pixels high the figure should be.
- * @attr {number} [height=300] - Number of pixels high the figure should be.
- */
-export class XtalFigDocument extends HTMLElement implements ReactiveSurface, XtalPattern{
-    static is = 'xtal-fig-document';
-    static observedAttributes = [...slicedPropDefs.boolNames, ...slicedPropDefs.strNames, ...slicedPropDefs.numNames];
-    refs = refs;
-    propActions = propActions;
+const xe = new XE<XtalFigDocumentProps & TemplMgmtProps, XtalFigDocumentActions>({
+    config:{
+        tagName: 'xtal-fig-document',
+        propDefaults:{
+            width: 250, height: 500,
+        },
+        propInfo:{
+            svgElements: isRef,
+        },
+        actions:{
+            ...tm.doInitTransform,
+            setOwnDimensions:{
+                actIfKeyIn: ['width', 'height'],
+            },
+            setSVGDimensions:{
+                actIfKeyIn: ['width', 'height'],
+                target: 'svgElements'
+            },
 
-    attributeChangedCallback(n: string, ov: string, nv: string){
-        xc.passAttrToProp(this, slicedPropDefs, n, ov, nv);
-    }
-    self = this;
-    reactor: IReactor = new xp.RxSuppl(this, [{
-        rhsType: Array,
-        ctor: DOMKeyPEA,
-    }]);
-
-    onPropChange(n: string, prop: PropDef, nv: any){
-        this.reactor.addToQueue(prop, nv);
-    }
-    mainTemplate = mainTemplate;
-    connectedCallback(){
-        xc.mergeProps<Partial<XtalFigDocumentProps>>(this, slicedPropDefs, {
-            width: 800, height: 500, 
-        });
-    }
-}
-export interface XtalFigDocument extends XtalFigDocumentProps{}
-
-
-type X = XtalFigDocument;
-
-const propActions = [
-    xp.manageMainTemplate,
-    ({domCache, width, height}: X) => [
-        {[refs.svgElement]: [,,{width, height}]},
-        [{style:{width:`${width}px`, height:`${height}px`}}]
-    ],
-    xp.createShadow,
-] as PropAction[];
-
-xc.letThereBeProps(XtalFigDocument, slicedPropDefs, 'onPropChange');
-
-xc.define(XtalFigDocument);
+        }
+    },
+    complexPropDefaults:{
+        mainTemplate,
+    },
+    superclass: XtalFigDocumentCore,
+    mixins:[tm.TemplMgmtMixin]
+});
 
 declare global {
     interface HTMLElementTagNameMap {
-        "xtal-fig-document": XtalFigDocument,
+        "xtal-fig-document": XtalFigDocumentCore,
     }
 }
