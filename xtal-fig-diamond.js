@@ -1,5 +1,5 @@
 import { XE } from 'xtal-element/src/XE.js';
-import { tm } from 'trans-render/lib/TemplMgmtWithPEST.js';
+import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 const mainTemplate = tm.html `
 <style>
     :host[hidden]{
@@ -21,6 +21,15 @@ const mainTemplate = tm.html `
     </g>
 </svg>
 `;
+const setOwnDimensions = ({ width, height }) => ({
+    style: { width: `${width}px`, height: `${height}px` }
+});
+const setSVGDimensions = ({ width, height }) => [, , { width, height }];
+const setPaths = ({ width, strokeWidth, height }) => [, , { d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`, }];
+const setDiamondBorder = ({ strokeWidth }) => ({
+    style: { strokeWidth: strokeWidth.toString() }
+});
+const setInnerDimensions = ({ innerHeight, innerWidth, innerX, innerY }) => [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }];
 /**
  * @element xtal-fig-diamond
  * @tag xtal-fig-diamond
@@ -44,15 +53,11 @@ const mainTemplate = tm.html `
  *
  */
 export class XtalFigDiamondCore extends HTMLElement {
-    setOwnDimensions = ({ width, height }) => ({
-        style: { width: `${width}px`, height: `${height}px` }
-    });
-    setSVGDimensions = ({ width, height }) => [, , { width, height }];
-    setPaths = ({ width, strokeWidth, height }) => [, , { d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`, }];
-    setDiamondBorder = ({ strokeWidth }) => ({
-        style: { strokeWidth: strokeWidth.toString() }
-    });
-    setInnerDimensions = ({ innerHeight, innerWidth, innerX, innerY }) => [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }];
+    setOwnDimensions = setOwnDimensions;
+    setSVGDimensions = setSVGDimensions;
+    setPaths = setPaths;
+    setDiamondBorder = setDiamondBorder;
+    setInnerDimensions = setInnerDimensions;
 }
 const isRef = {
     parse: false,
@@ -73,22 +78,22 @@ const xe = new XE({
         actions: {
             ...tm.doInitTransform,
             setOwnDimensions: {
-                actIfKeyIn: ['width', 'height']
+                ifKeyIn: ['width', 'height']
             },
             setSVGDimensions: {
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
                 target: 'svgElements'
             },
             setPaths: {
-                actIfKeyIn: ['width', 'strokeWidth', 'height'],
+                ifKeyIn: ['width', 'strokeWidth', 'height'],
                 target: 'pathElements'
             },
             setDiamondBorder: {
-                actIfKeyIn: ['strokeWidth'],
+                ifKeyIn: ['strokeWidth'],
                 target: 'diamondBorderParts'
             },
             setInnerDimensions: {
-                actIfKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                ifKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
                 target: 'innerParts'
             }
         }

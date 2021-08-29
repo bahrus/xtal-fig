@@ -1,5 +1,5 @@
 import {XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtProps, TemplMgmtActions, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
+import {TemplMgmtProps, TemplMgmtActions, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalFigDBCylinderActions, XtalFigDBCylinderProps } from './types';
 import { PropInfo } from 'trans-render/lib/types';
 import 'slot-bot/slot-bot.js';
@@ -72,6 +72,11 @@ const mainTemplate = tm.html`
 </style>
 `;
 
+const setOwnDimensions = ({width, height}: X) => ({
+    style: {width:`${width}px`, height:`${height}px`}
+});
+const setSVGDimensions = ({width, height}: X) => [,,{width, height}];
+
 /**
  * @element xtal-fig-db-cylinder
  * @tag xtal-fig-db-cylinder
@@ -81,10 +86,8 @@ const mainTemplate = tm.html`
  * @attr {number} [height=500] - Number of pixels high the figure should be.
  */
 export class XtalFigDBCylinderCore extends HTMLElement implements XtalFigDBCylinderActions{
-    setOwnDimensions = ({width, height}: this) => ({
-        style: {width:`${width}px`, height:`${height}px`}
-    });
-    setSVGDimensions = ({width, height}: this) => [,,{width, height}];
+    setOwnDimensions = setOwnDimensions;
+    setSVGDimensions = setSVGDimensions;
 }
 
 export interface XtalFigDBCylinderCore extends XtalFigDBCylinderProps{}
@@ -106,10 +109,10 @@ const xe = new XE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActi
         actions:{
             ...tm.doInitTransform,
             setOwnDimensions:{
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
             },
             setSVGDimensions:{
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
                 target: 'svgElements'
             },
 
@@ -121,6 +124,8 @@ const xe = new XE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActi
     superclass: XtalFigDBCylinderCore,
     mixins:[tm.TemplMgmtMixin]
 });
+
+type X = XtalFigDBCylinderCore;
 
 declare global {
     interface HTMLElementTagNameMap {

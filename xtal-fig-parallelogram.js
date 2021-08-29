@@ -1,5 +1,5 @@
 import { XE } from 'xtal-element/src/XE.js';
-import { tm } from 'trans-render/lib/TemplMgmtWithPEST.js';
+import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 const mainTemplate = tm.html `
 <style>
     :host[hidden]{
@@ -24,6 +24,18 @@ const mainTemplate = tm.html `
 
 </svg>
 `;
+const setOwnDimensions = ({ width, height }) => ({
+    style: { width: `${width}px`, height: `${height}px` }
+});
+const setSVGDimensions = ({ width, height }) => [, , { width, height }];
+const setHOffset = ({ width, slant, strokeWidth }) => ({
+    hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
+});
+const setPaths = ({ width, strokeWidth, height, slant, hOffset }) => [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }];
+const setBorder = ({ strokeWidth }) => ({
+    style: { strokeWidth: strokeWidth.toString() }
+});
+const setInnerDimensions = ({ innerHeight, innerWidth, innerX, innerY }) => [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }];
 /**
  * @element xtal-fig-parallelogram
  * @tag xtal-fig-parallelogram
@@ -48,18 +60,12 @@ const mainTemplate = tm.html `
  * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
  */
 export class XtalFigParallelogramCore extends HTMLElement {
-    setOwnDimensions = ({ width, height }) => ({
-        style: { width: `${width}px`, height: `${height}px` }
-    });
-    setSVGDimensions = ({ width, height }) => [, , { width, height }];
-    setHOffset = ({ width, slant, strokeWidth }) => ({
-        hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
-    });
-    setPaths = ({ width, strokeWidth, height, slant, hOffset }) => [, , { d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z` }];
-    setBorder = ({ strokeWidth }) => ({
-        style: { strokeWidth: strokeWidth.toString() }
-    });
-    setInnerDimensions = ({ innerHeight, innerWidth, innerX, innerY }) => [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }];
+    setOwnDimensions = setOwnDimensions;
+    setSVGDimensions = setSVGDimensions;
+    setHOffset = setHOffset;
+    setPaths = setPaths;
+    setBorder = setBorder;
+    setInnerDimensions = setInnerDimensions;
 }
 const isRef = {
     parse: false,
@@ -81,25 +87,25 @@ const xe = new XE({
         actions: {
             ...tm.doInitTransform,
             setOwnDimensions: {
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
             },
             setSVGDimensions: {
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
                 target: 'svgElements'
             },
             setHOffset: {
-                actIfKeyIn: ['width', 'slant', 'strokeWidth'],
+                ifKeyIn: ['width', 'slant', 'strokeWidth'],
             },
             setPaths: {
-                actIfKeyIn: ['width', 'height', 'strokeWidth', 'slant', 'hOffset'],
+                ifKeyIn: ['width', 'height', 'strokeWidth', 'slant', 'hOffset'],
                 target: 'pathElements'
             },
             setBorder: {
-                actIfKeyIn: ['strokeWidth'],
+                ifKeyIn: ['strokeWidth'],
                 target: 'paraBorderParts',
             },
             setInnerDimensions: {
-                actIfKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                ifKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
                 target: 'innerParts'
             }
         }

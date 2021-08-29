@@ -1,5 +1,5 @@
 import {XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtProps, TemplMgmtActions, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
+import {TemplMgmtProps, TemplMgmtActions, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalFigDiamondActions, XtalFigDiamondProps } from './types';
 import { PropInfo } from 'trans-render/lib/types';
 
@@ -26,6 +26,16 @@ const mainTemplate = tm.html`
 </svg>
 `;
 
+const setOwnDimensions = ({width, height}: X) => ({
+    style: {width:`${width}px`, height:`${height}px`}
+});
+const setSVGDimensions = ({width, height}: X) => [,,{width, height}];
+const setPaths = ({width, strokeWidth, height}: X) => [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}];
+const setDiamondBorder = ({strokeWidth}: X) => ({
+    style: {strokeWidth: strokeWidth.toString()}
+});
+const setInnerDimensions = ({innerHeight, innerWidth, innerX, innerY}: X) => [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}];
+
 /**
  * @element xtal-fig-diamond
  * @tag xtal-fig-diamond
@@ -49,16 +59,14 @@ const mainTemplate = tm.html`
  *                     
  */
 export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondActions{
-    setOwnDimensions = ({width, height}: this) => ({
-        style: {width:`${width}px`, height:`${height}px`}
-    });
-    setSVGDimensions = ({width, height}: this) => [,,{width, height}];
-    setPaths = ({width, strokeWidth, height}: this) => [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}];
-    setDiamondBorder = ({strokeWidth}: this) => ({
-        style: {strokeWidth: strokeWidth.toString()}
-    });
-    setInnerDimensions = ({innerHeight, innerWidth, innerX, innerY}: this) => [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}];
+    setOwnDimensions = setOwnDimensions;
+    setSVGDimensions = setSVGDimensions;
+    setPaths = setPaths;
+    setDiamondBorder = setDiamondBorder;
+    setInnerDimensions = setInnerDimensions;
 }
+
+
 
 export interface XtalFigDiamondCore extends XtalFigDiamondProps{}
 const isRef: PropInfo = {
@@ -83,22 +91,22 @@ const xe = new XE<
         actions:{
             ...tm.doInitTransform,
             setOwnDimensions:{
-                actIfKeyIn: ['width', 'height']
+                ifKeyIn: ['width', 'height']
             },
             setSVGDimensions:{
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
                 target: 'svgElements'
             },
             setPaths:{
-                actIfKeyIn: ['width', 'strokeWidth', 'height'],
+                ifKeyIn: ['width', 'strokeWidth', 'height'],
                 target: 'pathElements'
             },
             setDiamondBorder:{
-                actIfKeyIn: ['strokeWidth'],
+                ifKeyIn: ['strokeWidth'],
                 target: 'diamondBorderParts'
             },
             setInnerDimensions:{
-                actIfKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                ifKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
                 target: 'innerParts'
             }
         }
@@ -109,7 +117,7 @@ const xe = new XE<
     superclass: XtalFigDiamondCore,
     mixins: [tm.TemplMgmtMixin]
 });
-
+type X = XtalFigDiamondCore;
 declare global {
     interface HTMLElementTagNameMap {
         "xtal-fig-diamond": XtalFigDiamondCore,

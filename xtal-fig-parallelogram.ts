@@ -1,5 +1,5 @@
 import {XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtProps, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
+import {TemplMgmtProps, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import {INotifyMixin} from 'trans-render/lib/mixins/notify.js';
 import {XtalFigParallelogramProps, XtalFigParallelogramActions} from './types.js';
 import { PropInfo } from '../trans-render/lib/types.js';
@@ -29,6 +29,20 @@ const mainTemplate = tm.html `
 </svg>
 `;
 
+const setOwnDimensions = ({width, height}: X) => ({
+    style: {width:`${width}px`, height:`${height}px`}
+});
+const setSVGDimensions = ({width, height}: X) => [,,{width, height}];
+const setHOffset = ({width, slant, strokeWidth}: X) => ({
+    hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
+});
+const setPaths = ({width, strokeWidth, height, slant, hOffset}: X) => 
+    [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}];
+const setBorder = ({strokeWidth}: X) => ({
+    style:{strokeWidth: strokeWidth.toString()}
+});
+const setInnerDimensions = ({innerHeight, innerWidth, innerX, innerY}: X) => [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}];
+
 /**
  * @element xtal-fig-parallelogram
  * @tag xtal-fig-parallelogram
@@ -53,21 +67,15 @@ const mainTemplate = tm.html `
  * @attr {number} [inner-height=100] - Number of pixels high the inner content should be provided.
  */
 export class XtalFigParallelogramCore extends HTMLElement implements XtalFigParallelogramActions{
-    setOwnDimensions = ({width, height}: this) => ({
-        style: {width:`${width}px`, height:`${height}px`}
-    });
-    setSVGDimensions = ({width, height}: this) => [,,{width, height}];
-    setHOffset = ({width, slant, strokeWidth}: this) => ({
-        hOffset: width * Math.sin(Math.PI * slant / 180) + strokeWidth
-    });
-    setPaths = ({width, strokeWidth, height, slant, hOffset}: this) => 
-        [,, {d: `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`}];
-    setBorder = ({strokeWidth}: this) => ({
-        style:{strokeWidth: strokeWidth.toString()}
-    });
-    setInnerDimensions = ({innerHeight, innerWidth, innerX, innerY}: this) => [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}];
-    
+    setOwnDimensions = setOwnDimensions;
+    setSVGDimensions = setSVGDimensions;
+    setHOffset = setHOffset;
+    setPaths = setPaths;
+    setBorder = setBorder;
+    setInnerDimensions = setInnerDimensions;
 }
+
+
 export interface XtalFigParallelogramCore extends XtalFigParallelogramProps{}
 const isRef: PropInfo = {
     parse: false, 
@@ -89,25 +97,25 @@ const xe = new XE<XtalFigParallelogramProps & TemplMgmtProps, XtalFigParallelogr
         actions:{
             ...tm.doInitTransform,
             setOwnDimensions:{
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
             },
             setSVGDimensions:{
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
                 target: 'svgElements'
             },
             setHOffset:{
-                actIfKeyIn: ['width', 'slant', 'strokeWidth'],
+                ifKeyIn: ['width', 'slant', 'strokeWidth'],
             },
             setPaths:{
-                actIfKeyIn: ['width', 'height', 'strokeWidth', 'slant', 'hOffset'],
+                ifKeyIn: ['width', 'height', 'strokeWidth', 'slant', 'hOffset'],
                 target: 'pathElements'
             },
             setBorder:{
-                actIfKeyIn: ['strokeWidth'],
+                ifKeyIn: ['strokeWidth'],
                 target: 'paraBorderParts',
             },
             setInnerDimensions:{
-                actIfKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                ifKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
                 target: 'innerParts'
             }
         }
@@ -119,6 +127,7 @@ const xe = new XE<XtalFigParallelogramProps & TemplMgmtProps, XtalFigParallelogr
     mixins:[tm.TemplMgmtMixin]
 });
 
+type X = XtalFigParallelogramCore;
 declare global {
     interface HTMLElementTagNameMap {
         "xtal-fig-parallelogram": XtalFigParallelogramCore,

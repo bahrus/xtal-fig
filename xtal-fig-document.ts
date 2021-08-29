@@ -1,5 +1,5 @@
 import {XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtProps, tm} from 'trans-render/lib/TemplMgmtWithPEST.js';
+import {TemplMgmtProps, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import {INotifyMixin} from 'trans-render/lib/mixins/notify.js';
 import {XtalFigDocumentProps, XtalFigDocumentActions} from './types.js';
 import { PropInfo } from '../trans-render/lib/types.js';
@@ -34,11 +34,14 @@ const mainTemplate = tm.html`
 </style>
 `;
 
+const setOwnDimensions = ({width, height}: X) => ({
+    style: {width:`${width}px`, height:`${height}px`}
+});
+const setSVGDimensions = ({width, height}: X) => [,,{width, height}];
+
 export class XtalFigDocumentCore extends HTMLElement implements XtalFigDocumentActions{
-    setOwnDimensions = ({width, height}: this) => ({
-        style: {width:`${width}px`, height:`${height}px`}
-    });
-    setSVGDimensions = ({width, height}: this) => [,,{width, height}];
+    setOwnDimensions = setOwnDimensions;
+    setSVGDimensions = setSVGDimensions;
 }
 
 export interface XtalFigDocumentCore extends XtalFigDocumentProps{}
@@ -60,10 +63,10 @@ const xe = new XE<XtalFigDocumentProps & TemplMgmtProps, XtalFigDocumentActions>
         actions:{
             ...tm.doInitTransform,
             setOwnDimensions:{
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
             },
             setSVGDimensions:{
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
                 target: 'svgElements'
             },
 
@@ -76,6 +79,7 @@ const xe = new XE<XtalFigDocumentProps & TemplMgmtProps, XtalFigDocumentActions>
     mixins:[tm.TemplMgmtMixin]
 });
 
+type X = XtalFigDocumentCore;
 declare global {
     interface HTMLElementTagNameMap {
         "xtal-fig-document": XtalFigDocumentCore,

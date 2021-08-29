@@ -1,5 +1,5 @@
 import { XE } from 'xtal-element/src/XE.js';
-import { tm } from 'trans-render/lib/TemplMgmtWithPEST.js';
+import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import 'slot-bot/slot-bot.js';
 const mainTemplate = tm.html `
 <style>
@@ -68,6 +68,10 @@ const mainTemplate = tm.html `
     }
 </style>
 `;
+const setOwnDimensions = ({ width, height }) => ({
+    style: { width: `${width}px`, height: `${height}px` }
+});
+const setSVGDimensions = ({ width, height }) => [, , { width, height }];
 /**
  * @element xtal-fig-db-cylinder
  * @tag xtal-fig-db-cylinder
@@ -77,10 +81,8 @@ const mainTemplate = tm.html `
  * @attr {number} [height=500] - Number of pixels high the figure should be.
  */
 export class XtalFigDBCylinderCore extends HTMLElement {
-    setOwnDimensions = ({ width, height }) => ({
-        style: { width: `${width}px`, height: `${height}px` }
-    });
-    setSVGDimensions = ({ width, height }) => [, , { width, height }];
+    setOwnDimensions = setOwnDimensions;
+    setSVGDimensions = setSVGDimensions;
 }
 const isRef = {
     parse: false,
@@ -98,10 +100,10 @@ const xe = new XE({
         actions: {
             ...tm.doInitTransform,
             setOwnDimensions: {
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
             },
             setSVGDimensions: {
-                actIfKeyIn: ['width', 'height'],
+                ifKeyIn: ['width', 'height'],
                 target: 'svgElements'
             },
         }

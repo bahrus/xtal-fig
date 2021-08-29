@@ -31,7 +31,7 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "trans-render": "0.0.350",
+    "trans-render": "0.0.354",
     "xtal-element": "0.0.435",
     "slot-bot": "0.0.14"
   },
