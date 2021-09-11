@@ -31,9 +31,9 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "trans-render": "0.0.354",
-    "xtal-element": "0.0.435",
-    "slot-bot": "0.0.14"
+    "trans-render": "0.0.398",
+    "xtal-element": "0.0.441",
+    "slot-bot": "0.0.15"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

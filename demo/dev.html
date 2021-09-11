@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <xtal-fig-diamond>
+    <xtal-fig-diamond id=diamond>
         Here
     </xtal-fig-diamond>
     <xtal-fig-parallelogram>
@@ -19,6 +19,15 @@
     <xtal-fig-db-cylinder>
         Love never dies
     </xtal-fig-db-cylinder>
+    <button onclick="clickHandler()">
+        click
+    </button>
+    <script>
+        function clickHandler(){
+            diamond.someProp = 'hello';
+            diamond.setAttribute('width', '200');
+        }
+    </script>
     <script type=importmap>{
         "imports": {
             "xtal-element/": "../node_modules/xtal-element/",
