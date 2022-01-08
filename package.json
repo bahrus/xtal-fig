@@ -29,10 +29,7 @@
     "./xtal-fig-db-cylinder.js": "./xtal-fig-db-cylinder.js"
   },
   "files": [
-    "xtal-*.*",
-    "index.*",
-    "types.d.ts",
-    "custom-elements.json"
+    "*.*"
   ],
   "types": "types.d.ts",
   "dependencies": {
