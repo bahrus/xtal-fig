@@ -103,9 +103,9 @@ const xe = new XE({
         },
         actions: {
             ...tm.doInitTransform,
-            setOwnDimensions: {
-                ifKeyIn: ['width', 'height'],
-            },
+            // setOwnDimensions:{
+            //     ifKeyIn: ['width', 'height'],
+            // },
         },
     },
     complexPropDefaults: {

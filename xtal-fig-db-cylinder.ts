@@ -112,9 +112,9 @@ const xe = new XE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActi
         },
         actions:{
             ...tm.doInitTransform,
-            setOwnDimensions:{
-                ifKeyIn: ['width', 'height'],
-            },
+            // setOwnDimensions:{
+            //     ifKeyIn: ['width', 'height'],
+            // },
         },
     },
     complexPropDefaults:{

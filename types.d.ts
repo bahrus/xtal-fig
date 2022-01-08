@@ -132,7 +132,7 @@ export interface XtalFigDBCylinderProps{
 
 }
 
-export interface XtalFigDBCylinderActions extends XtalFigCommonActions{}
+export interface XtalFigDBCylinderActions {}
 
 export interface XtalFigDocumentProps  extends HTMLElement{
     /**
