@@ -16,7 +16,7 @@
 		"xtal-fig-diamond.ts",
 		"xtal-fig-parallelogram.ts",
 		"xtal-fig-db-cylinder.ts",
-		"xtal-fig-document.ts"
-
+		"xtal-fig-document.ts",
+		"xfdb-config.ts"
     ]
 }

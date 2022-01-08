@@ -1,7 +1,12 @@
-import('be-definitive/be-definitive.js');
-import('be-active/be-active.js');
 
-document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-fig-db-cylinder"}}'>
+<xtal-fig-db-cylinder t-a-i-l-b be-definitive='{"config":{"tagName":"xtal-fig-db-cylinder"}}'>
+    <!---->
+    <template shadowroot="open">
+        <template be-active>
+            <script id="be-definitive/be-definitive.js"></script>
+            
+        </template>
+        
 <style>
     :host[hidden]{
         display:none;
@@ -72,4 +77,14 @@ document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config
     }
 </style>
 <be-hive></be-hive>
-</template>`);
+
+    </template>
+</xtal-fig-db-cylinder>
+<script type=module>
+    if(customElements.get('be-active') === undefined){
+        import('be-active/be-active.js').catch(err => {
+            import('https://esm.run/be-active/be-active.js');
+        });
+    }
+</script>
+

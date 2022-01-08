@@ -1,7 +1,15 @@
-import('be-definitive/be-definitive.js');
-import('be-active/be-active.js');
+import {html, define} from 'may-it-be/index.js';
+import {MayItBe as mib, BeDefinitiveVirtualProps} from 'may-it-be/types';
 
-document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-fig-db-cylinder"}}'>
+const mode = process.argv[2] as '-js' | '-html';
+
+const beDefinitiveProps: BeDefinitiveVirtualProps = {
+    config:{
+        tagName: 'xtal-fig-db-cylinder',
+    }
+}
+
+const innerHTML = html`
 <style>
     :host[hidden]{
         display:none;
@@ -72,4 +80,11 @@ document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config
     }
 </style>
 <be-hive></be-hive>
-</template>`);
+`;
+
+define({
+    innerHTML,
+    mode,
+    beDefinitiveProps,
+    encodeAndWrite: console.log,
+})
