@@ -17,7 +17,7 @@ const mainTemplate = tm.html `
     <script id=be-ferried/be-ferried.js></script>
 </template>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1"
-    viewBox="42 42 103 112" width="103pt" height="112pt">
+    viewBox="42 42 103 112" style="width:inherit;height:inherit">
     <defs>
         <linearGradient x1="0" x2="1" id="Gradient" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#6ff" />
@@ -87,7 +87,6 @@ const setSVGDimensions = ({ width, height }) => [, , { width, height }];
  */
 export class XtalFigDBCylinderCore extends HTMLElement {
     setOwnDimensions = setOwnDimensions;
-    setSVGDimensions = setSVGDimensions;
 }
 const isRef = {
     parse: false,
@@ -107,10 +106,10 @@ const xe = new XE({
             setOwnDimensions: {
                 ifKeyIn: ['width', 'height'],
             },
-            setSVGDimensions: {
-                ifKeyIn: ['width', 'height'],
-                target: 'svgElements'
-            },
+            // setSVGDimensions:{
+            //     ifKeyIn: ['width', 'height'],
+            //     target: 'svgElements'
+            // },
         }
     },
     complexPropDefaults: {

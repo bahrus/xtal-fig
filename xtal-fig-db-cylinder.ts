@@ -20,7 +20,7 @@ const mainTemplate = tm.html`
     <script id=be-ferried/be-ferried.js></script>
 </template>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1"
-    viewBox="42 42 103 112" width="103pt" height="112pt">
+    viewBox="42 42 103 112" style="width:inherit;height:inherit">
     <defs>
         <linearGradient x1="0" x2="1" id="Gradient" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#6ff" />
@@ -90,9 +90,9 @@ const setSVGDimensions = ({width, height}: X) => [,,{width, height}];
  * @prop {number} [height=500] - Number of pixels high the figure should be.
  * @attr {number} [height=500] - Number of pixels high the figure should be.
  */
-export class XtalFigDBCylinderCore extends HTMLElement implements XtalFigDBCylinderActions{
+export class XtalFigDBCylinderCore extends HTMLElement{
     setOwnDimensions = setOwnDimensions;
-    setSVGDimensions = setSVGDimensions;
+    //setSVGDimensions = setSVGDimensions;
 }
 
 export interface XtalFigDBCylinderCore extends XtalFigDBCylinderProps{}
@@ -116,10 +116,10 @@ const xe = new XE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActi
             setOwnDimensions:{
                 ifKeyIn: ['width', 'height'],
             },
-            setSVGDimensions:{
-                ifKeyIn: ['width', 'height'],
-                target: 'svgElements'
-            },
+            // setSVGDimensions:{
+            //     ifKeyIn: ['width', 'height'],
+            //     target: 'svgElements'
+            // },
 
         }
     },
