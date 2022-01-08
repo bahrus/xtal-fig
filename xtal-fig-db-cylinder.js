@@ -1,7 +1,6 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-import 'be-ferried/be-ferried.js';
-import 'slot-bot/slot-bot.js';
+import 'be-active/be-active.js';
 const mainTemplate = tm.html `
 <style>
     :host[hidden]{
@@ -14,6 +13,9 @@ const mainTemplate = tm.html `
         display:none;
     }
 </style>
+<template be-active>
+    <script id=be-ferried/be-ferried.js></script>
+</template>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1"
     viewBox="42 42 103 112" width="103pt" height="112pt">
     <defs>
