@@ -34,12 +34,12 @@
     "trans-render": "0.0.445",
     "xtal-element": "0.0.458",
     "slot-bot": "0.0.16",
-    "be-ferried": "0.0.20"
+    "be-ferried": "0.0.23"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
-    "xtal-test": "0.0.51",
-    "@custom-elements-manifest/analyzer": "0.4.17"
+    "xtal-test": "0.0.54",
+    "@custom-elements-manifest/analyzer": "0.5.7"
   },
   "repository": {
     "type": "git",

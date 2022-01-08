@@ -13,7 +13,9 @@ const mainTemplate = tm.html`
     :host{
         display:block;
     }
-    
+    slot[is-ferried]{
+        display:none;
+    }
 </style>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1"
     viewBox="42 42 103 112" width="103pt" height="112pt">
@@ -61,8 +63,7 @@ const mainTemplate = tm.html`
         </g>
     </g>
 </svg>
-<slot style="display:none"></slot>
-<slot-bot></slot-bot>
+<slot be-ferried></slot>
 <div part=inner class=inner ></div>
 <style>
     .inner{
@@ -71,6 +72,7 @@ const mainTemplate = tm.html`
         left:25%
     }
 </style>
+<be-hive></be-hive>
 `;
 
 const setOwnDimensions = ({width, height}: X) => ({
