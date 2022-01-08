@@ -2,6 +2,7 @@ import {XE} from 'xtal-element/src/XE.js';
 import {TemplMgmtProps, TemplMgmtActions, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
 import { XtalFigDBCylinderActions, XtalFigDBCylinderProps } from './types';
 import { PropInfo } from 'trans-render/lib/types';
+import 'be-ferried/be-ferried.js';
 import 'slot-bot/slot-bot.js';
 
 const mainTemplate = tm.html`

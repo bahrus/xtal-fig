@@ -1,5 +1,6 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
+import 'be-ferried/be-ferried.js';
 import 'slot-bot/slot-bot.js';
 const mainTemplate = tm.html `
 <style>
