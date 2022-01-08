@@ -92,7 +92,6 @@ const setSVGDimensions = ({width, height}: X) => [,,{width, height}];
  */
 export class XtalFigDBCylinderCore extends HTMLElement{
     setOwnDimensions = setOwnDimensions;
-    //setSVGDimensions = setSVGDimensions;
 }
 
 export interface XtalFigDBCylinderCore extends XtalFigDBCylinderProps{}
@@ -106,7 +105,7 @@ const xe = new XE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActi
     config:{
         tagName: 'xtal-fig-db-cylinder',
         propDefaults:{
-            width: 250, height: 500,
+            //width: 250, height: 500,
         },
         propInfo:{
             svgElements: isRef,
@@ -116,12 +115,7 @@ const xe = new XE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActi
             setOwnDimensions:{
                 ifKeyIn: ['width', 'height'],
             },
-            // setSVGDimensions:{
-            //     ifKeyIn: ['width', 'height'],
-            //     target: 'svgElements'
-            // },
-
-        }
+        },
     },
     complexPropDefaults:{
         mainTemplate,

@@ -96,7 +96,7 @@ const xe = new XE({
     config: {
         tagName: 'xtal-fig-db-cylinder',
         propDefaults: {
-            width: 250, height: 500,
+        //width: 250, height: 500,
         },
         propInfo: {
             svgElements: isRef,
@@ -106,11 +106,7 @@ const xe = new XE({
             setOwnDimensions: {
                 ifKeyIn: ['width', 'height'],
             },
-            // setSVGDimensions:{
-            //     ifKeyIn: ['width', 'height'],
-            //     target: 'svgElements'
-            // },
-        }
+        },
     },
     complexPropDefaults: {
         mainTemplate,
