@@ -33,7 +33,8 @@
   "dependencies": {
     "trans-render": "0.0.445",
     "xtal-element": "0.0.458",
-    "slot-bot": "0.0.16"
+    "slot-bot": "0.0.16",
+    "be-ferried": "0.0.20"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
