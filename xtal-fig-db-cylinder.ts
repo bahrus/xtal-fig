@@ -78,18 +78,8 @@ const mainTemplate = String.raw`
 <be-hive></be-hive>
 `;
 
-
-/**
- * @element xtal-fig-db-cylinder
- * @tag xtal-fig-db-cylinder
- * */
-export class XtalFigDBCylinderCore extends HTMLElement{}
-
 export interface XtalFigDBCylinderCore extends XtalFigDBCylinderProps{}
 
-const isRef: PropInfo = {
-    parse: false, 
-};
 
 const xe = new CE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActions>({
     config:{
@@ -101,7 +91,6 @@ const xe = new CE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActi
             ...beTransformed,
         },
     },
-    superclass: XtalFigDBCylinderCore,
     mixins:[TemplMgmt]
 });
 

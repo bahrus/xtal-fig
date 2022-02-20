@@ -74,15 +74,6 @@ const mainTemplate = String.raw `
 </style>
 <be-hive></be-hive>
 `;
-/**
- * @element xtal-fig-db-cylinder
- * @tag xtal-fig-db-cylinder
- * */
-export class XtalFigDBCylinderCore extends HTMLElement {
-}
-const isRef = {
-    parse: false,
-};
 const xe = new CE({
     config: {
         tagName: 'xtal-fig-db-cylinder',
@@ -93,6 +84,5 @@ const xe = new CE({
             ...beTransformed,
         },
     },
-    superclass: XtalFigDBCylinderCore,
     mixins: [TemplMgmt]
 });

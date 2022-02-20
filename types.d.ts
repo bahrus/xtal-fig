@@ -116,21 +116,7 @@ export interface XtalFigDiamondActions extends XtalFigCommonActions{
 }
 
 
-export interface XtalFigDBCylinderProps{
-    /**
-     * @prop {number} [width=800] - Number of pixels wide the figure should be.
-     * @attr {number} [width=800] - Number of pixels wide the figure should be.
-     */
-    width: number,
-    /**
-     * @prop {number} [height=300] - Number of pixels high the figure should be.
-     * @attr {number} [heigh=300] - Number of pixels high the figure should be.
-     */
-    height: number,
-
-    svgElements: NodeListOf<SVGElement>;
-
-}
+export interface XtalFigDBCylinderProps{}
 
 export interface XtalFigDBCylinderActions {}
 
