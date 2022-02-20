@@ -33,20 +33,19 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "trans-render": "0.0.445",
-    "xtal-element": "0.0.458",
-    "be-definitive": "0.0.25",
-    "slot-bot": "0.0.16",
-    "be-active": "0.0.13",
-    "be-ferried": "0.0.23"
+    "trans-render": "0.0.486",
+    "xtal-element": "0.0.478",
+    "be-definitive": "0.0.39",
+    "be-active": "0.0.24",
+    "be-ferried": "0.0.32"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
-    "xtal-test": "0.0.54",
+    "xtal-test": "0.0.55",
     "@custom-elements-manifest/analyzer": "0.5.7",
-    "may-it-be": "0.0.21",
+    "may-it-be": "0.0.139",
     "npm-watch": "0.11.0",
-    "be-importing": "0.0.1"
+    "be-importing": "0.0.19"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,8 @@
-import('be-definitive/be-definitive.js');
-import('be-active/be-active.js');
-
-document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config":{"tagName":"xtal-fig-db-cylinder"}}'>
-<style>
+import { XE } from 'xtal-element/src/XE.js';
+import { TemplMgmt, beTransformed } from 'trans-render/lib/mixins/TemplMgmt.js';
+import 'be-active/be-active.js';
+const mainTemplate = String.raw `
+<style be-adopted>
     :host[hidden]{
         display:none;
     }
@@ -11,6 +11,11 @@ document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config
     }
     slot[is-ferried]{
         display:none;
+    }
+    .inner{
+        position:relative;
+        top:-50%;
+        left:25%
     }
 </style>
 <template be-active>
@@ -65,11 +70,32 @@ document.body.insertAdjacentHTML('beforeend', `<template be-definitive='{"config
 <slot be-ferried></slot>
 <div part=inner class=inner ></div>
 <style>
-    .inner{
-        position:relative;
-        top:-50%;
-        left:25%
-    }
+
 </style>
 <be-hive></be-hive>
-</template>`);
+`;
+// const setOwnDimensions = ({width, height}: X) => ({
+//     style: {width:`${width}px`, height:`${height}px`}
+// });
+/**
+ * @element xtal-fig-db-cylinder
+ * @tag xtal-fig-db-cylinder
+ * */
+export class XtalFigDBCylinderCore extends HTMLElement {
+}
+const isRef = {
+    parse: false,
+};
+const xe = new XE({
+    config: {
+        tagName: 'xtal-fig-db-cylinder',
+        propDefaults: {
+            mainTemplate
+        },
+        actions: {
+            ...beTransformed,
+        },
+    },
+    superclass: XtalFigDBCylinderCore,
+    mixins: [TemplMgmt]
+});
