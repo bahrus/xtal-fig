@@ -1,4 +1,4 @@
-import {XE} from 'xtal-element/src/XE.js';
+import {CE} from 'trans-render/lib/CE.js';
 import {TemplMgmtProps, TemplMgmtActions, TemplMgmt, beTransformed} from 'trans-render/lib/mixins/TemplMgmt.js';
 import { XtalFigDBCylinderActions, XtalFigDBCylinderProps } from './types';
 import { PropInfo } from 'trans-render/lib/types';
@@ -78,17 +78,12 @@ const mainTemplate = String.raw`
 <be-hive></be-hive>
 `;
 
-// const setOwnDimensions = ({width, height}: X) => ({
-//     style: {width:`${width}px`, height:`${height}px`}
-// });
 
 /**
  * @element xtal-fig-db-cylinder
  * @tag xtal-fig-db-cylinder
  * */
-export class XtalFigDBCylinderCore extends HTMLElement{
-    //setOwnDimensions = setOwnDimensions;
-}
+export class XtalFigDBCylinderCore extends HTMLElement{}
 
 export interface XtalFigDBCylinderCore extends XtalFigDBCylinderProps{}
 
@@ -96,7 +91,7 @@ const isRef: PropInfo = {
     parse: false, 
 };
 
-const xe = new XE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActions>({
+const xe = new CE<XtalFigDBCylinderProps & TemplMgmtProps, XtalFigDBCylinderActions>({
     config:{
         tagName: 'xtal-fig-db-cylinder',
         propDefaults:{

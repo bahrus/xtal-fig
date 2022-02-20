@@ -1,4 +1,4 @@
-import { XE } from 'xtal-element/src/XE.js';
+import { CE } from 'trans-render/lib/CE.js';
 import { TemplMgmt, beTransformed } from 'trans-render/lib/mixins/TemplMgmt.js';
 import 'be-active/be-active.js';
 const mainTemplate = String.raw `
@@ -74,9 +74,6 @@ const mainTemplate = String.raw `
 </style>
 <be-hive></be-hive>
 `;
-// const setOwnDimensions = ({width, height}: X) => ({
-//     style: {width:`${width}px`, height:`${height}px`}
-// });
 /**
  * @element xtal-fig-db-cylinder
  * @tag xtal-fig-db-cylinder
@@ -86,7 +83,7 @@ export class XtalFigDBCylinderCore extends HTMLElement {
 const isRef = {
     parse: false,
 };
-const xe = new XE({
+const xe = new CE({
     config: {
         tagName: 'xtal-fig-db-cylinder',
         propDefaults: {
