@@ -70,7 +70,7 @@ export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondAct
 
 export interface XtalFigDiamondCore extends XtalFigDiamondProps{}
 
-const noParse = {
+const noParse: PropInfo = {
     parse: false
 };
 

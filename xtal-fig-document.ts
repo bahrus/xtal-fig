@@ -1,10 +1,10 @@
 import {XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtProps, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
+import {TemplMgmt, TemplMgmtProps, beTransformed} from 'trans-render/lib/mixins/TemplMgmt.js';
 import {INotifyMixin} from 'trans-render/lib/mixins/notify.js';
 import {XtalFigDocumentProps, XtalFigDocumentActions} from './types.js';
-import { PropInfo } from '../trans-render/lib/types.js';
+import { PropInfo } from 'trans-render/lib/types.js';
 
-const mainTemplate = tm.html`
+const mainTemplate = String.raw`
 <style>
     :host[hidden]{
         display:none;
@@ -46,9 +46,8 @@ export class XtalFigDocumentCore extends HTMLElement implements XtalFigDocumentA
 
 export interface XtalFigDocumentCore extends XtalFigDocumentProps{}
 
-const isRef: PropInfo = {
+const noParse: PropInfo = {
     parse: false, 
-    isRef: true,
 };
 
 const xe = new XE<XtalFigDocumentProps & TemplMgmtProps, XtalFigDocumentActions>({
@@ -56,18 +55,22 @@ const xe = new XE<XtalFigDocumentProps & TemplMgmtProps, XtalFigDocumentActions>
         tagName: 'xtal-fig-document',
         propDefaults:{
             width: 250, height: 500,
+            hydratingTransform:{
+                svgElement: true,
+            }
         },
         propInfo:{
-            svgElements: isRef,
+            svgElement: noParse,
         },
         actions:{
-            ...tm.doInitTransform,
+            ...beTransformed,
             setOwnDimensions:{
                 ifKeyIn: ['width', 'height'],
             },
             setSVGDimensions:{
                 ifKeyIn: ['width', 'height'],
-                target: 'svgElements'
+                ifAllOf: ['svgElement'],
+                target: 'svgElement'
             },
 
         }
@@ -76,7 +79,7 @@ const xe = new XE<XtalFigDocumentProps & TemplMgmtProps, XtalFigDocumentActions>
         mainTemplate,
     },
     superclass: XtalFigDocumentCore,
-    mixins:[tm.TemplMgmtMixin]
+    mixins:[TemplMgmt]
 });
 
 type X = XtalFigDocumentCore;

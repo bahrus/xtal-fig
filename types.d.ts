@@ -49,7 +49,7 @@ export interface XtalFigParallelogramProps{
 
     paraBorderParts: NodeListOf<SVGPathElement>;
 
-    svgElements: NodeListOf<SVGElement>;
+    svgElement: WeakRef<SVGElement>[];
 
     innerParts: NodeListOf<SVGForeignObjectElement>;
 }
@@ -132,7 +132,7 @@ export interface XtalFigDocumentProps  extends HTMLElement{
      */
     height: number,
 
-    svgElements: NodeListOf<SVGElement>;
+    svgElement: WeakRef<SVGElement>[];
 }
 
 export interface XtalFigDocumentActions extends XtalFigCommonActions{}

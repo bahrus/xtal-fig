@@ -1,6 +1,6 @@
 import { XE } from 'xtal-element/src/XE.js';
-import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-const mainTemplate = tm.html `
+import { TemplMgmt, beTransformed } from 'trans-render/lib/mixins/TemplMgmt.js';
+const mainTemplate = String.raw `
 <style>
     :host[hidden]{
         display:none;
@@ -37,27 +37,30 @@ export class XtalFigDocumentCore extends HTMLElement {
     setOwnDimensions = setOwnDimensions;
     setSVGDimensions = setSVGDimensions;
 }
-const isRef = {
+const noParse = {
     parse: false,
-    isRef: true,
 };
 const xe = new XE({
     config: {
         tagName: 'xtal-fig-document',
         propDefaults: {
             width: 250, height: 500,
+            hydratingTransform: {
+                svgElement: true,
+            }
         },
         propInfo: {
-            svgElements: isRef,
+            svgElement: noParse,
         },
         actions: {
-            ...tm.doInitTransform,
+            ...beTransformed,
             setOwnDimensions: {
                 ifKeyIn: ['width', 'height'],
             },
             setSVGDimensions: {
                 ifKeyIn: ['width', 'height'],
-                target: 'svgElements'
+                ifAllOf: ['svgElement'],
+                target: 'svgElement'
             },
         }
     },
@@ -65,5 +68,5 @@ const xe = new XE({
         mainTemplate,
     },
     superclass: XtalFigDocumentCore,
-    mixins: [tm.TemplMgmtMixin]
+    mixins: [TemplMgmt]
 });
