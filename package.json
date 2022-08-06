@@ -34,7 +34,7 @@
   "types": "types.d.ts",
   "dependencies": {
     "trans-render": "0.0.553",
-    "xtal-element": "0.0.494",
+    "xtal-element": "0.0.496",
     "be-definitive": "0.0.55",
     "be-active": "0.0.33",
     "be-ferried": "0.0.39"
