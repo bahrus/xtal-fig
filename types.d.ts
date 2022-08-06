@@ -106,7 +106,7 @@ export interface XtalFigDiamondProps{
     svgElements: NodeListOf<SVGElement>;
     pathElements: NodeListOf<SVGElement>;
     diamondBorderParts: NodeListOf<SVGElement>;
-    innerParts: NodeListOf<SVGForeignObjectElement>;
+    innerPart: WeakRef<Element>[];
 }
 
 export interface XtalFigDiamondActions extends XtalFigCommonActions{

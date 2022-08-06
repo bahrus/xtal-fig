@@ -86,14 +86,14 @@ const xe = new XE<
                 svgElements: true,
                 pathElements: true,
                 diamondBorderParts: true,
-                innerParts: true,
+                innerPart: true,
             }
         },
         propInfo:{
             svgElements: noParse,
             pathElements: noParse,
             diamondBorderParts: noParse,
-            innerParts: noParse,
+            innerPart: noParse,
         },
         actions:{
             ...beTransformed,
@@ -117,8 +117,8 @@ const xe = new XE<
             },
             setInnerDimensions:{
                 ifKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
-                ifAllOf: ['innerParts'],
-                target: 'innerParts'
+                ifAllOf: ['innerPart'],
+                target: 'innerPart'
             }
         }
     },
