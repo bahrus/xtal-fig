@@ -83,14 +83,14 @@ const xe = new XE<
         propDefaults:{
             width:800, height:300, innerWidth:200, strokeWidth:5, innerHeight:100, innerX:300, innerY:100,
             hydratingTransform: {
-                svgElements: true,
+                svgElement: true,
                 pathElements: true,
                 diamondBorderParts: true,
                 innerPart: true,
             }
         },
         propInfo:{
-            svgElements: noParse,
+            svgElement: noParse,
             pathElements: noParse,
             diamondBorderParts: noParse,
             innerPart: noParse,
@@ -102,8 +102,8 @@ const xe = new XE<
             },
             setSVGDimensions:{
                 ifKeyIn: ['width', 'height'],
-                ifAllOf: ['svgElements'],
-                target: 'svgElements'
+                ifAllOf: ['svgElement'],
+                target: 'svgElement'
             },
             setPaths:{
                 ifKeyIn: ['width', 'strokeWidth', 'height'],

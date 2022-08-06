@@ -103,7 +103,7 @@ export interface XtalFigDiamondProps{
      */
     innerY: number,
 
-    svgElements: NodeListOf<SVGElement>;
+    svgElement: WeakRef<SVGElement>[];
     pathElements: NodeListOf<SVGElement>;
     diamondBorderParts: NodeListOf<SVGElement>;
     innerPart: WeakRef<Element>[];
