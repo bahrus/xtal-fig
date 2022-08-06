@@ -1,10 +1,10 @@
 import {XE} from 'xtal-element/src/XE.js';
-import {TemplMgmtProps, TemplMgmtActions, tm} from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
+import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beTransformed} from 'trans-render/lib/mixins/TemplMgmt.js';
 import { XtalFigDiamondActions, XtalFigDiamondProps } from './types';
 import { PropInfo } from 'trans-render/lib/types';
 
 
-const mainTemplate = tm.html`
+const mainTemplate = String.raw`
 <style>
     :host[hidden]{
         display:none;
@@ -69,10 +69,11 @@ export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondAct
 
 
 export interface XtalFigDiamondCore extends XtalFigDiamondProps{}
-const isRef: PropInfo = {
-    parse: false,
-    isRef: true,
+
+const noParse = {
+    parse: false
 };
+
 const xe = new XE<
     XtalFigDiamondProps & TemplMgmtProps, 
     XtalFigDiamondActions & TemplMgmtActions
@@ -80,33 +81,43 @@ const xe = new XE<
     config:{
         tagName: 'xtal-fig-diamond',
         propDefaults:{
-            width:800, height:300, innerWidth:200, strokeWidth:5, innerHeight:100, innerX:300, innerY:100 
+            width:800, height:300, innerWidth:200, strokeWidth:5, innerHeight:100, innerX:300, innerY:100,
+            hydratingTransform: {
+                svgElements: true,
+                pathElements: true,
+                diamondBorderParts: true,
+                innerParts: true,
+            }
         },
         propInfo:{
-            svgElements: isRef,
-            pathElements: isRef,
-            diamondBorderParts: isRef,
-            innerParts: isRef,
+            svgElements: noParse,
+            pathElements: noParse,
+            diamondBorderParts: noParse,
+            innerParts: noParse,
         },
         actions:{
-            ...tm.doInitTransform,
+            ...beTransformed,
             setOwnDimensions:{
                 ifKeyIn: ['width', 'height']
             },
             setSVGDimensions:{
                 ifKeyIn: ['width', 'height'],
+                ifAllOf: ['svgElements'],
                 target: 'svgElements'
             },
             setPaths:{
                 ifKeyIn: ['width', 'strokeWidth', 'height'],
+                ifAllOf: ['pathElements'],
                 target: 'pathElements'
             },
             setDiamondBorder:{
                 ifKeyIn: ['strokeWidth'],
+                ifAllOf: ['diamondBorderParts'],
                 target: 'diamondBorderParts'
             },
             setInnerDimensions:{
                 ifKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                ifAllOf: ['innerParts'],
                 target: 'innerParts'
             }
         }
@@ -115,7 +126,7 @@ const xe = new XE<
         mainTemplate
     },
     superclass: XtalFigDiamondCore,
-    mixins: [tm.TemplMgmtMixin]
+    mixins: [TemplMgmt]
 });
 type X = XtalFigDiamondCore;
 declare global {

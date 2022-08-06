@@ -1,6 +1,6 @@
 import { XE } from 'xtal-element/src/XE.js';
-import { tm } from 'trans-render/lib/mixins/TemplMgmtWithPEST.js';
-const mainTemplate = tm.html `
+import { TemplMgmt, beTransformed } from 'trans-render/lib/mixins/TemplMgmt.js';
+const mainTemplate = String.raw `
 <style>
     :host[hidden]{
         display:none;
@@ -59,41 +59,50 @@ export class XtalFigDiamondCore extends HTMLElement {
     setDiamondBorder = setDiamondBorder;
     setInnerDimensions = setInnerDimensions;
 }
-const isRef = {
-    parse: false,
-    isRef: true,
+const noParse = {
+    parse: false
 };
 const xe = new XE({
     config: {
         tagName: 'xtal-fig-diamond',
         propDefaults: {
-            width: 800, height: 300, innerWidth: 200, strokeWidth: 5, innerHeight: 100, innerX: 300, innerY: 100
+            width: 800, height: 300, innerWidth: 200, strokeWidth: 5, innerHeight: 100, innerX: 300, innerY: 100,
+            hydratingTransform: {
+                svgElements: true,
+                pathElements: true,
+                diamondBorderParts: true,
+                innerParts: true,
+            }
         },
         propInfo: {
-            svgElements: isRef,
-            pathElements: isRef,
-            diamondBorderParts: isRef,
-            innerParts: isRef,
+            svgElements: noParse,
+            pathElements: noParse,
+            diamondBorderParts: noParse,
+            innerParts: noParse,
         },
         actions: {
-            ...tm.doInitTransform,
+            ...beTransformed,
             setOwnDimensions: {
                 ifKeyIn: ['width', 'height']
             },
             setSVGDimensions: {
                 ifKeyIn: ['width', 'height'],
+                ifAllOf: ['svgElements'],
                 target: 'svgElements'
             },
             setPaths: {
                 ifKeyIn: ['width', 'strokeWidth', 'height'],
+                ifAllOf: ['pathElements'],
                 target: 'pathElements'
             },
             setDiamondBorder: {
                 ifKeyIn: ['strokeWidth'],
+                ifAllOf: ['diamondBorderParts'],
                 target: 'diamondBorderParts'
             },
             setInnerDimensions: {
                 ifKeyIn: ['innerHeight', 'innerWidth', 'innerX', 'innerY'],
+                ifAllOf: ['innerParts'],
                 target: 'innerParts'
             }
         }
@@ -102,5 +111,5 @@ const xe = new XE({
         mainTemplate
     },
     superclass: XtalFigDiamondCore,
-    mixins: [tm.TemplMgmtMixin]
+    mixins: [TemplMgmt]
 });

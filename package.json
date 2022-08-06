@@ -13,7 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-check": "package-check",
-    "serve": "node node_modules/xtal-test/serve.js",
+    "serve": "node node_modules/may-it-serve/serve.js",
     "doc": "custom-elements-manifest analyze",
     "build": "copy xfdb-config.js xfdb-config.mjs && node xfdb-config.mjs -dfn > xtal-fig-db-cylinder.dfn.json && node xfdb-config.mjs -js > xtal-fig-db-cylinder.js && node xfdb-config.mjs -html > xtal-fig-db-cylinder.html",
     "watch": "npm-watch"
@@ -33,19 +33,19 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "trans-render": "0.0.486",
-    "xtal-element": "0.0.478",
-    "be-definitive": "0.0.39",
-    "be-active": "0.0.24",
-    "be-ferried": "0.0.32"
+    "trans-render": "0.0.553",
+    "xtal-element": "0.0.494",
+    "be-definitive": "0.0.55",
+    "be-active": "0.0.33",
+    "be-ferried": "0.0.39"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
-    "xtal-test": "0.0.55",
-    "@custom-elements-manifest/analyzer": "0.5.7",
-    "may-it-be": "0.0.139",
+    "may-it-serve": "0.0.2",
+    "@custom-elements-manifest/analyzer": "0.6.4",
+    "may-it-be": "0.0.163",
     "npm-watch": "0.11.0",
-    "be-importing": "0.0.19"
+    "be-importing": "0.0.26"
   },
   "repository": {
     "type": "git",
