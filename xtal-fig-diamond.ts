@@ -2,7 +2,7 @@ import {XE} from 'xtal-element/XE.js';
 import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beTransformed} from 'trans-render/lib/mixins/TemplMgmt.js';
 import { XtalFigDiamondActions, XtalFigDiamondProps } from './types';
 import { Action, PropInfo } from 'trans-render/lib/types';
-import { IEventConfig, DynamicTransform } from './trans-render/froop/types';
+import { IEventConfig, DynamicTransform } from 'trans-render/froop/types';
 
 
 const mainTemplate = String.raw`
