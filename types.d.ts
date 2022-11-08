@@ -1,4 +1,6 @@
 import { PEAUnionSettings } from 'trans-render/lib/types';
+import { ActionOnEventConfigs, DynamicTransform} from 'trans-render/froop/types';
+
 export interface XtalFigParallelogramProps{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
@@ -109,10 +111,11 @@ export interface XtalFigDiamondProps{
     innerPart: WeakRef<Element>[];
 }
 
-export interface XtalFigDiamondActions extends XtalFigCommonActions{
-    setPaths: (self: this) => any;
-    setDiamondBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
-    setInnerDimensions: (self: this) => any;
+export interface XtalFigDiamondActions{
+    // setPaths: (self: this) => any;
+    // setDiamondBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
+    // setInnerDimensions: (self: this) => any;
+    setDimensions(self: this) : [Partial<this>, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions>, DynamicTransform]
 }
 
 

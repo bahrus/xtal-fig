@@ -39,9 +39,9 @@ export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondAct
                     style: {width: `${width}px`, height: `${width}px`}
                 },
                 svgE: [,,{width, height}],
-                pathEs: [,, {d: `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`,}],
+                path: [,, {d: [`M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`],}],
                 diamondBorderP: {
-                    style: {strokeWidth: strokeWidth.toString()}
+                    style: {strokeWidth: [strokeWidth.toString()]}
                 },
                 innerP: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}]
             }
@@ -69,6 +69,9 @@ const xe = new XE<
         },
         actions:{
             ...beTransformed,
+            setDimensions:{
+                ifAllOf: ['width', 'height']
+            }
         }
     },
     complexPropDefaults:{

@@ -33,19 +33,19 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "trans-render": "0.0.553",
-    "xtal-element": "0.0.496",
-    "be-definitive": "0.0.55",
-    "be-active": "0.0.33",
-    "be-ferried": "0.0.39"
+    "trans-render": "0.0.638",
+    "xtal-element": "0.0.536",
+    "be-definitive": "0.0.71",
+    "be-active": "0.0.46",
+    "be-ferried": "0.0.42"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
-    "may-it-serve": "0.0.2",
+    "may-it-serve": "0.0.3",
     "@custom-elements-manifest/analyzer": "0.6.4",
-    "may-it-be": "0.0.163",
+    "may-it-be": "0.0.171",
     "npm-watch": "0.11.0",
-    "be-importing": "0.0.26"
+    "be-importing": "0.0.40"
   },
   "repository": {
     "type": "git",
