@@ -1,5 +1,5 @@
 import { XE } from 'xtal-element/XE.js';
-import { TemplMgmt, beTransformed } from 'trans-render/lib/mixins/TemplMgmt.js';
+import { TemplMgmt, beCloned, beMounted } from 'trans-render/lib/mixins/TemplMgmt.js';
 const mainTemplate = String.raw `
 <style>
     :host[hidden]{
@@ -23,17 +23,18 @@ const mainTemplate = String.raw `
 `;
 export class XtalFigDiamondCore extends HTMLElement {
     setDimensions({ width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY }) {
+        console.log(this.clonedTemplate);
         return [{}, {}, {
                 transform: {
-                    ':host': {
-                        style: { width: `${width}px`, height: `${width}px` }
-                    },
                     svgE: [, , { width, height }],
                     path: [, , { d: [`M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`], }],
                     diamondBorderP: {
                         style: { strokeWidth: [strokeWidth.toString()] }
                     },
-                    innerP: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }]
+                    innerP: [, , { width: innerWidth, height: innerHeight, x: innerX, y: innerY }],
+                    ':host': {
+                        style: { width: `${width}px`, height: `${width}px` },
+                    },
                 }
             }];
     }
@@ -48,10 +49,11 @@ const xe = new XE({
             width: 800, height: 300, innerWidth: 200, strokeWidth: 5, innerHeight: 100, innerX: 300, innerY: 100,
         },
         actions: {
-            ...beTransformed,
+            ...beCloned,
             setDimensions: {
                 ifAllOf: ['width', 'height']
-            }
+            },
+            ...beMounted,
         }
     },
     complexPropDefaults: {

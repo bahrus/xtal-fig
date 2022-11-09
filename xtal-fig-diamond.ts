@@ -1,5 +1,5 @@
 import {XE} from 'xtal-element/XE.js';
-import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beTransformed} from 'trans-render/lib/mixins/TemplMgmt.js';
+import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
 import { XtalFigDiamondActions, XtalFigDiamondProps } from './types';
 import { Action, PropInfo } from 'trans-render/lib/types';
 import { IEventConfig, DynamicTransform } from 'trans-render/froop/types';
@@ -33,17 +33,18 @@ export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondAct
     setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY}: this): 
                [Partial<this>, Partial<{ setDimensions: IEventConfig<XtalFigDiamondProps, XtalFigDiamondActions, Action<any>>; }>, 
                 DynamicTransform] {
+        console.log(this.clonedTemplate);
         return [{}, {}, {
             transform: {
-                ':host': {
-                    style: {width: `${width}px`, height: `${width}px`}
-                },
                 svgE: [,,{width, height}],
                 path: [,, {d: [`M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`],}],
                 diamondBorderP: {
                     style: {strokeWidth: [strokeWidth.toString()]}
                 },
-                innerP: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}]
+                innerP: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],
+                ':host': {
+                    style: {width: `${width}px`, height: `${width}px`},
+                },
             }
         }];
     }
@@ -53,6 +54,8 @@ export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondAct
 
 
 export interface XtalFigDiamondCore extends XtalFigDiamondProps{}
+
+export interface XtalFigDiamondCore extends TemplMgmtProps{}
 
 const noParse: PropInfo = {
     parse: false
@@ -68,10 +71,11 @@ const xe = new XE<
             width:800, height:300, innerWidth:200, strokeWidth:5, innerHeight:100, innerX:300, innerY:100,
         },
         actions:{
-            ...beTransformed,
+            ...beCloned,
             setDimensions:{
                 ifAllOf: ['width', 'height']
-            }
+            },
+            ...beMounted,
         }
     },
     complexPropDefaults:{
