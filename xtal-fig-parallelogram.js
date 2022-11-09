@@ -27,10 +27,7 @@ const mainTemplate = String.raw `
 export class XtalFigParallelogramCore extends HTMLElement {
     setDimensions({ width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant }) {
         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
-        return [
-            {
-                hOffset
-            }, , {
+        return [, , {
                 transform: {
                     ':host': {
                         style: { width: `${width}px`, height: `${width}px` },
@@ -43,8 +40,7 @@ export class XtalFigParallelogramCore extends HTMLElement {
                         style: { strokeWidth: [strokeWidth.toString()] },
                     },
                 }
-            }
-        ];
+            }];
     }
 }
 const xe = new XE({

@@ -34,10 +34,7 @@ const mainTemplate = String.raw `
 export class XtalFigParallelogramCore extends HTMLElement implements XtalFigParallelogramActions{
     setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant}: this): [Partial<XtalFigParallelogramCore> | undefined, Partial<{ setDimensions: IEventConfig<XtalFigDiamondProps, XtalFigDiamondActions, Action<any>>; }> | undefined, DynamicTransform] {
         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
-        return [
-            {
-                hOffset 
-            },,{
+        return [,,{
             transform:{
                 ':host':{
                     style: {width: `${width}px`, height: `${width}px`},
