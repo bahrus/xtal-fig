@@ -1,4 +1,4 @@
-import {XE} from 'xtal-element/src/XE.js';
+import {XE} from 'xtal-element/XE.js';
 import {TemplMgmt, TemplMgmtProps, beTransformed} from 'trans-render/lib/mixins/TemplMgmt.js';
 import {INotifyMixin} from 'trans-render/lib/mixins/notify.js';
 import {XtalFigDocumentProps, XtalFigDocumentActions} from './types.js';

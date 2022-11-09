@@ -107,7 +107,7 @@ export interface XtalFigDiamondProps{
 
 export interface XtalFigDiamondActions{
     
-    setDimensions(self: this) : [Partial<this> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, DynamicTransform]
+    setDimensions(self: this) : [Partial<XtalFigDiamondProps> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, DynamicTransform]
 }
 
 

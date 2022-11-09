@@ -2,7 +2,7 @@ import {XE} from 'xtal-element/XE.js';
 import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
 import { XtalFigDiamondActions, XtalFigDiamondProps } from './types';
 import { Action, PropInfo } from 'trans-render/lib/types';
-import { IEventConfig, DynamicTransform } from 'trans-render/froop/types';
+import { IEventConfig, DynamicTransform, ActionOnEventConfigs } from 'trans-render/froop/types';
 
 
 const mainTemplate = String.raw`
@@ -31,7 +31,7 @@ const mainTemplate = String.raw`
 
 export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondActions{
     setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY}: this): 
-               [Partial<this>, Partial<{ setDimensions: IEventConfig<XtalFigDiamondProps, XtalFigDiamondActions, Action<any>>; }>, 
+               [Partial<XtalFigDiamondProps> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, 
                 DynamicTransform] {
         return [,, {
             transform: {
