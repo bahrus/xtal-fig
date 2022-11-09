@@ -32,7 +32,6 @@ export class XtalFigParallelogramCore extends HTMLElement {
                     ':host': {
                         style: { width: `${width}px`, height: `${width}px` },
                     },
-                    svgE: [, , { width, height }],
                     path: [, , { d: [
                                 `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
                             ] }],
@@ -52,12 +51,13 @@ const xe = new XE({
             innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
             transform: {
                 innerP: [, , { width: 'innerWidth', height: 'innerHeight', x: 'innerX', y: 'innerY' }],
+                svgE: [, , { width: 'width', height: 'height' }],
             }
         },
         actions: {
             ...beCloned,
             setDimensions: {
-                ifAllOf: ['width', 'height']
+                ifAllOf: ['width', 'height'],
             },
             ...beMounted,
         }
