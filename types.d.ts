@@ -47,25 +47,27 @@ export interface XtalFigParallelogramProps{
      */
     hOffset:number,
 
-    pathElements: NodeListOf<SVGPathElement>;
+    // pathElements: NodeListOf<SVGPathElement>;
 
-    paraBorderParts: NodeListOf<SVGPathElement>;
+    // paraBorderParts: NodeListOf<SVGPathElement>;
 
-    svgElement: WeakRef<SVGElement>[];
+    // svgElement: WeakRef<SVGElement>[];
 
-    innerParts: NodeListOf<SVGForeignObjectElement>;
+    // innerParts: NodeListOf<SVGForeignObjectElement>;
 }
 
 export interface XtalFigCommonActions{
-    setOwnDimensions: (self: this) => {style: Partial<CSSStyleDeclaration>};
-    setSVGDimensions: (self: this) => any;
+    // setOwnDimensions: (self: this) => {style: Partial<CSSStyleDeclaration>};
+    // setSVGDimensions: (self: this) => any;
 }
 
 export interface XtalFigParallelogramActions extends XtalFigCommonActions{
-    setHOffset: (self: this) => {hOffset: number};
-    setBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
-    setPaths: (self: this) => any;
-    setInnerDimensions: (self: this) => any;
+    // setHOffset: (self: this) => {hOffset: number};
+    // setBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
+    // setPaths: (self: this) => any;
+    // setInnerDimensions: (self: this) => any;
+
+    setDimensions(self: this) : [Partial<this> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, DynamicTransform]
 }
 
 export interface XtalFigDiamondProps{
@@ -104,18 +106,11 @@ export interface XtalFigDiamondProps{
      * @attr {number} [inner-y=300] - Number of pixels top edge of inner content should be set to.
      */
     innerY: number,
-
-    svgElement: WeakRef<SVGElement>[];
-    pathElements: NodeListOf<SVGElement>;
-    diamondBorderParts: NodeListOf<SVGElement>;
-    innerPart: WeakRef<Element>[];
 }
 
 export interface XtalFigDiamondActions{
-    // setPaths: (self: this) => any;
-    // setDiamondBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
-    // setInnerDimensions: (self: this) => any;
-    setDimensions(self: this) : [Partial<this>, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions>, DynamicTransform]
+    
+    setDimensions(self: this) : [Partial<this> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, DynamicTransform]
 }
 
 
