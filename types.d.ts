@@ -62,12 +62,9 @@ export interface XtalFigCommonActions{
 }
 
 export interface XtalFigParallelogramActions extends XtalFigCommonActions{
-    // setHOffset: (self: this) => {hOffset: number};
-    // setBorder: (self: this) => {style: Partial<CSSStyleDeclaration>};
-    // setPaths: (self: this) => any;
-    // setInnerDimensions: (self: this) => any;
 
-    setDimensions(self: this) : [Partial<this> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, DynamicTransform]
+
+    setDimensions(self: this) : [Partial<XtalFigDiamondProps> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, DynamicTransform]
 }
 
 export interface XtalFigDiamondProps{
