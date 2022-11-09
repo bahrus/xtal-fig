@@ -49,7 +49,7 @@ export class XtalFigParallelogramCore extends HTMLElement implements XtalFigPara
                 paraBorderP: {
                     style: {strokeWidth: [strokeWidth.toString()]},
                 },
-                innerP: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],
+                
             }
         }]
     }
@@ -62,8 +62,12 @@ const xe = new XE<XtalFigParallelogramProps & TemplMgmtProps, XtalFigParallelogr
     config:{
         tagName: 'xtal-fig-parallelogram',
         propDefaults:{
+            mntCnt: 1,
             width: 800, strokeWidth:5, height:300, slant:30, 
             innerWidth:200, innerHeight:100, innerX:300, innerY:100,
+            transform: {
+                innerP: [,,{width: 'innerWidth', height: 'innerHeight', x: 'innerX', y: 'innerY'}],
+            }
         },
 
         actions:{
