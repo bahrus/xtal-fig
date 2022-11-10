@@ -37,7 +37,7 @@ export class XtalFigParallelogramCore extends HTMLElement implements ParaActions
         return [,,{
             transform:{
                 ':host':{
-                    style: {width: `${width}px`, height: `${width}px`},
+                    style: {width: `${width}px`, height: `${height}px`},
                 },
                 
                 path: [,, {d: [

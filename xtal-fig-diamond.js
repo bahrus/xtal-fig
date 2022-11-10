@@ -26,7 +26,7 @@ export class XtalFigDiamondCore extends HTMLElement {
         return [, , {
                 transform: {
                     ':host': {
-                        style: { width: `${width}px`, height: `${width}px` },
+                        style: { width: `${width}px`, height: `${height}px` },
                     },
                     svgE: [, , { width, height }],
                     path: [, , { d: [`M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height - strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`], }],

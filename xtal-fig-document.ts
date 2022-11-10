@@ -38,7 +38,7 @@ export class XtalFigDocumentCore extends HTMLElement implements DocActions{
         return [,,{
             transform:{
                 ':host': {
-                    style: {width: `${width}px`, height: `${width}px`},
+                    style: {width: `${width}px`, height: `${height}px`},
                 },
                 svgE: [,,{width, height}],
             }
@@ -54,6 +54,7 @@ const xe = new XE<DocProps & TemplMgmtProps, DocActions>({
     config:{
         tagName: 'xtal-fig-document',
         propDefaults:{
+            mntCnt: 1,
             width: 250, height: 500,
         },
         actions:{

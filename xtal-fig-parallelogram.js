@@ -30,7 +30,7 @@ export class XtalFigParallelogramCore extends HTMLElement {
         return [, , {
                 transform: {
                     ':host': {
-                        style: { width: `${width}px`, height: `${width}px` },
+                        style: { width: `${width}px`, height: `${height}px` },
                     },
                     path: [, , { d: [
                                 `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
