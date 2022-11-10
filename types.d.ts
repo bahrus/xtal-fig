@@ -1,7 +1,9 @@
 import { PEAUnionSettings } from 'trans-render/lib/types';
 import { ActionOnEventConfigs, DynamicTransform} from 'trans-render/froop/types';
 
-export interface XtalFigParallelogramProps{
+export type DT = DynamicTransform;
+
+export interface ParaProps{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
@@ -56,18 +58,16 @@ export interface XtalFigParallelogramProps{
     // innerParts: NodeListOf<SVGForeignObjectElement>;
 }
 
-export interface XtalFigCommonActions{
-    // setOwnDimensions: (self: this) => {style: Partial<CSSStyleDeclaration>};
-    // setSVGDimensions: (self: this) => any;
+export type PPara = Partial<ParaProps> | undefined;
+export type EPara = ActionOnEventConfigs<ParaProps, ParaActions> | undefined;
+
+export interface ParaActions {
+    setDimensions(self: this) : [PPara, EPara, DT]
 }
 
-export interface XtalFigParallelogramActions extends XtalFigCommonActions{
-
-
-    setDimensions(self: this) : [Partial<XtalFigDiamondProps> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, DynamicTransform]
-}
-
-export interface XtalFigDiamondProps{
+export type PDiamond = Partial<DiamondProps> | undefined;
+export type EDiamond = ActionOnEventConfigs<DiamondProps, DiamondActions> | undefined;
+export interface DiamondProps{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
@@ -104,10 +104,8 @@ export interface XtalFigDiamondProps{
      */
     innerY: number,
 }
-
-export interface XtalFigDiamondActions{
-    
-    setDimensions(self: this) : [Partial<XtalFigDiamondProps> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, DynamicTransform]
+export interface DiamondActions{
+    setDimensions(self: this) : [PDiamond, EDiamond, DT]
 }
 
 
@@ -115,7 +113,7 @@ export interface XtalFigDBCylinderProps{}
 
 export interface XtalFigDBCylinderActions {}
 
-export interface XtalFigDocumentProps  extends HTMLElement{
+export interface DocProps  extends HTMLElement{
     /**
      * @prop {number} [width=800] - Number of pixels wide the figure should be.
      * @attr {number} [width=800] - Number of pixels wide the figure should be.
@@ -130,4 +128,10 @@ export interface XtalFigDocumentProps  extends HTMLElement{
     svgElement: WeakRef<SVGElement>[];
 }
 
-export interface XtalFigDocumentActions extends XtalFigCommonActions{}
+export type PDoc = Partial<DocProps> | undefined;
+
+export type EDoc = ActionOnEventConfigs<DocProps, DocActions> | undefined;
+
+export interface DocActions {
+    setDimensions(self: this): [PDoc, EDoc, DT]
+}

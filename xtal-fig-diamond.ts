@@ -1,6 +1,6 @@
 import {XE} from 'xtal-element/XE.js';
 import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
-import { XtalFigDiamondActions, XtalFigDiamondProps } from './types';
+import { DiamondActions, DiamondProps, PDiamond, EDiamond, DT } from './types';
 import { Action, PropInfo } from 'trans-render/lib/types';
 import { IEventConfig, DynamicTransform, ActionOnEventConfigs } from 'trans-render/froop/types';
 
@@ -29,10 +29,8 @@ const mainTemplate = String.raw`
 
 
 
-export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondActions{
-    setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY}: this): 
-               [Partial<XtalFigDiamondProps> | undefined, ActionOnEventConfigs<XtalFigDiamondProps, XtalFigDiamondActions> | undefined, 
-                DynamicTransform] {
+export class XtalFigDiamondCore extends HTMLElement implements DiamondActions{
+    setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY}: this): [PDiamond, EDiamond, DT] {
         return [,, {
             transform: {
                 ':host': {
@@ -53,21 +51,22 @@ export class XtalFigDiamondCore extends HTMLElement implements XtalFigDiamondAct
 
 
 
-export interface XtalFigDiamondCore extends XtalFigDiamondProps{}
+export interface XtalFigDiamondCore extends DiamondProps{}
 
 export interface XtalFigDiamondCore extends TemplMgmtProps{}
 
-const noParse: PropInfo = {
-    parse: false
-};
+// const noParse: PropInfo = {
+//     parse: false
+// };
 
 const xe = new XE<
-    XtalFigDiamondProps & TemplMgmtProps, 
-    XtalFigDiamondActions & TemplMgmtActions
+    DiamondProps & TemplMgmtProps, 
+    DiamondActions & TemplMgmtActions
 >({
     config:{
         tagName: 'xtal-fig-diamond',
         propDefaults:{
+            mntCnt: 1,
             width:800, height:300, innerWidth:200, strokeWidth:5, innerHeight:100, innerX:300, innerY:100,
         },
         actions:{

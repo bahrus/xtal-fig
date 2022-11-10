@@ -38,13 +38,14 @@ export class XtalFigDiamondCore extends HTMLElement {
             }];
     }
 }
-const noParse = {
-    parse: false
-};
+// const noParse: PropInfo = {
+//     parse: false
+// };
 const xe = new XE({
     config: {
         tagName: 'xtal-fig-diamond',
         propDefaults: {
+            mntCnt: 1,
             width: 800, height: 300, innerWidth: 200, strokeWidth: 5, innerHeight: 100, innerX: 300, innerY: 100,
         },
         actions: {

@@ -1,5 +1,5 @@
 import { XE } from 'xtal-element/XE.js';
-import { TemplMgmt, beTransformed } from 'trans-render/lib/mixins/TemplMgmt.js';
+import { TemplMgmt, beCloned, beMounted } from 'trans-render/lib/mixins/TemplMgmt.js';
 const mainTemplate = String.raw `
 <style>
     :host[hidden]{
@@ -29,39 +29,30 @@ const mainTemplate = String.raw `
     }
 </style>
 `;
-const setOwnDimensions = ({ width, height }) => ({
-    style: { width: `${width}px`, height: `${height}px` }
-});
-const setSVGDimensions = ({ width, height }) => [, , { width, height }];
 export class XtalFigDocumentCore extends HTMLElement {
-    setOwnDimensions = setOwnDimensions;
-    setSVGDimensions = setSVGDimensions;
+    setDimensions({ width, height }) {
+        return [, , {
+                transform: {
+                    ':host': {
+                        style: { width: `${width}px`, height: `${width}px` },
+                    },
+                    svgE: [, , { width, height }],
+                }
+            }];
+    }
 }
-const noParse = {
-    parse: false,
-};
 const xe = new XE({
     config: {
         tagName: 'xtal-fig-document',
         propDefaults: {
             width: 250, height: 500,
-            hydratingTransform: {
-                svgElement: true,
-            }
-        },
-        propInfo: {
-            svgElement: noParse,
         },
         actions: {
-            ...beTransformed,
-            setOwnDimensions: {
-                ifKeyIn: ['width', 'height'],
+            ...beCloned,
+            setDimensions: {
+                ifAllOf: ['width', 'height']
             },
-            setSVGDimensions: {
-                ifKeyIn: ['width', 'height'],
-                ifAllOf: ['svgElement'],
-                target: 'svgElement'
-            },
+            ...beMounted
         }
     },
     complexPropDefaults: {

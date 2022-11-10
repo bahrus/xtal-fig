@@ -1,6 +1,6 @@
 import {XE} from 'xtal-element/XE.js';
 import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
-import {XtalFigParallelogramProps, XtalFigParallelogramActions, XtalFigDiamondActions, XtalFigDiamondProps} from './types.js';
+import {ParaProps, ParaActions, PPara, EPara, DT} from './types.js';
 import { Action, PropInfo } from '../trans-render/lib/types.js';
 import { IEventConfig, DynamicTransform } from '../trans-render/froop/types.js';
 
@@ -31,8 +31,8 @@ const mainTemplate = String.raw `
 
 
 
-export class XtalFigParallelogramCore extends HTMLElement implements XtalFigParallelogramActions{
-    setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant}: this): [Partial<XtalFigParallelogramCore> | undefined, Partial<{ setDimensions: IEventConfig<XtalFigDiamondProps, XtalFigDiamondActions, Action<any>>; }> | undefined, DynamicTransform] {
+export class XtalFigParallelogramCore extends HTMLElement implements ParaActions{
+    setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant}: this): [PPara, EPara, DT] {
         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
         return [,,{
             transform:{
@@ -53,9 +53,9 @@ export class XtalFigParallelogramCore extends HTMLElement implements XtalFigPara
 }
 
 
-export interface XtalFigParallelogramCore extends XtalFigParallelogramProps{}
+export interface XtalFigParallelogramCore extends ParaProps{}
 
-const xe = new XE<XtalFigParallelogramProps & TemplMgmtProps, XtalFigParallelogramActions>({
+const xe = new XE<ParaProps & TemplMgmtProps, ParaActions>({
     config:{
         tagName: 'xtal-fig-parallelogram',
         propDefaults:{

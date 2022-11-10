@@ -1,7 +1,6 @@
 import {XE} from 'xtal-element/XE.js';
-import {TemplMgmt, TemplMgmtProps, beTransformed} from 'trans-render/lib/mixins/TemplMgmt.js';
-import {INotifyMixin} from 'trans-render/lib/mixins/notify.js';
-import {XtalFigDocumentProps, XtalFigDocumentActions} from './types.js';
+import {TemplMgmt, TemplMgmtProps, beTransformed, beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
+import {DocProps, DocActions, PDoc, EDoc, DT} from './types.js';
 import { PropInfo } from 'trans-render/lib/types.js';
 
 const mainTemplate = String.raw`
@@ -34,45 +33,35 @@ const mainTemplate = String.raw`
 </style>
 `;
 
-const setOwnDimensions = ({width, height}: X) => ({
-    style: {width:`${width}px`, height:`${height}px`}
-});
-const setSVGDimensions = ({width, height}: X) => [,,{width, height}];
+export class XtalFigDocumentCore extends HTMLElement implements DocActions{
+    setDimensions({width, height}: this): [PDoc, EDoc, DT]{
+        return [,,{
+            transform:{
+                ':host': {
+                    style: {width: `${width}px`, height: `${width}px`},
+                },
+                svgE: [,,{width, height}],
+            }
+        }]
+    }
 
-export class XtalFigDocumentCore extends HTMLElement implements XtalFigDocumentActions{
-    setOwnDimensions = setOwnDimensions;
-    setSVGDimensions = setSVGDimensions;
 }
 
-export interface XtalFigDocumentCore extends XtalFigDocumentProps{}
+export interface XtalFigDocumentCore extends DocProps{}
 
-const noParse: PropInfo = {
-    parse: false, 
-};
 
-const xe = new XE<XtalFigDocumentProps & TemplMgmtProps, XtalFigDocumentActions>({
+const xe = new XE<DocProps & TemplMgmtProps, DocActions>({
     config:{
         tagName: 'xtal-fig-document',
         propDefaults:{
             width: 250, height: 500,
-            hydratingTransform:{
-                svgElement: true,
-            }
-        },
-        propInfo:{
-            svgElement: noParse,
         },
         actions:{
-            ...beTransformed,
-            setOwnDimensions:{
-                ifKeyIn: ['width', 'height'],
+            ...beCloned,
+            setDimensions: {
+                ifAllOf: ['width', 'height']
             },
-            setSVGDimensions:{
-                ifKeyIn: ['width', 'height'],
-                ifAllOf: ['svgElement'],
-                target: 'svgElement'
-            },
-
+            ...beMounted
         }
     },
     complexPropDefaults:{
