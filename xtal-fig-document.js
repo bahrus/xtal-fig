@@ -36,7 +36,6 @@ export class XtalFigDocumentCore extends HTMLElement {
                     ':host': {
                         style: { width: `${width}px`, height: `${height}px` },
                     },
-                    svgE: [, , { width, height }],
                 }
             }];
     }
@@ -47,6 +46,9 @@ const xe = new XE({
         propDefaults: {
             mntCnt: 1,
             width: 250, height: 500,
+            transform: {
+                svgE: [, , { width: 'width', height: 'height' }],
+            }
         },
         actions: {
             ...beCloned,
