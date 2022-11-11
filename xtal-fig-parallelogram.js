@@ -29,15 +29,12 @@ export class XtalFigParallelogramCore extends HTMLElement {
         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
         return [, , {
                 transform: {
-                    // ':host':{
-                    //     style: {width: `${width}px`, height: `${height}px`},
-                    // },
                     path: [, , { d: [
                                 `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
                             ] }],
-                    paraBorderP: {
-                        style: { strokeWidth: [strokeWidth.toString()] },
-                    },
+                    // paraBorderP: {
+                    //     style: {strokeWidth: [strokeWidth.toString()]},
+                    // },
                 }
             }];
     }
@@ -55,6 +52,7 @@ const xe = new XE({
                     }],
                 innerP: [, , { width: 'innerWidth', height: 'innerHeight', x: 'innerX', y: 'innerY' }],
                 svgE: [, , { width: 'width', height: 'height' }],
+                paraBorderP: [{ ".style.strokeWidth": ['', '.strokeWidth.toString|'] }]
             }
         },
         actions: {
