@@ -29,9 +29,9 @@ export class XtalFigParallelogramCore extends HTMLElement {
         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
         return [, , {
                 transform: {
-                    ':host': {
-                        style: { width: `${width}px`, height: `${height}px` },
-                    },
+                    // ':host':{
+                    //     style: {width: `${width}px`, height: `${height}px`},
+                    // },
                     path: [, , { d: [
                                 `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
                             ] }],
@@ -50,6 +50,9 @@ const xe = new XE({
             width: 800, strokeWidth: 5, height: 300, slant: 30,
             innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
             transform: {
+                ':host': [{
+                        ".style.width": ['', 'width', 'px'], ".style.height": ['', 'height', 'px']
+                    }],
                 innerP: [, , { width: 'innerWidth', height: 'innerHeight', x: 'innerX', y: 'innerY' }],
                 svgE: [, , { width: 'width', height: 'height' }],
             }

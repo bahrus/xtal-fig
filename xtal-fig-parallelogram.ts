@@ -1,8 +1,6 @@
 import {XE} from 'xtal-element/XE.js';
 import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
 import {ParaProps, ParaActions, PPara, EPara, DT} from './types.js';
-import { Action, PropInfo } from '../trans-render/lib/types.js';
-import { IEventConfig, DynamicTransform } from '../trans-render/froop/types.js';
 
 const mainTemplate = String.raw `
 <style>
@@ -36,9 +34,9 @@ export class XtalFigParallelogramCore extends HTMLElement implements ParaActions
         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
         return [,,{
             transform:{
-                ':host':{
-                    style: {width: `${width}px`, height: `${height}px`},
-                },
+                // ':host':{
+                //     style: {width: `${width}px`, height: `${height}px`},
+                // },
                 
                 path: [,, {d: [
                     `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
@@ -63,6 +61,9 @@ const xe = new XE<ParaProps & TemplMgmtProps, ParaActions>({
             width: 800, strokeWidth:5, height:300, slant:30, 
             innerWidth:200, innerHeight:100, innerX:300, innerY:100,
             transform: {
+                ':host': [{
+                    ".style.width": ['', 'width', 'px'], ".style.height": ['', 'height', 'px']
+                }],
                 innerP: [,,{width: 'innerWidth', height: 'innerHeight', x: 'innerX', y: 'innerY'}],
                 svgE: [,,{width: 'width', height: 'height'}],
             }
