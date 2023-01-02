@@ -1,0 +1,66 @@
+<script type=importmap>
+    {
+        "imports": {
+            "trans-render/": "../node_modules/trans-render/",
+            "be-based/": "../node_modules/be-based/",
+            "be-decorated/": "../node_modules/be-decorated/",
+            "be-definitive/": "../node_modules/be-definitive/",
+            "be-exportable/": "../node_modules/be-exportable/",
+            "be-having/": "../node_modules/be-having/",
+            "be-hive/": "../node_modules/be-hive/",
+            "be-importing/": "../node_modules/be-importing/",
+            "be-written/": "../node_modules/be-written/",
+            "stream-orator/": "../node_modules/stream-orator/",
+            "xtal-element/": "../node_modules/xtal-element/",
+            "xtal-fig/": "../"
+        }
+    }
+</script>
+
+<xtal-fig-document>
+    <template shadowroot=open><!--begin--><!--begin-->
+        <style adopt>
+            :host[hidden]{
+                display:none;
+            }
+            :host{
+                display:block;
+            } 
+            .inner{
+                position:relative;
+                top:-50%;
+                left:25%
+            }
+            svg {
+                width: inherit;
+                height: inherit;
+            }
+        </style>
+        <svg viewBox="-0.5 -0.5 102 62">
+            <!-- <defs /> -->
+            <g>
+                <path
+                    d="M 96 1 C 98.76 1 101 3.24 101 6 L 101 53.5 Q 76 40 51 53.5 Q 26 67 1 53.5 L 1 8.5 L 1 6 C 1 3.24 3.24 1 6 1 Z"
+                    fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none" />
+            </g>
+        </svg>
+        <slot style="display:none"></slot>
+        <div part=inner class=inner ></div>
+        <be-hive></be-hive>
+        <script id=shared-xtal-fig-document nomodule be-having>
+            
+            export const definitive = {
+                impl: ['be-definitive/be-definitive.js', 'https://esm.run/be-definitive@0.0.87']
+            }
+        </script>
+    </template>
+</xtal-fig-document>
+
+<script type=module>
+    if(customElements.get('be-importing') === undefined){
+        import('be-importing/be-importing.js').catch(err => {
+            console.debug(err);
+            import('https://esm.run/be-importing@0.0.51');
+        });
+    }
+</script>
