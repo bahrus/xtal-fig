@@ -47,8 +47,13 @@
         <slot style="display:none"></slot>
         <div part=inner class=inner ></div>
         <be-hive></be-hive>
-        <script id=shared-xtal-fig-document nomodule be-having>
-            
+        <script id=shared-xtal-fig-document nomodule be-having='{
+            "make": {
+                ":host":{
+                    "be": "definitive"
+                }
+            }
+        }'>
             export const definitive = {
                 impl: ['be-definitive/be-definitive.js', 'https://esm.run/be-definitive@0.0.87']
             }
