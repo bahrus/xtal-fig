@@ -32,18 +32,11 @@ const mainTemplate = String.raw `
 export class XtalFigParallelogramCore extends HTMLElement implements ParaActions{
     setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant}: this): [PPara, EPara, DT] {
         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
-        return [,,{
-            transform:{
-
-                path: [,, {d: [
-                    `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
-                ]}],
-                // paraBorderP: {
-                //     style: {strokeWidth: [strokeWidth.toString()]},
-                // },
-                
-            }
-        }]
+        return [,,{transform:{
+            path: [,, {d: [
+                `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
+            ]}],
+        }}]
     }
 }
 
