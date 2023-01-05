@@ -1,0 +1,78 @@
+<script type=importmap>
+    {
+        "imports": {
+            "trans-render/": "../node_modules/trans-render/",
+            "be-based/": "../node_modules/be-based/",
+            "be-decorated/": "../node_modules/be-decorated/",
+            "be-definitive/": "../node_modules/be-definitive/",
+            "be-exportable/": "../node_modules/be-exportable/",
+            "be-having/": "../node_modules/be-having/",
+            "be-hive/": "../node_modules/be-hive/",
+            "be-importing/": "../node_modules/be-importing/",
+            "be-written/": "../node_modules/be-written/",
+            "stream-orator/": "../node_modules/stream-orator/",
+            "xtal-element/": "../node_modules/xtal-element/",
+            "xtal-fig/": "../"
+        }
+    }
+</script>
+
+<xtal-fig-diamond>
+    <template shadowroot=open><!--begin--><!--begin-->
+        <style>
+            :host[hidden]{
+                display:none;
+            }
+            :host{
+                display:block;
+            } 
+        </style>
+        <svg viewBox="0 0 100 100">
+            <path part=diamond-fill 
+                style="fill:#ccff00;stroke:none" />
+            <path part=diamond-border 
+                style="fill:none;stroke:#000000;stroke-linejoin:round;" />
+            <g>
+                <foreignObject part=inner>
+                    <slot></slot>
+                </foreignObject>
+            </g>
+        </svg>
+        <be-hive></be-hive>
+        <script id=shared-xtal-fig-diamond nomodule be-having>
+            export const make=['xtal-fig/xtal-fig-diamond.make.js'];
+            export const definitive = {
+                impl: ['be-definitive/be-definitive.js', 'https://esm.run/be-definitive@0.0.87']
+            }
+
+            export const XtalFigDiamondCore = class extends HTMLElement{
+                setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY}) {
+                    return [,, {
+                        transform: {
+                            ':host': {
+                                style: {width: `${width}px`, height: `${height}px`},
+                            },
+                            svgE: [,,{width, height}],
+                            path: [,, {d: [`M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`],}],
+                            diamondBorderP: {
+                                style: {strokeWidth: [strokeWidth.toString()]}
+                            },
+                            innerP: [,,{width: innerWidth, height: innerHeight, x: innerX, y: innerY}],
+
+                        }
+                    }];
+                }
+            }
+        </script>
+        <!--end--><!--end-->
+    </template>
+</xtal-fig-diamond>
+
+<script type=module>
+    if(customElements.get('be-importing') === undefined){
+        import('be-importing/be-importing.js').catch(err => {
+            console.debug(err);
+            import('https://esm.run/be-importing@0.0.51');
+        });
+    }
+</script>

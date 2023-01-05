@@ -1,5 +1,4 @@
 import {EndUserProps as BeDefEUP} from 'be-definitive/types';
-//import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
 
 export const make = {
     ":host": {

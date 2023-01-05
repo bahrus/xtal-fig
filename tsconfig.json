@@ -13,6 +13,7 @@
 		"node_modules"
 	],
     "files": [
-		"xtal-fig-parallelogram.make.ts"
+		"xtal-fig-parallelogram.make.ts",
+		"xtal-fig-diamond.make.ts"
     ]
 }
