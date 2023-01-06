@@ -47,7 +47,10 @@
 
             export const XtalFigDiamondCore = class extends HTMLElement{
                 setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY}) {
-                    console.log('iah');
+                    console.log({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY});
+                    // if(width === 70){
+                    //     debugger;
+                    // }
                     return [,, {
                         transform: {
                             ':host': {

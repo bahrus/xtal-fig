@@ -1,10 +1,11 @@
+import { beCloned, beMounted } from 'trans-render/lib/mixins/TemplMgmt.js';
 export const make = {
     ":host": {
         be: "definitive",
         having: {
             config: {
                 propDefaults: {
-                    //mntCnt: 1,
+                    mntCnt: 1,
                     width: 800, strokeWidth: 5, height: 300, slant: 30,
                     innerWidth: 200, innerHeight: 100, innerX: 300, innerY: 100,
                     transform: {
@@ -17,11 +18,11 @@ export const make = {
                     }
                 },
                 actions: {
-                    //...beCloned,
+                    ...beCloned,
                     setDimensions: {
                         ifAllOf: ['width', 'height'],
                     },
-                    //...beMounted,
+                    ...beMounted,
                 }
             },
             scriptRef: 'shared-xtal-fig-parallelogram',
