@@ -1,6 +1,6 @@
 import {CE} from 'trans-render/lib/CE.js';
 import {TemplMgmtProps, TemplMgmtActions, TemplMgmt, beTransformed} from 'trans-render/lib/mixins/TemplMgmt.js';
-import { XtalFigDBCylinderActions, XtalFigDBCylinderProps } from './types';
+import { XtalFigDBCylinderActions, XtalFigDBCylinderProps } from '../types';
 import { PropInfo } from 'trans-render/lib/types';
 import 'be-active/be-active.js';
 
