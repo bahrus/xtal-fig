@@ -22,11 +22,7 @@
     "build": "*-config.js"
   },
   "exports": {
-    ".": "./index.js",
-    "./xtal-fig-parallelogram.js": "./xtal-fig-parallelogram.js",
-    "./xtal-fig-diamond.js": "./xtal-fig-diamond.js",
-    "./xtal-fig-document.js": "./xtal-fig-document.js",
-    "./xtal-fig-db-cylinder.js": "./xtal-fig-db-cylinder.js"
+    
   },
   "files": [
     "*.*",
