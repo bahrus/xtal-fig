@@ -13,17 +13,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-check": "package-check",
-    "serve": "node node_modules/may-it-serve/serve.js",
-    "doc": "custom-elements-manifest analyze",
-    "build": "copy xfdb-config.js xfdb-config.mjs && node xfdb-config.mjs -dfn > xtal-fig-db-cylinder.dfn.json && node xfdb-config.mjs -js > xtal-fig-db-cylinder.js && node xfdb-config.mjs -html > xtal-fig-db-cylinder.html",
-    "watch": "npm-watch"
+    "serve": "node node_modules/may-it-serve/serve.js"
+
   },
-  "watch": {
-    "build": "*-config.js"
-  },
-  "exports": {
-    
-  },
+  "exports": {},
   "files": [
     "*.*",
     "diamond/*.*",
