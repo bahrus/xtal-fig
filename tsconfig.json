@@ -14,6 +14,6 @@
 	],
     "files": [
 		"xtal-fig-parallelogram.make.ts",
-		"xtal-fig-diamond.make.ts"
+		"diamond/xtal-fig-diamond.make.ts"
     ]
 }
