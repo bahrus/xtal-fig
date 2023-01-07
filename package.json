@@ -21,6 +21,7 @@
     "*.*",
     "diamond/*.*",
     "parallelogram/*.*",
+    "cylinder/*.*",
     "demo/*.*"
   ],
   "types": "types.d.ts",
