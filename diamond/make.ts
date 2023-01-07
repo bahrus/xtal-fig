@@ -1,5 +1,5 @@
 import {EndUserProps as BeDefEUP} from 'be-definitive/types';
-import {beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
+import {beCloned, beMounted, TemplMgmtProps, TemplMgmtActions, } from 'trans-render/lib/mixins/TemplMgmt.js';
 import {DiamondProps, DiamondActions} from '../types';
 
 export class XtalFigDiamondCore extends HTMLElement{
@@ -40,7 +40,7 @@ export const make = {
                 }
             },
             superclass: XtalFigDiamondCore
-        } as BeDefEUP<DiamondProps, DiamondActions>
+        } as BeDefEUP<DiamondProps & TemplMgmtProps, DiamondActions & TemplMgmtActions>
     }
 }
 

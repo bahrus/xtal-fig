@@ -1,4 +1,4 @@
-import { beCloned, beMounted } from 'trans-render/lib/mixins/TemplMgmt.js';
+import { beCloned, beMounted, } from 'trans-render/lib/mixins/TemplMgmt.js';
 export class XtalFigDiamondCore extends HTMLElement {
     setDimensions({ width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY }) {
         return [, , {
