@@ -1,5 +1,6 @@
 import {EndUserProps as BeDefEUP} from 'be-definitive/types';
-import {TemplMgmt, TemplMgmtProps, TemplMgmtActions, beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
+import {beCloned, beMounted} from 'trans-render/lib/mixins/TemplMgmt.js';
+import {DiamondProps, DiamondActions} from '../types';
 
 export const make = {
     ":host": {
@@ -7,8 +8,8 @@ export const make = {
         having: {
             config:{
                 propDefaults: {
-                    mntCnt: 1,
                     width:800, height:300, innerWidth:200, strokeWidth:5, innerHeight:100, innerX:300, innerY:100
+                    
                 },
                 actions:{
                     ...beCloned,
@@ -21,6 +22,6 @@ export const make = {
             },
             scriptRef: 'shared-xtal-fig-diamond',
             superclass: 'XtalFigDiamondCore'
-        } as BeDefEUP
+        } as BeDefEUP<DiamondProps, DiamondActions>
     }
 }
