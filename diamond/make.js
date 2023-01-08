@@ -22,7 +22,8 @@ export const make = {
         having: {
             config: {
                 propDefaults: {
-                    width: 800, height: 300, innerWidth: 200, strokeWidth: 5, innerHeight: 100, innerX: 300, innerY: 100
+                    width: 800, height: 300, innerWidth: 200, strokeWidth: 5, innerHeight: 100, innerX: 300, innerY: 100,
+                    mntCnt: 1 //need this because we are using 1 froop dynamic transform
                 },
                 actions: {
                     ...beCloned,
