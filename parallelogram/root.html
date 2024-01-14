@@ -19,8 +19,67 @@
                 </foreignObject>
             </g>
         </svg>
-        <be-hive></be-hive>
-        <script id=shared-xtal-fig-parallelogram nomodule be-having>
+        <template onload=blow-dry-to-head>
+            <script>
+                class XtalFigParallelogramCore extends HTMLElement{
+                    setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant}) {
+                        const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
+                        console.log({hOffset});
+                        this.style.width = width + 'px';
+                        this.style.height = height + 'px';
+                        return {
+                            "* path": {
+                                " d": [
+                                    `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
+                                ]
+                            }
+                        }
+                        // return [,,{transform:{
+                        //     path: [,, {d: [
+                        //         `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
+                        //     ]}],
+                        // }}]
+                    }
+                }
+                customElements.define('xtal-fig-parallelogram-core', XtalFigParallelogramCore);
+            </script>
+        </template>
+        <xtal-element 
+            superclass=xtal-fig-parallelogram-core
+            prop-defaults='{
+                "strokeWidth": 5,
+                "slant": 30,
+                "innerWidth": 200,
+                "innerHeight": 100,
+                "innerX": 300,
+                "innerY": 100,
+                "width": 800,
+                "height": 300
+            }'
+            xform='{
+                "% inner": [
+                    {
+                        "o": "innerWidth",
+                        "sa": "width"
+                    },
+                    {
+                        "o": "innerHeight",
+                        "sa": "height"
+                    }
+                ],
+                "svg": [
+                    {"o": "width", "sa": "width"},
+                    {"o": "height", "sa": "height"}
+                ]
+            }'
+            actions='{
+                "setDimensions":{
+                    "ifAllOf": ["width", "height"],
+                    "ifNoneOf": ["unhydrated"]
+                }
+            }'
+        ></xtal-element>
+        <!-- <script id=shared-xtal-fig-parallelogram nomodule be-having>
             export const make=['xtal-fig/parallelogram/make.js', 'https://esm.run/xtal-fig@0.0.23/parallelogram/make.js'];
             export const definitive = {
                 impl: ['be-definitive/be-definitive.js', 'https://esm.run/be-definitive@0.0.87']
@@ -35,15 +94,6 @@
                     }}]
                 }
             }
-        </script>
+        </script> -->
     <!--end--><!--end--></template>
 </xtal-fig-parallelogram>
-
-<script type=module>
-    if(customElements.get('be-importing') === undefined){
-        import('be-importing/be-importing.js').catch(err => {
-            console.debug(err);
-            import('https://esm.run/be-importing@0.0.52');
-        });
-    }
-</script>

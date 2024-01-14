@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <xtal-fig-parallelogram be-importing=xtal-fig/parallelogram/root.html>
+    <xtal-fig-parallelogram enh-by-be-importing=xtal-fig/parallelogram/root.html>
         There
     </xtal-fig-parallelogram>
 
@@ -17,23 +17,25 @@
     <script type=importmap>
         {
             "imports": {
-                "trans-render/": "../node_modules/trans-render/",
+                "be-a-beacon/": "../node_modules/be-a-beacon/",
                 "be-based/": "../node_modules/be-based/",
-                "be-decorated/": "../node_modules/be-decorated/",
-                "be-definitive/": "../node_modules/be-definitive/",
-                "be-exportable/": "../node_modules/be-exportable/",
-                "be-having/": "../node_modules/be-having/",
+                "be-enhanced/": "../node_modules/be-enhanced/",
                 "be-hive/": "../node_modules/be-hive/",
                 "be-importing/": "../node_modules/be-importing/",
                 "be-written/": "../node_modules/be-written/",
+                "blow-dry/": "../node_modules/blow-dry/",
+                "mount-observer/": "../node_modules/mount-observer/",
                 "stream-orator/": "../node_modules/stream-orator/",
-                "xtal-element/": "../node_modules/xtal-element/",
+                "trans-render/": "../trans-render/",
+                "xtal-element/": "../xtal-element/",
                 "xtal-fig/": "../"
             }
         }
     </script>
     <script type=module>
-        import 'be-importing/be-importing.js';
+        //TODO replace with import 'be-importing/index.js';
+        import 'be-importing/behivior.js';
+        import 'xtal-element/xtal-element.js';
     </script>
 </body>
 </html>
