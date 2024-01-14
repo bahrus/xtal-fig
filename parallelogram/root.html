@@ -22,9 +22,10 @@
         <template onload=blow-dry-to-head>
             <script>
                 class XtalFigParallelogramCore extends HTMLElement{
-                    setDimensions({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant}) {
+                    setDimensions(self) {
+                        const {width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant} = self
                         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
-                        console.log({hOffset});
+                        //console.log({hOffset, id: self.id});
                         this.style.width = width + 'px';
                         this.style.height = height + 'px';
                         return {
@@ -34,11 +35,6 @@
                                 ]
                             }
                         }
-                        // return [,,{transform:{
-                        //     path: [,, {d: [
-                        //         `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
-                        //     ]}],
-                        // }}]
                     }
                 }
                 customElements.define('xtal-fig-parallelogram-core', XtalFigParallelogramCore);
@@ -70,12 +66,14 @@
                 "svg": [
                     {"o": "width", "sa": "width"},
                     {"o": "height", "sa": "height"}
-                ]
+                ],
+                "% para-border":{
+                    "o": "strokeWidth", "ss": "strokeWidth"
+                }
             }'
             actions='{
                 "setDimensions":{
-                    "ifAllOf": ["width", "height"],
-                    "ifNoneOf": ["unhydrated"]
+                    "ifAllOf": ["clonedTemplate", "width", "height"]
                 }
             }'
         ></xtal-element>
