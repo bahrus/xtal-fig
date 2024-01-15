@@ -27,10 +27,10 @@
   ],
   "types": "types.d.ts",
   "dependencies": {
-    "be-hive": "0.0.131",
-    "be-importing": "0.0.69",
-    "trans-render": "0.0.729",
-    "xtal-element": "0.0.586"
+    "be-hive": "0.0.132",
+    "be-importing": "0.0.71",
+    "trans-render": "0.0.730",
+    "xtal-element": "0.0.587"
     
   },
   "devDependencies": {
