@@ -6,14 +6,8 @@
 		"experimentalDecorators": true,
 		"strict": true,
 		"newLine": "LF",
-		"watch": true
 	},
 	"exclude":[
-		"build",
 		"node_modules"
-	],
-    "files": [
-		"parallelogram/make.ts",
-		"diamond/make.ts"
-    ]
+	]
 }
