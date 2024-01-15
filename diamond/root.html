@@ -19,22 +19,61 @@
                 </foreignObject>
             </g>
         </svg>
-        <be-hive></be-hive>
-        <script id=shared-xtal-fig-diamond nomodule be-having>
-            export const make=['xtal-fig/diamond/make.js', 'https://esm.run/xtal-fig@0.0.24/diamond/make.js'];
-            export const definitive = {
-                impl: ['be-definitive/be-definitive.js', 'https://esm.run/be-definitive@0.0.88']
-            }
-        </script>
+        <template onload=blow-dry-to-head>
+            <script>
+                class XtalFigDiagmondCore extends HTMLElement{
+                    setDimensions(self){
+                        const {width, height, strokeWidth} = self;
+                        this.style.width = width + 'px';
+                        this.style.height = height + 'px';
+                        return {
+                            "* path": {
+                                " d": [
+                                `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`
+                                ]
+                            }
+                        }                        
+                    }
+                }
+                customElements.define('xtal-fig-diamond-core', XtalFigDiagmondCore);
+            </script>
+        </template>
+        <xtal-element
+            superclass=xtal-fig-diamond-core
+            prop-defaults='{
+                "width": 800,
+                "height": 300,
+                "innerWidth": 200,
+                "strokeWidth": 5,
+                "innerHeight": 100,
+                "innerX": 300,
+                "innerY": 100
+            }'
+            xform='{
+                "% inner": [
+                    {
+                        "o": "innerWidth",
+                        "sa": "width"
+                    },
+                    {
+                        "o": "innerHeight",
+                        "sa": "height"
+                    }
+                ],
+                "svg": [
+                    {"o": "width", "sa": "width"},
+                    {"o": "height", "sa": "height"}
+                ],
+                "% para-border":{
+                    "o": "strokeWidth", "ss": "strokeWidth"
+                }
+            }'
+            actions='{
+                "setDimensions": {
+                    "ifAllOf": ["clonedTemplate", "width", "height", "strokeWidth"]
+                }
+            }'
+        ></xtal-element>
         <!--end--><!--end-->
     </template>
 </xtal-fig-diamond>
-
-<script type=module>
-    if(customElements.get('be-importing') === undefined){
-        import('be-importing/be-importing.js').catch(err => {
-            console.debug(err);
-            import('https://esm.run/be-importing@0.0.51');
-        });
-    }
-</script>
