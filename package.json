@@ -1,6 +1,6 @@
 {
   "name": "xtal-fig",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "Turn css for basic shapes into semantic html",
   "main": "xtal-fig-diamond.js",
   "module": "xtal-fig-diamond.js",
@@ -31,7 +31,6 @@
     "be-importing": "0.0.71",
     "trans-render": "0.0.730",
     "xtal-element": "0.0.587"
-    
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
