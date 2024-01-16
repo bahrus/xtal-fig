@@ -29,8 +29,8 @@
   "dependencies": {
     "be-hive": "0.0.132",
     "be-importing": "0.0.71",
-    "trans-render": "0.0.730",
-    "xtal-element": "0.0.587"
+    "trans-render": "0.0.731",
+    "xtal-element": "0.0.588"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",

@@ -21,15 +21,18 @@
         </svg>
         <template onload=blow-dry-to-head>
             <script>
-                const setDimensions = ({width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant}) => ({
-                    "* path": {
-                        " d": [
-                            `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
-                        ]
-                    }
-                })
                 class XtalFigParallelogramCore extends HTMLElement{
-                    setDimensions = setDimensions;
+                    setDimensions(self) {
+                        const {width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant} = self
+                        const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
+                        return {
+                            "* path": {
+                                " d": [
+                                    `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
+                                ]
+                            }
+                        }
+                    }
                 }
                 customElements.define('xtal-fig-parallelogram-core', XtalFigParallelogramCore);
             </script>
