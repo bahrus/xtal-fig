@@ -21,19 +21,15 @@
         </svg>
         <template onload=blow-dry-to-head>
             <script>
-                class XtalFigDiagmondCore extends HTMLElement{
-                    setDimensions(self){
-                        const {width, height, strokeWidth} = self;
-                        this.style.width = width + 'px';
-                        this.style.height = height + 'px';
-                        return {
-                            "* path": {
-                                " d": [
-                                `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`
-                                ]
-                            }
-                        }                        
+                const setDimensions = ({width, height, strokeWidth}) =>({
+                    "* path": {
+                        " d": [
+                        `M ${width / 2},${strokeWidth} L ${strokeWidth},${height / 2} L ${width / 2},${height-strokeWidth} L ${width - strokeWidth},${height / 2} L ${width / 2},${strokeWidth} z`
+                        ]
                     }
+                });
+                class XtalFigDiagmondCore extends HTMLElement{
+                    setDimensions = setDimensions
                 }
                 customElements.define('xtal-fig-diamond-core', XtalFigDiagmondCore);
             </script>
@@ -67,6 +63,12 @@
                 "% para-border":{
                     "o": "strokeWidth", "ss": "strokeWidth"
                 }
+            }'
+            lc-xform='{
+                ":root": [
+                    {"o": "width", "ss": "width", "d": [0, "px"]},
+                    {"o": "height", "ss": "height", "d": [0, "px"]}
+                ]
             }'
             actions='{
                 "setDimensions": {
