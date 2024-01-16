@@ -21,13 +21,11 @@
         </svg>
         <template onload=blow-dry-to-head>
             <script>
+                
                 class XtalFigParallelogramCore extends HTMLElement{
                     setDimensions(self) {
                         const {width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant} = self
                         const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
-                        //console.log({hOffset, id: self.id});
-                        this.style.width = width + 'px';
-                        this.style.height = height + 'px';
                         return {
                             "* path": {
                                 " d": [
@@ -70,6 +68,12 @@
                 "% para-border":{
                     "o": "strokeWidth", "ss": "strokeWidth"
                 }
+            }'
+            lc-xform='{
+                ":root": [
+                    {"o": "width", "ss": "width", "d": [0, "px"]},
+                    {"o": "height", "ss": "height", "d": [0, "px"]}
+                ]
             }'
             actions='{
                 "setDimensions":{
