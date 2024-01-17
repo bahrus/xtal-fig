@@ -9,5 +9,8 @@
 	},
 	"exclude":[
 		"node_modules"
+	],
+	"files": [
+		"parallelogram/def.mts"
 	]
 }

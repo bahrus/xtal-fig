@@ -1,0 +1,79 @@
+<template onload=blow-dry-to-head><script type=module>
+class XtalFigParallelogramCore extends HTMLElement {
+    setDimensions(self) {
+        const { width, height, strokeWidth, innerWidth, innerHeight, innerX, innerY, slant } = self;
+        const hOffset = width * Math.sin(Math.PI * slant / 180) + strokeWidth;
+        return {
+            "* path": {
+                " d": [
+                    `M ${hOffset},${strokeWidth} L ${width - strokeWidth},${strokeWidth} L ${width - hOffset},${height - strokeWidth} L ${strokeWidth},${height - strokeWidth} L ${hOffset},${strokeWidth} z`
+                ]
+            }
+        };
+    }
+}
+
+;
+customElements.define('xtal-fig-parallelogram-core', XtalFigParallelogramCore)
+</script></template>
+
+<xtal-element
+superclass=xtal-fig-parallelogram-core
+prop-defaults='{
+   "strokeWidth": 5,
+   "slant": 30,
+   "innerWidth": 200,
+   "innerHeight": 100,
+   "innerX": 300,
+   "innerY": 100,
+   "width": 800,
+   "height": 300
+}'
+xform='{
+   "% inner": [
+      {
+         "o": "innerWidth",
+         "sa": "width"
+      },
+      {
+         "o": "innerHeight",
+         "sa": "height"
+      }
+   ],
+   "svg": [
+      {
+         "o": "width",
+         "sa": "width"
+      },
+      {
+         "o": "height",
+         "sa": "height"
+      }
+   ],
+   "% para-border": {
+      "o": "strokeWidth",
+      "ss": "strokeWidth"
+   }
+}'
+lc-xform='{
+   ":root": [
+      {
+         "o": "width",
+         "ss": "width"
+      },
+      {
+         "o": "height",
+         "ss": "height"
+      }
+   ]
+}'
+actions='{
+   "setDimensions": {
+      "ifAllOf": [
+         "clonedTemplate",
+         "width",
+         "height"
+      ]
+   }
+}'
+></xtal-element>

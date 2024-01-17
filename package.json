@@ -15,7 +15,8 @@
     "package-check": "package-check",
     "serve": "node node_modules/may-it-serve/serve.js",
     "safari": "npx playwright wk http://localhost:3030",
-    "update": "ncu -u && npm install"
+    "update": "ncu -u && npm install",
+    "build": "powershell -command \"node parallelogram/def.mjs | out-file  -encoding  ASCII parallelogram/def.html\""
   },
   "exports": {},
   "files": [
@@ -28,9 +29,10 @@
   "types": "types.d.ts",
   "dependencies": {
     "be-hive": "0.0.132",
-    "be-importing": "0.0.71",
+    "be-importing": "0.0.73",
+    "blow-dry": "0.0.6",
     "trans-render": "0.0.731",
-    "xtal-element": "0.0.588"
+    "xtal-element": "0.0.590"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
